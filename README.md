@@ -6,7 +6,7 @@ App web con IA que ayuda a personas con discapacidad intelectual a encontrar emp
 
 ## El problema
 
-<!-- TODO (Angela): escribe aquí 4 o 6 frases sobre el problema, desde tu experiencia en el sector. -->
+Las personas con discapacidad intelectual quieren trabajar, pero buscar empleo está pensado para quien entiende textos complejos. Las ofertas, los CV y las cartas usan un lenguaje que muchas veces no pueden leer, así que dependen de otra persona para cada paso. Las herramientas que existen se centran sobre todo en oposiciones, y apenas ayudan con la empresa privada, los Centros Especiales de Empleo o el empleo con apoyo. Además, no hay datos públicos de qué empresas cumplen la cuota de reserva, y encontrar ofertas adecuadas lleva mucho tiempo a los preparadores laborales. Esta app quiere que la persona entienda y decida sobre su propia búsqueda de empleo, con el preparador laboral como apoyo.
 
 ## Qué hace
 
