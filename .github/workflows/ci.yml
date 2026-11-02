@@ -1,0 +1,33 @@
+name: CI
+
+# Cuándo se ejecuta: en cada push a main y en cada pull request
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  backend:
+    name: Backend (compilar y tests)
+    runs-on: ubuntu-latest
+
+    # Todos los comandos se ejecutan dentro de la carpeta backend/
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      # 1. Descarga el código del repositorio en la máquina
+      - uses: actions/checkout@v7
+
+      # 2. Instala Java 21 (Temurin, el mismo que en tu PC)
+      #    y guarda las librerías de Maven para que la próxima vez vaya más rápido
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      # 3. Compila y pasa todos los tests
+      - name: Compilar y pasar los tests
+        run: ./mvnw -B verify
