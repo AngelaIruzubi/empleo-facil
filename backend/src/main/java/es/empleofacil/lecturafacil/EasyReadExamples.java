@@ -12,8 +12,12 @@ import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.json.JsonMapper;
+
 // Ejemplos few-shot: una conversación inventada en la que el modelo ya adaptó bien otros textos.
-// Cada ejemplo son dos archivos en prompts/examples/: <nombre>-original.txt y <nombre>-adapted.txt
+// Cada ejemplo son tres archivos en prompts/examples/:
+// <nombre>-original.txt, <nombre>-adapted.txt y <nombre>-changes.json
 @Component
 public class EasyReadExamples {
 
@@ -22,13 +26,15 @@ public class EasyReadExamples {
             "interview-invitation");
 
     private final ResourceLoader resourceLoader;
+    private final JsonMapper jsonMapper = JsonMapper.builder().build();
     private final List<Message> messages = new ArrayList<>();
 
     public EasyReadExamples(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
         for (String name : NAMES) {
             messages.add(new UserMessage(original(name)));
-            messages.add(new AssistantMessage(adapted(name)));
+            // El modelo responde con la misma ficha JSON que le pedimos con .entity()
+            messages.add(new AssistantMessage(jsonMapper.writeValueAsString(result(name))));
         }
     }
 
@@ -42,6 +48,15 @@ public class EasyReadExamples {
 
     String adapted(String name) {
         return read("classpath:prompts/examples/" + name + "-adapted.txt");
+    }
+
+    List<Change> changes(String name) {
+        return jsonMapper.readValue(read("classpath:prompts/examples/" + name + "-changes.json"),
+                new TypeReference<List<Change>>() { });
+    }
+
+    EasyReadResult result(String name) {
+        return new EasyReadResult(adapted(name), changes(name));
     }
 
     private String read(String location) {

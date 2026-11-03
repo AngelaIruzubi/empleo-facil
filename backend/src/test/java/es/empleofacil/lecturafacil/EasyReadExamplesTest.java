@@ -35,6 +35,19 @@ class EasyReadExamplesTest {
         }
     }
 
+    @ParameterizedTest
+    @FieldSource("names")
+    void exampleAnswerIsValidJsonWithTextAndChanges(String name) {
+        EasyReadResult result = examples.result(name);
+
+        assertThat(result.adaptedText()).isEqualTo(examples.adapted(name));
+        assertThat(result.changes()).isNotEmpty().allSatisfy(change -> {
+            assertThat(change.original()).isNotBlank();
+            assertThat(change.adapted()).isNotBlank();
+            assertThat(change.reason()).isNotBlank();
+        });
+    }
+
     // El modelo copia los ejemplos, así que tienen que cumplir nuestras reglas
     @ParameterizedTest
     @FieldSource("names")

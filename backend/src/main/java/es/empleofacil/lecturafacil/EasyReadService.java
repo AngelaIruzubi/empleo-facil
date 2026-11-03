@@ -21,12 +21,13 @@ public class EasyReadService {
         this.examples = examples;
     }
 
-    public String adapt(String text) {
+    // Devuelve el texto adaptado y la lista de cambios para que una persona los revise
+    public EasyReadResult adapt(String text) {
         return chatClient.prompt()
                 .system(systemPrompt)
                 .messages(examples.messages())
                 .user(text)
                 .call()
-                .content();
+                .entity(EasyReadResult.class);
     }
 }

@@ -44,8 +44,12 @@ Organización:
 - Da la información necesaria y quita la que no hace falta.
 - Usa un lenguaje adecuado para personas adultas. No escribas como si fuera para niños.
 
-Formato de la respuesta:
-- Responde solo con el texto adaptado, sin explicaciones antes ni después.
+Lista de cambios:
+- Además del texto adaptado, anota los cambios importantes que has hecho.
+- Anota las palabras difíciles explicadas o cambiadas, las siglas, las fechas, la información quitada y lo que es obligatorio o recomendable.
+- Si no estás seguro de qué significa algo, anótalo y empieza el motivo con Revisar:
+
+Formato del texto adaptado:
 - Escribe cada frase en una línea nueva.
 - Deja una línea en blanco entre párrafos.
 - Para hacer una lista, empieza cada elemento con un guion.

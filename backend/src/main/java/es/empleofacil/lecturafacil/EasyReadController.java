@@ -16,7 +16,7 @@ public class EasyReadController {
     }
 
     @PostMapping("/easy-read")
-    public EasyReadResponse adapt(@RequestBody EasyReadRequest request) {
-        return new EasyReadResponse(easyReadService.adapt(request.text()));
+    public EasyReadResult adapt(@RequestBody EasyReadRequest request) {
+        return easyReadService.adapt(request.text());
     }
 }

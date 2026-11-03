@@ -1,0 +1,47 @@
+[
+  {
+    "original": "Le comunicamos que ha sido seleccionado/a",
+    "adapted": "Te hemos elegido",
+    "reason": "Voz activa, trato de tú y sin el signo /."
+  },
+  {
+    "original": "fase de entrevista personal",
+    "adapted": "En la entrevista, la empresa habla contigo y te conoce mejor.",
+    "reason": "Palabra explicada."
+  },
+  {
+    "original": "el próximo 15/03/2027 a las 9:30 h",
+    "adapted": "el lunes 15 de marzo de 2027. La entrevista empieza a las 9 y media de la mañana.",
+    "reason": "Fecha completa y hora más fácil."
+  },
+  {
+    "original": "C/ Mayor, 12, 2.º B",
+    "adapted": "calle Mayor, número 12. Las oficinas están en el piso 2, puerta B.",
+    "reason": "Abreviaturas y número ordinal quitados."
+  },
+  {
+    "original": "DNI",
+    "adapted": "Tu DNI, el documento nacional de identidad.",
+    "reason": "Sigla explicada."
+  },
+  {
+    "original": "CV actualizado",
+    "adapted": "Tu currículum con tus datos de ahora.",
+    "reason": "Sigla y palabra difícil explicadas."
+  },
+  {
+    "original": "En caso de no poder asistir, deberá comunicarlo",
+    "adapted": "Si no puedes ir, llama por teléfono a la empresa.",
+    "reason": "Frase más sencilla y directa."
+  },
+  {
+    "original": "con 48 h de antelación",
+    "adapted": "como mínimo 2 días antes de la entrevista",
+    "reason": "Cantidad más fácil de entender."
+  },
+  {
+    "original": "tlf. 910000000",
+    "adapted": "El teléfono es 91 000 00 00.",
+    "reason": "Abreviatura quitada y teléfono separado en grupos."
+  }
+]

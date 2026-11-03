@@ -5,6 +5,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
@@ -22,8 +24,9 @@ class EasyReadControllerTest {
     private EasyReadService easyReadService;
 
     @Test
-    void adaptReturnsAdaptedText() throws Exception {
-        when(easyReadService.adapt("Texto difícil")).thenReturn("Texto fácil");
+    void adaptReturnsAdaptedTextAndChanges() throws Exception {
+        when(easyReadService.adapt("Texto difícil")).thenReturn(new EasyReadResult("Texto fácil",
+                List.of(new Change("CAP", "CAP", "Revisar: no conozco esta sigla."))));
 
         mockMvc.perform(post("/api/easy-read")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -31,6 +34,8 @@ class EasyReadControllerTest {
                                 {"text": "Texto difícil"}
                                 """))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.adaptedText").value("Texto fácil"));
+                .andExpect(jsonPath("$.adaptedText").value("Texto fácil"))
+                .andExpect(jsonPath("$.changes[0].original").value("CAP"))
+                .andExpect(jsonPath("$.changes[0].reason").value("Revisar: no conozco esta sigla."));
     }
 }

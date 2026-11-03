@@ -25,13 +25,20 @@ DEFAULT_URL = "http://localhost:8080/api/easy-read"
 TIMEOUT_SECONDS = 600
 
 
-def adapt(url: str, text: str) -> str:
+def adapt(url: str, text: str) -> dict:
     body = json.dumps({"text": text}).encode("utf-8")
     request = urllib.request.Request(
         url, data=body, headers={"Content-Type": "application/json; charset=utf-8"}
     )
     with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
-        return json.load(response)["adaptedText"]
+        return json.load(response)
+
+
+def format_changes(changes: list) -> str:
+    lines = ["", "## Cambios", ""]
+    for change in changes:
+        lines.append(f"- {change['original']} → {change['adapted']} ({change['reason']})")
+    return "\n".join(lines)
 
 
 def main() -> None:
@@ -46,11 +53,12 @@ def main() -> None:
     for text_file in sorted(TEXTS_DIR.glob("*.txt")):
         print(f"{model} · {text_file.name} ...", flush=True)
         start = time.perf_counter()
-        adapted = adapt(url, text_file.read_text(encoding="utf-8").strip())
+        result = adapt(url, text_file.read_text(encoding="utf-8").strip())
         seconds = time.perf_counter() - start
 
         header = f"# Modelo: {model}\n# Texto: {text_file.name}\n# Tiempo: {seconds:.0f} s\n\n"
-        (output_dir / text_file.name).write_text(header + adapted + "\n", encoding="utf-8", newline="\n")
+        content = header + result["adaptedText"] + "\n" + format_changes(result["changes"]) + "\n"
+        (output_dir / text_file.name).write_text(content, encoding="utf-8", newline="\n")
         print(f"  listo en {seconds:.0f} s", flush=True)
 
 

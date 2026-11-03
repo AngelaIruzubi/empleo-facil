@@ -1,0 +1,47 @@
+[
+  {
+    "original": "Empresa de restauración colectiva",
+    "adapted": "Una empresa",
+    "reason": "Información quitada: no hace falta para entender la oferta."
+  },
+  {
+    "original": "emplatado",
+    "adapted": "Sirves la comida en los platos.",
+    "reason": "Palabra difícil explicada."
+  },
+  {
+    "original": "limpieza de menaje",
+    "adapted": "Limpias los platos, los vasos y los cubiertos.",
+    "reason": "Palabra difícil explicada."
+  },
+  {
+    "original": "Requisitos imprescindibles",
+    "adapted": "¿Qué necesitas para este trabajo?",
+    "reason": "Frase más sencilla. Estos requisitos son obligatorios."
+  },
+  {
+    "original": "carné de manipulador de alimentos",
+    "adapted": "Este carné demuestra que sabes tratar la comida de forma limpia y segura.",
+    "reason": "Palabra técnica necesaria: se mantiene y se explica."
+  },
+  {
+    "original": "de 10:00 a 16:00 h",
+    "adapted": "de 10 de la mañana a 4 de la tarde",
+    "reason": "Horario escrito de forma más fácil."
+  },
+  {
+    "original": "Se valorará experiencia previa en colectividades.",
+    "adapted": "Es bueno tener experiencia en cocinas grandes, como comedores de colegios o de empresas.",
+    "reason": "Es recomendable, no obligatorio. Palabra difícil explicada con ejemplos."
+  },
+  {
+    "original": "Jornada parcial de 30 horas semanales.",
+    "adapted": "Trabajas 30 horas cada semana.",
+    "reason": "Palabra difícil quitada. Se mantiene el dato de las horas."
+  },
+  {
+    "original": "Incorporación: 7/1/2027.",
+    "adapted": "Empiezas el jueves 7 de enero de 2027.",
+    "reason": "Fecha completa."
+  }
+]

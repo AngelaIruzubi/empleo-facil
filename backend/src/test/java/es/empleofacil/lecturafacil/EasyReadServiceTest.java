@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Answers;
 import org.springframework.ai.chat.client.ChatClient;
@@ -20,16 +22,18 @@ class EasyReadServiceTest {
     private final EasyReadService service = new EasyReadService(chatClient, systemPrompt, examples);
 
     @Test
-    void adaptSendsSystemPromptExamplesAndText() {
+    void adaptSendsSystemPromptExamplesAndTextAndReturnsResult() {
+        EasyReadResult expected = new EasyReadResult("Texto fácil",
+                List.of(new Change("difícil", "fácil", "Palabra difícil cambiada.")));
         when(chatClient.prompt()
                 .system(systemPrompt)
                 .messages(examples.messages())
                 .user("Texto difícil")
                 .call()
-                .content())
-                .thenReturn("Texto fácil");
+                .entity(EasyReadResult.class))
+                .thenReturn(expected);
 
-        assertThat(service.adapt("Texto difícil")).isEqualTo("Texto fácil");
+        assertThat(service.adapt("Texto difícil")).isEqualTo(expected);
     }
 
     @Test
