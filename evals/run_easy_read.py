@@ -50,7 +50,7 @@ def main() -> None:
         seconds = time.perf_counter() - start
 
         header = f"# Modelo: {model}\n# Texto: {text_file.name}\n# Tiempo: {seconds:.0f} s\n\n"
-        (output_dir / text_file.name).write_text(header + adapted + "\n", encoding="utf-8")
+        (output_dir / text_file.name).write_text(header + adapted + "\n", encoding="utf-8", newline="\n")
         print(f"  listo en {seconds:.0f} s", flush=True)
 
 
