@@ -1,5 +1,7 @@
 package es.empleofacil.lecturafacil;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,7 @@ public class EasyReadController {
     }
 
     @PostMapping("/easy-read")
-    public EasyReadResult adapt(@RequestBody EasyReadRequest request) {
+    public EasyReadResult adapt(@Valid @RequestBody EasyReadRequest request) {
         return easyReadService.adapt(request.text());
     }
 }

@@ -1,6 +1,7 @@
 package es.empleofacil.lecturafacil;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -34,6 +35,34 @@ class EasyReadServiceTest {
                 .thenReturn(expected);
 
         assertThat(service.adapt("Texto difícil")).isEqualTo(expected);
+    }
+
+    @Test
+    void aiErrorBecomesEasyReadException() {
+        when(chatClient.prompt()
+                .system(systemPrompt)
+                .messages(examples.messages())
+                .user("Texto difícil")
+                .call())
+                .thenThrow(new RuntimeException("Connection refused"));
+
+        assertThatThrownBy(() -> service.adapt("Texto difícil"))
+                .isInstanceOf(EasyReadException.class)
+                .hasRootCauseMessage("Connection refused");
+    }
+
+    @Test
+    void emptyAiAnswerBecomesEasyReadException() {
+        when(chatClient.prompt()
+                .system(systemPrompt)
+                .messages(examples.messages())
+                .user("Texto difícil")
+                .call()
+                .entity(EasyReadResult.class))
+                .thenReturn(new EasyReadResult("", List.of()));
+
+        assertThatThrownBy(() -> service.adapt("Texto difícil"))
+                .isInstanceOf(EasyReadException.class);
     }
 
     @Test
