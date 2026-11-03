@@ -1,0 +1,26 @@
+# Modelo: llama3.2-3b
+# Texto: 01-oferta-reposicion.txt
+# Tiempo: 168 s
+
+Trabajo de personal de reposición en un centro logístico
+
+La empresa busca a alguien para ayudar en un centro logístico.
+El trabajo es de reposición, lo que significa que puede ser para cuando otros trabajan en otros lugares.
+
+¿Qué necesitas para este trabajo?
+- Tienes que haber estudiado en el colegio secundario.
+- Tienes que estar disponible para trabajar en turnos rotativos.
+- Necesitas incorporarte de inmediato, sin necesidad de prepararte.
+
+¿Qué es bueno tener, pero no es obligatorio?
+Es bueno tener el certificado de aptitud para el trabajo (CAP).
+También es bueno tener experiencia en un trabajo similar.
+La experiencia debe ser de al menos 6 meses.
+
+¿Cuánto dura el trabajo?
+El trabajo dura 3 meses.
+Si todo va bien, se puede prorrogar.
+
+¿Cuánto ganas?
+El salario es según el convenio de la empresa.
+No se especifica cuánto ganas exactamente.

@@ -1,0 +1,15 @@
+# Modelo: llama3.2-3b
+# Texto: 03-correo-rechazo.txt
+# Tiempo: 31 s
+
+No has sido seleccionado/a para seguir en el proceso
+
+Queremos agradecerte por haber querido trabajar con nosotros.
+Hemos revisado tu solicitud y hemos decidido que no es la persona que estamos buscando en este momento.
+
+Lo siento mucho.
+
+¿Qué pasará con tus datos?
+- No los vamos a borrar.
+- Los vamos a guardar durante 1 año.
+- Si en el futuro hay una vacante que se ajuste a ti, te llamaremos.

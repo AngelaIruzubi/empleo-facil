@@ -1,0 +1,26 @@
+# Modelo: llama3.2-3b
+# Texto: 02-oferta-limpieza.txt
+# Tiempo: 66 s
+
+Tenemos un trabajo de limpieza
+
+Queremos que limpies nuestras oficinas.
+El trabajo es en turnos de tarde, de lunes a viernes.
+El horario es de las 5 de la tarde a las 9 de la noche.
+
+¿Dónde vives?
+Necesitas vivir en Alcobendas o en San Sebastián de los Reyes.
+Estos son los lugares donde podemos contratarte.
+
+¿Qué necesitas para este trabajo?
+Necesitas tener un certificado que demuestra que tienes discapacidad.
+El certificado debe ser de al menos 33%.
+Con este certificado, tienes derecho a una contratación bonificada.
+
+¿Qué es el contrato?
+El contrato es indefinido, pero a tiempo parcial.
+Trabajas 20 horas cada semana.
+
+¿Cuánto ganas?
+Ganas el salario mínimo interprofesional, pero lo pagamos según el tiempo que trabajas.
+Esto se llama SMI prorrateado.

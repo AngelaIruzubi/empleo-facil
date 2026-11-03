@@ -1,0 +1,16 @@
+# Modelo: gemma3-4b
+# Texto: 05-contrato-prueba.txt
+# Tiempo: 40 s
+
+Durante un mes, probarás en el trabajo
+
+Primero, tendrás un mes para ver si te gusta el trabajo.
+Durante este mes, cualquiera de los dos puede dejar de trabajar.
+No hace falta avisar antes de dejar el trabajo.
+También no tienes derecho a una cantidad de dinero por dejar el trabajo.
+
+Las vacaciones
+Tienes 30 días de vacaciones cada año.
+Estas vacaciones son pagadas.
+La empresa y tú decidís cuándo vas a tomar las vacaciones.
+Los días de vacaciones son días naturales, no días de semana.

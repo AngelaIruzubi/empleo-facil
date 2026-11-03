@@ -1,0 +1,26 @@
+# Modelo: gemma3-4b
+# Texto: 01-oferta-reposicion.txt
+# Tiempo: 138 s
+
+Buscamos persona para reponer productos
+
+Necesitamos una persona para reponer productos en un almacén.
+Es un almacén grande, donde se guardan muchas cosas.
+
+¿Qué necesitas para este trabajo?
+- Tienes que haber terminado el Bachillerato (ESO).
+- Puedes trabajar en diferentes horarios, que cambian.
+- Puedes empezar a trabajar ahora mismo.
+
+¿Qué es bueno tener?
+Es bueno tener el Certificado de Acceso Profesional (CAP).
+También es bueno tener experiencia trabajando en un almacén.
+La experiencia mínima es de 6 meses.
+
+¿Cuánto tiempo durará el trabajo?
+El trabajo es por 3 meses.
+Si quieres seguir trabajando, el trabajo se puede extender.
+
+¿Cuánto dinero ganarás?
+El dinero que ganas depende de lo que dice el convenio.
+El convenio es un acuerdo entre los trabajadores y la empresa.

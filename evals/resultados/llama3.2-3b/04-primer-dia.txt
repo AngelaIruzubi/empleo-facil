@@ -1,0 +1,22 @@
+# Modelo: llama3.2-3b
+# Texto: 04-primer-dia.txt
+# Tiempo: 63 s
+
+Prepararte para tu primer día de trabajo
+
+El primer día de trabajo es importante prepararse.
+El primer día de trabajo es el día que empiezas a trabajar.
+
+¿Qué debes hacer el primer día?
+- Debes ir a las 8 de la mañana a la recepción.
+- Debes llevar 3 documentos:
+  - Tu DNI.
+  - El número de afiliación a la Seguridad Social.
+  - El número de cuenta bancaria.
+- Te darán los equipo de protección individual (EPI) y el uniforme.
+- El uniforme es importante para que te protejas en el trabajo.
+- Es obligatorio usar zapatos de seguridad en el almacén.
+- El almacén es un lugar donde se almacenan los productos.
+- La pausa es un tiempo para descansar y comer.
+- La pausa es de 15 minutos y es computable como tiempo de trabajo.
+- Esto significa que puedes descansar y comer, pero también puedes trabajar.

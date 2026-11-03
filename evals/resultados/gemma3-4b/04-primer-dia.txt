@@ -1,0 +1,27 @@
+# Modelo: gemma3-4b
+# Texto: 04-primer-dia.txt
+# Tiempo: 64 s
+
+Cómo empezar a trabajar
+
+El día que empiezas, tienes que ir a la recepción.
+Tienes que ir a las 8 de la mañana.
+
+¿Qué tienes que llevar?
+Tienes que llevar estos documentos:
+- Tu DNI, el documento nacional de identidad.
+- Tu número de afiliación a la Seguridad Social.
+- Tu número de cuenta bancaria, para recibir el dinero.
+
+¿Qué te dan?
+Te dan equipos de protección.
+Estos equipos te protegen de los peligros.
+También te dan el uniforme de la empresa.
+
+¿Qué tienes que usar siempre?
+Tienes que usar zapatos de seguridad siempre que estés en el almacén.
+Los zapatos de seguridad te protegen los pies.
+
+¿Cuánto tiempo tienes de descanso?
+Tienes una pausa de 15 minutos.
+Esta pausa se cuenta como tiempo de trabajo.

@@ -1,0 +1,16 @@
+# Modelo: gemma3-4b
+# Texto: 03-correo-rechazo.txt
+# Tiempo: 869 s
+
+Te informamos de la entrevista
+
+Te agradecemos que quisieras trabajar con nosotros.
+Hemos mirado tu solicitud.
+Nosotros no podemos seguir con tu solicitud.
+No vamos a seguir hablando contigo.
+
+Vamos a guardar tu información.
+Guardaremos tu información durante 12 meses.
+Guardaremos tu información para futuras ofertas de trabajo.
+Estas ofertas de trabajo son para personas como tú.
+Esto es porque la ley nos dice que tenemos que guardar tu información.

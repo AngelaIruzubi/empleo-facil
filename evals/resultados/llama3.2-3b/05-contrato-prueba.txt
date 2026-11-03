@@ -1,0 +1,18 @@
+# Modelo: llama3.2-3b
+# Texto: 05-contrato-prueba.txt
+# Tiempo: 39 s
+
+Condiciones del trabajo
+
+Después de que te contraten, hay un mes para ver si es buena relación.
+En este mes, puedes decidir si quieres seguir trabajando o no.
+No necesitas dar aviso ni recibir una indemnización.
+
+¿Cuántos días de vacaciones tienes?
+Tienes 30 días de vacaciones.
+Estos días son naturales, no son días pagados.
+Disfrutarás de estos días con la empresa.
+
+¿Cómo se decidirá el disfrute de las vacaciones?
+La empresa y tú hablarás para decidirlo.
+Se fijará un día para disfrutar de tus vacaciones.

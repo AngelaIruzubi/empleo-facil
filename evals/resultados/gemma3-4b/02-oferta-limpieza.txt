@@ -1,0 +1,31 @@
+# Modelo: gemma3-4b
+# Texto: 02-oferta-limpieza.txt
+# Tiempo: 62 s
+
+Busca limpiador/a para oficinas
+
+Una empresa busca una persona para limpiar oficinas.
+El trabajo es por la tarde, de lunes a viernes.
+El horario es de 5 de la tarde a 9 de la noche.
+
+¿Dónde trabajas?
+Tienes que vivir en Alcobendas o en San Sebastián de los Reyes.
+
+¿Qué necesitas?
+Necesitas saber limpiar y ordenar.
+
+¿Es un buen detalle?
+Es bueno tener un certificado que diga que tienes alguna discapacidad.
+Este certificado ayuda a que la empresa te pague más dinero.
+El certificado debe ser de al menos un 33%.
+Si tienes este certificado, la empresa te paga más dinero.
+
+¿Qué tipo de contrato tienes?
+Tienes un contrato de trabajo indefinido.
+Esto significa que puedes trabajar en la empresa por mucho tiempo.
+Trabajas 20 horas cada semana.
+
+¿Cuánto te pagan?
+Te pagan el salario mínimo interprofesional.
+El salario mínimo es la cantidad mínima que la empresa debe pagar.
+
