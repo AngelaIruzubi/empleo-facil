@@ -11,16 +11,20 @@ public class EasyReadService {
 
     private final ChatClient chatClient;
     private final Resource systemPrompt;
+    private final EasyReadExamples examples;
 
     public EasyReadService(ChatClient chatClient,
-                           @Value("classpath:prompts/easy-read-system.st") Resource systemPrompt) {
+                           @Value("classpath:prompts/easy-read-system.st") Resource systemPrompt,
+                           EasyReadExamples examples) {
         this.chatClient = chatClient;
         this.systemPrompt = systemPrompt;
+        this.examples = examples;
     }
 
     public String adapt(String text) {
         return chatClient.prompt()
                 .system(systemPrompt)
+                .messages(examples.messages())
                 .user(text)
                 .call()
                 .content();

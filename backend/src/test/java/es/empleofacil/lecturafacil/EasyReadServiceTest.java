@@ -8,18 +8,25 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Answers;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 
 // Test unitario: sin Spring, creamos el servicio con new
 class EasyReadServiceTest {
 
     private final Resource systemPrompt = new ClassPathResource("prompts/easy-read-system.st");
+    private final EasyReadExamples examples = new EasyReadExamples(new DefaultResourceLoader());
     private final ChatClient chatClient = mock(ChatClient.class, Answers.RETURNS_DEEP_STUBS);
-    private final EasyReadService service = new EasyReadService(chatClient, systemPrompt);
+    private final EasyReadService service = new EasyReadService(chatClient, systemPrompt, examples);
 
     @Test
-    void adaptSendsSystemPromptAndText() {
-        when(chatClient.prompt().system(systemPrompt).user("Texto difícil").call().content())
+    void adaptSendsSystemPromptExamplesAndText() {
+        when(chatClient.prompt()
+                .system(systemPrompt)
+                .messages(examples.messages())
+                .user("Texto difícil")
+                .call()
+                .content())
                 .thenReturn("Texto fácil");
 
         assertThat(service.adapt("Texto difícil")).isEqualTo("Texto fácil");
