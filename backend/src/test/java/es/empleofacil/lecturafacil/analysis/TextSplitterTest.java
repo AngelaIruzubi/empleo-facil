@@ -51,6 +51,12 @@ class TextSplitterTest {
     }
 
     @Test
+    void hourAbbreviationAtTheEndEndsTheSentence() {
+        assertThat(TextSplitter.sentences("Entras a las 8 h. Sales a las 15 h."))
+                .containsExactly("Entras a las 8 h.", "Sales a las 15 h.");
+    }
+
+    @Test
     void emptyTextHasNoSentences() {
         assertThat(TextSplitter.sentences("  \n ")).isEmpty();
     }
@@ -73,6 +79,18 @@ class TextSplitterTest {
     void hyphenatedWordsAreOneWord() {
         assertThat(TextSplitter.words("Centro socio-sanitario"))
                 .containsExactly("Centro", "socio-sanitario");
+    }
+
+    @Test
+    void emailIsOneWord() {
+        assertThat(TextSplitter.words("Escribe a rrhh@empresa.es antes del lunes."))
+                .containsExactly("Escribe", "a", "rrhh@empresa.es", "antes", "del", "lunes");
+    }
+
+    @Test
+    void dateWithSlashesIsOneWord() {
+        assertThat(TextSplitter.words("El 05/11/2026 empiezas."))
+                .containsExactly("El", "05/11/2026", "empiezas");
     }
 
     @Test

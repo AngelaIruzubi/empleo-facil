@@ -14,9 +14,10 @@ public final class TextSplitter {
     // Así "7.5" o "www.sepe.es" no cortan la frase.
     private static final Pattern SENTENCE_END = Pattern.compile("[.!?…]+[\"»”)]*(?=\\s|$)");
 
-    // Palabra: letras o números. Puede llevar dentro . , : ' o - entre letras o números,
-    // para que "7,5", "8:00" o "socio-sanitario" cuenten como una sola palabra.
-    private static final Pattern WORD = Pattern.compile("[\\p{L}\\p{N}]+(?:[.,:'’-][\\p{L}\\p{N}]+)*");
+    // Palabra: letras o números. Puede llevar dentro . , : ' / @ o - entre letras o números,
+    // para que "7,5", "8:00", "05/11/2026", "rrhh@empresa.es" o "socio-sanitario"
+    // cuenten como una sola palabra.
+    private static final Pattern WORD = Pattern.compile("[\\p{L}\\p{N}]+(?:[.,:'’/@-][\\p{L}\\p{N}]+)*");
 
     private static final Pattern HAS_LETTER_OR_NUMBER = Pattern.compile("[\\p{L}\\p{N}]");
 
