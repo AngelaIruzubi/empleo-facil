@@ -3,7 +3,6 @@ package es.empleofacil.lecturafacil;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,12 +12,10 @@ import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.core.io.DefaultResourceLoader;
 
-class EasyReadExamplesTest {
+import es.empleofacil.lecturafacil.analysis.RuleChecker;
+import es.empleofacil.lecturafacil.analysis.Severity;
 
-    private static final int MAX_WORDS_PER_LINE = 15;
-    private static final Pattern FORBIDDEN_SIGNS = Pattern.compile("[;()\\[\\]%&$#/§]|\\.\\.\\.|…");
-    private static final Pattern MENTE_WORD = Pattern.compile("\\p{L}+mente\\b");
-    private static final Pattern ORDINAL = Pattern.compile("\\d+\\.?[ºª]");
+class EasyReadExamplesTest {
 
     static final List<String> names = EasyReadExamples.NAMES;
 
@@ -52,15 +49,9 @@ class EasyReadExamplesTest {
     @ParameterizedTest
     @FieldSource("names")
     void adaptedExampleFollowsEasyReadRules(String name) {
-        for (String line : examples.adapted(name).lines().toList()) {
-            String text = line.replaceFirst("^- ", "").strip();
-            if (text.isEmpty()) {
-                continue;
-            }
-            assertThat(text.split("\\s+")).as("Línea demasiado larga: %s", line).hasSizeLessThanOrEqualTo(MAX_WORDS_PER_LINE);
-            assertThat(FORBIDDEN_SIGNS.matcher(text).find()).as("Signo prohibido en: %s", line).isFalse();
-            assertThat(MENTE_WORD.matcher(text).find()).as("Palabra en -mente en: %s", line).isFalse();
-            assertThat(ORDINAL.matcher(text).find()).as("Número ordinal en: %s", line).isFalse();
-        }
+        // Los avisos se permiten: por ejemplo, la sigla DNI ya está explicada en la misma frase
+        assertThat(RuleChecker.check(examples.adapted(name)))
+                .filteredOn(violation -> violation.severity() == Severity.ERROR)
+                .isEmpty();
     }
 }
