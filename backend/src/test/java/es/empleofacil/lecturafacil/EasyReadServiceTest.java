@@ -8,6 +8,8 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Answers;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.core.io.ClassPathResource;
@@ -51,15 +53,16 @@ class EasyReadServiceTest {
                 .hasRootCauseMessage("Connection refused");
     }
 
-    @Test
-    void emptyAiAnswerBecomesEasyReadException() {
+    @ParameterizedTest
+    @ValueSource(strings = { "", " ... " })
+    void aiAnswerWithoutWordsBecomesEasyReadException(String adaptedText) {
         when(chatClient.prompt()
                 .system(systemPrompt)
                 .messages(examples.messages())
                 .user("Texto difícil")
                 .call()
                 .entity(EasyReadResult.class))
-                .thenReturn(new EasyReadResult("", List.of()));
+                .thenReturn(new EasyReadResult(adaptedText, List.of()));
 
         assertThatThrownBy(() -> service.adapt("Texto difícil"))
                 .isInstanceOf(EasyReadException.class);

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import es.empleofacil.lecturafacil.analysis.TextSplitter;
+
 // Adapta textos a lectura fácil con el LLM
 @Service
 public class EasyReadService {
@@ -40,7 +42,8 @@ public class EasyReadService {
             log.error("Error al llamar a la IA para adaptar un texto", e);
             throw new EasyReadException("La IA no ha podido adaptar el texto", e);
         }
-        if (result == null || result.adaptedText() == null || result.adaptedText().isBlank()) {
+        // Un texto sin palabras, como "...", tampoco sirve: no se puede leer ni medir
+        if (result == null || result.adaptedText() == null || TextSplitter.words(result.adaptedText()).isEmpty()) {
             log.error("La IA ha devuelto una respuesta vacía: {}", result);
             throw new EasyReadException("La IA ha devuelto una respuesta vacía");
         }
