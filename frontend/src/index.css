@@ -1,0 +1,7 @@
+/* Estilos mínimos. El diseño de lectura fácil llega en las tareas 3.4 y 3.7 */
+body {
+  margin: 0;
+  padding: 1rem;
+  font-family: Verdana, Arial, sans-serif;
+  line-height: 1.5;
+}
