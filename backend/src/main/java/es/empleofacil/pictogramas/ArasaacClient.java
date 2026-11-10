@@ -1,6 +1,7 @@
 package es.empleofacil.pictogramas;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -29,20 +30,42 @@ public class ArasaacClient {
         this.restClient = arasaacRestClient;
     }
 
-    // Devuelve el primer resultado de ARASAAC, que es el que mejor encaja con la palabra.
+    // Prueba las palabras en orden y devuelve el pictograma de la primera que tenga uno
+    public Optional<Pictogram> findFirst(List<String> words) {
+        if (words == null) {
+            return Optional.empty();
+        }
+        for (String word : words) {
+            Optional<Pictogram> pictogram = find(word);
+            if (pictogram.isPresent()) {
+                return pictogram;
+            }
+        }
+        return Optional.empty();
+    }
+
+    // Solo acepta un pictograma cuya palabra sea exactamente la buscada.
+    // La búsqueda de ARASAAC es aproximada: con "dependiente", el primer resultado es
+    // "llevar en silla de ruedas". Es mejor no poner pictograma que poner uno equivocado.
     // Si no hay pictograma o ARASAAC falla, devuelve un Optional vacío: el texto se puede leer igual.
     public Optional<Pictogram> find(String word) {
+        if (word == null || word.isBlank()) {
+            return Optional.empty();
+        }
+        String wanted = normalize(word);
         try {
             List<ArasaacPictogram> results = restClient.get()
-                    .uri("/pictograms/es/search/{word}", word)
+                    .uri("/pictograms/es/search/{word}", word.strip())
                     .retrieve()
                     .body(new ParameterizedTypeReference<List<ArasaacPictogram>>() {
                     });
-            if (results == null || results.isEmpty()) {
+            if (results == null) {
                 return Optional.empty();
             }
-            int id = results.getFirst().id();
-            return Optional.of(new Pictogram(id, word, IMAGE_URL.formatted(id, id)));
+            return results.stream()
+                    .filter(result -> result.hasKeyword(wanted))
+                    .findFirst()
+                    .map(result -> new Pictogram(result.id(), word.strip(), IMAGE_URL.formatted(result.id(), result.id())));
         } catch (HttpClientErrorException.NotFound e) {
             // ARASAAC responde 404 cuando no tiene ningún pictograma para la palabra
             return Optional.empty();
@@ -52,8 +75,21 @@ public class ArasaacClient {
         }
     }
 
-    // Solo leemos el número del pictograma. ARASAAC envía muchos más datos y los ignoramos.
+    private static String normalize(String word) {
+        return word.strip().toLowerCase(Locale.ROOT);
+    }
+
+    // Solo leemos el número y las palabras del pictograma. ARASAAC envía muchos más datos y los ignoramos.
     @JsonIgnoreProperties(ignoreUnknown = true)
-    record ArasaacPictogram(@JsonProperty("_id") int id) {
+    record ArasaacPictogram(@JsonProperty("_id") int id, List<Keyword> keywords) {
+
+        boolean hasKeyword(String wanted) {
+            return keywords != null && keywords.stream()
+                    .anyMatch(keyword -> keyword.keyword() != null && normalize(keyword.keyword()).equals(wanted));
+        }
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    record Keyword(String keyword) {
     }
 }

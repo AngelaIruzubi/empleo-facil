@@ -20,6 +20,10 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import es.empleofacil.pictogramas.Pictogram;
+import es.empleofacil.pictogramas.ProfessionPictogram;
+import es.empleofacil.pictogramas.ProfessionPictogramService;
+
 @WebMvcTest(EasyReadController.class)
 class EasyReadControllerTest {
 
@@ -29,20 +33,51 @@ class EasyReadControllerTest {
     @MockitoBean
     private EasyReadService easyReadService;
 
+    @MockitoBean
+    private ProfessionPictogramService professionPictogramService;
+
     @Test
-    void adaptReturnsReportWithTextChangesReadabilityAndViolations() throws Exception {
+    void adaptReturnsReportWithTextChangesPictogramReadabilityAndViolations() throws Exception {
         when(easyReadService.adapt("Se precisa el CAP.")).thenReturn(new EasyReadResult("Necesitas el CAP.",
                 List.of(new Change("CAP", "CAP", "Revisar: no conozco esta sigla."))));
+        when(professionPictogramService.find("Se precisa el CAP.")).thenReturn(new ProfessionPictogram(
+                List.of("conductor"), new Pictogram(1, "conductor", "https://static.arasaac.org/pictograms/1/1_300.png")));
 
         postText("Se precisa el CAP.")
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.adaptedText").value("Necesitas el CAP."))
                 .andExpect(jsonPath("$.changes[0].reason").value("Revisar: no conozco esta sigla."))
+                .andExpect(jsonPath("$.professions[0]").value("conductor"))
+                .andExpect(jsonPath("$.pictogram.keyword").value("conductor"))
+                .andExpect(jsonPath("$.pictogram.imageUrl").value("https://static.arasaac.org/pictograms/1/1_300.png"))
                 .andExpect(jsonPath("$.readabilityBefore.words").value(4))
                 .andExpect(jsonPath("$.readabilityAfter.inflesz.level").exists())
                 .andExpect(jsonPath("$.violations[0].rule").value("ACRONYM"))
                 .andExpect(jsonPath("$.violations[0].severity").value("WARNING"))
                 .andExpect(jsonPath("$.violations[0].fragment").value("CAP"));
+    }
+
+    @Test
+    void reportWithoutPictogramWhenTextIsNotAJobOffer() throws Exception {
+        when(easyReadService.adapt("Gracias por venir.")).thenReturn(
+                new EasyReadResult("Gracias por venir.", List.of()));
+        when(professionPictogramService.find("Gracias por venir.")).thenReturn(
+                new ProfessionPictogram(List.of(), null));
+
+        postText("Gracias por venir.")
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.professions").isEmpty())
+                .andExpect(jsonPath("$.pictogram").value(Matchers.nullValue()));
+    }
+
+    // Si la adaptación falla, no merece la pena gastar otra llamada a la IA en la profesión
+    @Test
+    void adaptationFailureDoesNotLookForTheProfession() throws Exception {
+        when(easyReadService.adapt(anyString())).thenThrow(new EasyReadException("Ollama apagado"));
+
+        postText("Texto difícil").andExpect(status().isServiceUnavailable());
+
+        verifyNoInteractions(professionPictogramService);
     }
 
     @ParameterizedTest
