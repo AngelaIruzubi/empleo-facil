@@ -32,6 +32,22 @@ export function parseAdaptedText(text: string): AdaptedText {
   return { title, paragraphs: paragraphs.map(toBlocks) }
 }
 
+// Todas las líneas en el orden en que se ven: título, preguntas, frases y elementos de lista.
+// Es el orden de lectura en voz alta. Result numera las líneas en este mismo orden para resaltar la que suena.
+export function readingOrder({ title, paragraphs }: AdaptedText): string[] {
+  const lines = title ? [title] : []
+  for (const blocks of paragraphs) {
+    for (const block of blocks) {
+      if (block.kind === 'list') {
+        lines.push(...block.items)
+      } else {
+        lines.push(block.text)
+      }
+    }
+  }
+  return lines
+}
+
 function toBlocks(lines: string[]): Block[] {
   const blocks: Block[] = []
   lines.forEach((line, index) => {

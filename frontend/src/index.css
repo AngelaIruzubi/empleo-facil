@@ -196,8 +196,41 @@ button:disabled {
   background: var(--paper);
 }
 
+/* Escuchar: blanco, porque el amarillo es para el cartel y para el botón principal */
+.listen {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--paper);
+}
+
+.listen:hover,
+.listen:active {
+  background: var(--disabled);
+}
+
+.listen-icon {
+  flex-shrink: 0;
+}
+
 .result-body {
   margin-top: 1.5rem;
+}
+
+/* La frase que suena: así la persona sigue la lectura con los ojos */
+.speaking {
+  background: var(--signal);
+  box-shadow: 0 0 0 0.2rem var(--signal);
+  border-radius: 2px;
+  box-decoration-break: clone;
+}
+
+/* En el cartel, que ya es amarillo, la frase que suena va en blanco */
+.result-sign .speaking {
+  background: var(--paper);
+  box-shadow: 0 0 0 0.2rem var(--paper);
 }
 
 .result-paragraph + .result-paragraph {
