@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.ai.chat.client.AdvisorParams;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -55,6 +56,9 @@ public class ProfessionPictogramService {
             Professions result = chatClient.prompt()
                     .system(systemPrompt)
                     .user(text)
+                    // JSON nativo: Ollama obliga al modelo a escribir un JSON válido con el molde del record.
+                    // Sin esto, el molde va como texto en el mensaje y a veces el JSON sale roto.
+                    .advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT)
                     .call()
                     .entity(Professions.class);
             if (result == null || result.professions() == null) {

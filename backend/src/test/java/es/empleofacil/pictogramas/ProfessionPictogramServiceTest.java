@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Answers;
+import org.springframework.ai.chat.client.AdvisorParams;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -87,7 +88,7 @@ class ProfessionPictogramServiceTest {
 
     @Test
     void aiErrorMeansNoPictogramInsteadOfFailing() {
-        when(chatClient.prompt().system(systemPrompt).user(OFFER).call())
+        when(chatClient.prompt().system(systemPrompt).user(OFFER).advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT).call())
                 .thenThrow(new RuntimeException("Connection refused"));
 
         assertThat(service.find(OFFER)).isEqualTo(ProfessionPictogram.NONE);
@@ -99,9 +100,9 @@ class ProfessionPictogramServiceTest {
     }
 
     private void aiAnswers(Professions professions) {
-        when(chatClient.prompt().system(systemPrompt).user(OFFER).call().entity(Professions.class))
+        when(chatClient.prompt().system(systemPrompt).user(OFFER).advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT).call().entity(Professions.class))
                 .thenReturn(professions);
-        when(chatClient.prompt().system(systemPrompt).user("Gracias por venir a la entrevista.").call()
+        when(chatClient.prompt().system(systemPrompt).user("Gracias por venir a la entrevista.").advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT).call()
                 .entity(Professions.class)).thenReturn(professions);
     }
 }

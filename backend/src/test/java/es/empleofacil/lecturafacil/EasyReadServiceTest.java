@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Answers;
+import org.springframework.ai.chat.client.AdvisorParams;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -32,6 +33,7 @@ class EasyReadServiceTest {
                 .system(systemPrompt)
                 .messages(examples.messages())
                 .user("Texto difícil")
+                .advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT)
                 .call()
                 .entity(EasyReadResult.class))
                 .thenReturn(expected);
@@ -45,6 +47,7 @@ class EasyReadServiceTest {
                 .system(systemPrompt)
                 .messages(examples.messages())
                 .user("Texto difícil")
+                .advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT)
                 .call())
                 .thenThrow(new RuntimeException("Connection refused"));
 
@@ -60,6 +63,7 @@ class EasyReadServiceTest {
                 .system(systemPrompt)
                 .messages(examples.messages())
                 .user("Texto difícil")
+                .advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT)
                 .call()
                 .entity(EasyReadResult.class))
                 .thenReturn(new EasyReadResult(adaptedText, List.of()));
