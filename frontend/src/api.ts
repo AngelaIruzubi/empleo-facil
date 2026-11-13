@@ -1,4 +1,4 @@
-// Tipos de la respuesta de /api/easy-read. Son los mismos records que en el backend.
+// Tipos de la respuesta de /api/easy-read y de /api/easy-read/stream. Son los mismos records que en el backend.
 
 export type Pictogram = {
   id: number
@@ -57,10 +57,83 @@ export class ApiError extends Error {
 
 export const MAX_TEXT_LENGTH = 4000
 
+const AI_UNAVAILABLE = new ApiError(
+  'No se puede adaptar el texto ahora',
+  'Ahora no podemos adaptar el texto.\nInténtalo otra vez dentro de un rato.',
+)
+
 export async function adaptText(text: string): Promise<EasyReadReport> {
+  const response = await post('/api/easy-read', text)
+  return response.json()
+}
+
+// Igual que adaptText, pero el servidor manda el texto a trozos según la IA lo escribe.
+// onText recibe todo el texto que ha llegado hasta ahora, para enseñarlo en pantalla.
+export async function adaptTextStreaming(text: string, onText: (textSoFar: string) => void): Promise<EasyReadReport> {
+  const response = await post('/api/easy-read/stream', text)
+  if (!response.body) {
+    throw AI_UNAVAILABLE
+  }
+  const reader = response.body.pipeThrough(new TextDecoderStream()).getReader()
+  let buffer = ''
+  let textSoFar = ''
+  for (;;) {
+    let chunk: ReadableStreamReadResult<string>
+    try {
+      chunk = await reader.read()
+    } catch {
+      // Se ha cortado la conexión a mitad
+      throw AI_UNAVAILABLE
+    }
+    if (chunk.done) {
+      // El stream ha terminado sin informe: algo ha fallado en el servidor
+      throw AI_UNAVAILABLE
+    }
+    const { events, rest } = takeEvents(buffer + chunk.value)
+    buffer = rest
+    for (const { event, data } of events) {
+      if (event === 'text') {
+        textSoFar += JSON.parse(data).text
+        onText(textSoFar)
+      } else if (event === 'report') {
+        await reader.cancel()
+        return JSON.parse(data)
+      } else if (event === 'error') {
+        await reader.cancel()
+        throw problemToError(JSON.parse(data))
+      }
+    }
+  }
+}
+
+export type ServerSentEvent = { event: string; data: string }
+
+// Formato Server-Sent Events: cada mensaje son líneas "event:..." y "data:..." y acaba con una línea en blanco.
+// Devuelve los mensajes completos y el trozo final, que espera al siguiente paquete.
+export function takeEvents(buffer: string): { events: ServerSentEvent[]; rest: string } {
+  const blocks = buffer.replace(/\r\n?/g, '\n').split('\n\n')
+  const rest = blocks.pop() ?? ''
+  const events = blocks
+    .map((block) => {
+      let event = 'message'
+      const data: string[] = []
+      for (const line of block.split('\n')) {
+        if (line.startsWith('event:')) {
+          event = line.slice('event:'.length).trim()
+        } else if (line.startsWith('data:')) {
+          data.push(line.slice('data:'.length).replace(/^ /, ''))
+        }
+      }
+      return { event, data: data.join('\n') }
+    })
+    .filter(({ data }) => data !== '')
+  return { events, rest }
+}
+
+async function post(url: string, text: string): Promise<Response> {
   let response: Response
   try {
-    response = await fetch('/api/easy-read', {
+    response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text }),
@@ -71,14 +144,16 @@ export async function adaptText(text: string): Promise<EasyReadReport> {
       'La web no puede conectar con el servidor.\nComprueba que el servidor está encendido.',
     )
   }
-
   if (!response.ok) {
     // El backend responde con ProblemDetail: un título y un detalle en lectura fácil
-    const problem = await response.json().catch(() => null)
-    throw new ApiError(
-      problem?.title ?? 'No se puede adaptar el texto ahora',
-      problem?.detail ?? 'Ahora no podemos adaptar el texto.\nInténtalo otra vez dentro de un rato.',
-    )
+    throw problemToError(await response.json().catch(() => null))
   }
-  return response.json()
+  return response
+}
+
+function problemToError(problem: { title?: string; detail?: string } | null): ApiError {
+  if (!problem?.title || !problem.detail) {
+    return AI_UNAVAILABLE
+  }
+  return new ApiError(problem.title, problem.detail)
 }

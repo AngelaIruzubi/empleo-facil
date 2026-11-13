@@ -221,6 +221,24 @@ button:disabled {
   font-size: var(--text-small);
 }
 
+/* Mientras la IA escribe. Sin animación: las pautas de lectura fácil piden evitar lo que distrae. */
+.result-writing {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: var(--line);
+  font-weight: 700;
+}
+
+/* Lo lee el lector de pantalla, pero no se ve */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 footer {
   padding-top: 0;
   color: var(--ink-soft);

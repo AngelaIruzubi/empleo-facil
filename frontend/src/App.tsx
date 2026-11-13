@@ -1,11 +1,12 @@
 import { useEffect, useState, type SubmitEvent } from 'react'
-import { adaptText, ApiError, MAX_TEXT_LENGTH, type EasyReadReport } from './api'
+import { adaptTextStreaming, ApiError, MAX_TEXT_LENGTH, type EasyReadReport } from './api'
 import Result from './Result'
 
-// La pantalla siempre está en uno de estos estados
+// La pantalla siempre está en uno de estos estados.
+// En 'loading', textSoFar es el texto que la IA ha escrito hasta ahora (vacío al principio).
 type State =
   | { status: 'idle' }
-  | { status: 'loading'; startedAt: number }
+  | { status: 'loading'; startedAt: number; textSoFar: string }
   | { status: 'done'; report: EasyReadReport }
   | { status: 'error'; title: string; detail: string }
 
@@ -15,9 +16,12 @@ function App() {
 
   async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
-    setState({ status: 'loading', startedAt: Date.now() })
+    const startedAt = Date.now()
+    setState({ status: 'loading', startedAt, textSoFar: '' })
     try {
-      const report = await adaptText(text)
+      const report = await adaptTextStreaming(text, (textSoFar) =>
+        setState({ status: 'loading', startedAt, textSoFar }),
+      )
       setState({ status: 'done', report })
     } catch (error) {
       if (error instanceof ApiError) {
@@ -60,7 +64,17 @@ function App() {
         </form>
 
         {/* role="status" y role="alert" hacen que un lector de pantalla lea el mensaje en voz alta */}
-        <div role="status">{state.status === 'loading' && <Waiting startedAt={state.startedAt} />}</div>
+        <div role="status">
+          {state.status === 'loading' && state.textSoFar === '' && <Waiting startedAt={state.startedAt} />}
+          {state.status === 'loading' && state.textSoFar !== '' && (
+            <p className="visually-hidden">Ya sale el texto. La inteligencia artificial sigue escribiendo.</p>
+          )}
+          {state.status === 'done' && <p className="visually-hidden">Ya está tu texto en lectura fácil.</p>}
+        </div>
+
+        {state.status === 'loading' && state.textSoFar !== '' && (
+          <Result adaptedText={state.textSoFar} pictogram={null} writing />
+        )}
 
         {state.status === 'error' && (
           <div className="error" role="alert">
@@ -69,7 +83,9 @@ function App() {
           </div>
         )}
 
-        {state.status === 'done' && <Result report={state.report} />}
+        {state.status === 'done' && (
+          <Result adaptedText={state.report.adaptedText} pictogram={state.report.pictogram} writing={false} />
+        )}
       </main>
 
       <footer>
@@ -91,7 +107,8 @@ function Waiting({ startedAt }: { startedAt: number }) {
   return (
     <div className="waiting">
       <h2>Estamos adaptando tu texto</h2>
-      <p>Tarda entre 1 y 3 minutos.</p>
+      <p>El texto empieza a salir en unos segundos.</p>
+      <p>Si es la primera vez, puede tardar 2 minutos.</p>
       <p>No cierres esta página.</p>
       <p>{elapsedMessage(minutes)}</p>
     </div>

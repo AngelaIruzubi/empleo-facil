@@ -1,22 +1,26 @@
-import type { EasyReadReport } from './api'
+import type { Pictogram } from './api'
 import { parseAdaptedText, type Block } from './adaptedText'
 
 type ResultProps = {
-  report: EasyReadReport
+  adaptedText: string
+  pictogram: Pictogram | null
+  // true mientras la IA sigue escribiendo: el texto está a medias y aún no hay pictograma
+  writing: boolean
 }
 
 // El texto adaptado. La franja amarilla con el pictograma es como un cartel que dice de qué trabajo se trata.
-function Result({ report }: ResultProps) {
-  const { title, paragraphs } = parseAdaptedText(report.adaptedText)
+function Result({ adaptedText, pictogram, writing }: ResultProps) {
+  const { title, paragraphs } = parseAdaptedText(adaptedText)
 
   return (
-    <article className="result" aria-labelledby="result-title">
+    // aria-busy: el lector de pantalla espera a que el texto esté completo para leerlo
+    <article className="result" aria-labelledby="result-title" aria-busy={writing}>
       <header className="result-sign">
-        {report.pictogram && (
+        {pictogram && (
           <img
             className="result-pictogram"
-            src={report.pictogram.imageUrl}
-            alt={report.pictogram.keyword}
+            src={pictogram.imageUrl}
+            alt={pictogram.keyword}
             width={120}
             height={120}
           />
@@ -34,11 +38,15 @@ function Result({ report }: ResultProps) {
         ))}
       </div>
 
-      <p className="result-notice">
-        Este texto lo ha adaptado una inteligencia artificial.
-        <br />
-        Una persona tiene que revisarlo.
-      </p>
+      {writing ? (
+        <p className="result-writing">La inteligencia artificial sigue escribiendo.</p>
+      ) : (
+        <p className="result-notice">
+          Este texto lo ha adaptado una inteligencia artificial.
+          <br />
+          Una persona tiene que revisarlo.
+        </p>
+      )}
     </article>
   )
 }
