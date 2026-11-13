@@ -34,7 +34,7 @@ class ProfessionPictogramServiceTest {
     @Test
     void returnsProfessionsAndPictogramOfTheFirstOneFound() {
         aiAnswers(new Professions(List.of("limpiador", "auxiliar de limpieza")));
-        when(arasaacClient.findFirst(List.of("limpiador", "auxiliar de limpieza"))).thenReturn(Optional.of(cleaner));
+        when(arasaacClient.findFirstProfession(List.of("limpiador", "auxiliar de limpieza"))).thenReturn(Optional.of(cleaner));
 
         ProfessionPictogram result = service.find(OFFER);
 
@@ -45,7 +45,7 @@ class ProfessionPictogramServiceTest {
     @Test
     void professionWithoutPictogramKeepsTheProfessions() {
         aiAnswers(new Professions(List.of("carretillero")));
-        when(arasaacClient.findFirst(List.of("carretillero"))).thenReturn(Optional.empty());
+        when(arasaacClient.findFirstProfession(List.of("carretillero"))).thenReturn(Optional.empty());
 
         ProfessionPictogram result = service.find(OFFER);
 

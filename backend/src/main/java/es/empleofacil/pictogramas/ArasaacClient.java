@@ -30,13 +30,16 @@ public class ArasaacClient {
         this.restClient = arasaacRestClient;
     }
 
-    // Prueba las palabras en orden y devuelve el pictograma de la primera que tenga uno
-    public Optional<Pictogram> findFirst(List<String> words) {
-        if (words == null) {
+    // Categoría de ARASAAC para los pictogramas de profesiones
+    static final String PROFESSIONAL = "professional";
+
+    // Prueba las profesiones en orden y devuelve el pictograma de la primera que tenga uno
+    public Optional<Pictogram> findFirstProfession(List<String> professions) {
+        if (professions == null) {
             return Optional.empty();
         }
-        for (String word : words) {
-            Optional<Pictogram> pictogram = find(word);
+        for (String profession : professions) {
+            Optional<Pictogram> pictogram = findProfession(profession);
             if (pictogram.isPresent()) {
                 return pictogram;
             }
@@ -44,11 +47,12 @@ public class ArasaacClient {
         return Optional.empty();
     }
 
-    // Solo acepta un pictograma cuya palabra sea exactamente la buscada.
-    // La búsqueda de ARASAAC es aproximada: con "dependiente", el primer resultado es
-    // "llevar en silla de ruedas". Es mejor no poner pictograma que poner uno equivocado.
+    // Solo acepta un pictograma si cumple dos cosas, porque la búsqueda de ARASAAC es aproximada:
+    // - Su palabra es exactamente la buscada. Con "dependiente", el primer resultado es "llevar en silla de ruedas".
+    // - Es de la categoría de profesiones. "Limpiador" también es una botella de producto de limpieza.
+    // Es mejor no poner pictograma que poner uno equivocado.
     // Si no hay pictograma o ARASAAC falla, devuelve un Optional vacío: el texto se puede leer igual.
-    public Optional<Pictogram> find(String word) {
+    public Optional<Pictogram> findProfession(String word) {
         if (word == null || word.isBlank()) {
             return Optional.empty();
         }
@@ -63,7 +67,7 @@ public class ArasaacClient {
                 return Optional.empty();
             }
             return results.stream()
-                    .filter(result -> result.hasKeyword(wanted))
+                    .filter(result -> result.hasKeyword(wanted) && result.isProfession())
                     .findFirst()
                     .map(result -> new Pictogram(result.id(), word.strip(), IMAGE_URL.formatted(result.id(), result.id())));
         } catch (HttpClientErrorException.NotFound e) {
@@ -79,13 +83,18 @@ public class ArasaacClient {
         return word.strip().toLowerCase(Locale.ROOT);
     }
 
-    // Solo leemos el número y las palabras del pictograma. ARASAAC envía muchos más datos y los ignoramos.
+    // Solo leemos el número, las palabras y las categorías del pictograma.
+    // ARASAAC envía muchos más datos y los ignoramos.
     @JsonIgnoreProperties(ignoreUnknown = true)
-    record ArasaacPictogram(@JsonProperty("_id") int id, List<Keyword> keywords) {
+    record ArasaacPictogram(@JsonProperty("_id") int id, List<Keyword> keywords, List<String> categories) {
 
         boolean hasKeyword(String wanted) {
             return keywords != null && keywords.stream()
                     .anyMatch(keyword -> keyword.keyword() != null && normalize(keyword.keyword()).equals(wanted));
+        }
+
+        boolean isProfession() {
+            return categories != null && categories.contains(PROFESSIONAL);
         }
     }
 

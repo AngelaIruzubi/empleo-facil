@@ -46,7 +46,7 @@ public class ProfessionPictogramService {
         if (professions.isEmpty()) {
             return ProfessionPictogram.NONE;
         }
-        return new ProfessionPictogram(professions, arasaacClient.findFirst(professions).orElse(null));
+        return new ProfessionPictogram(professions, arasaacClient.findFirstProfession(professions).orElse(null));
     }
 
     // Si la IA falla, seguimos sin pictograma: el pictograma ayuda, pero el texto adaptado ya está hecho
