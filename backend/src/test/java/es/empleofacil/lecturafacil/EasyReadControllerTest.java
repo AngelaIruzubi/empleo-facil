@@ -1,13 +1,19 @@
 package es.empleofacil.lecturafacil;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -18,6 +24,7 @@ import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 
 import es.empleofacil.pictogramas.Pictogram;
@@ -116,6 +123,60 @@ class EasyReadControllerTest {
                 .andExpect(status().isServiceUnavailable())
                 .andExpect(jsonPath("$.title").value("No se puede adaptar el texto ahora"))
                 .andExpect(jsonPath("$.detail").value(Matchers.startsWith("Ahora no podemos adaptar el texto.")));
+    }
+
+    @Test
+    void streamSendsTextPiecesAndThenTheReport() throws Exception {
+        when(easyReadService.adaptStreaming(eq("Se precisa el CAP."), any())).thenAnswer(invocation -> {
+            Consumer<String> onText = invocation.getArgument(1);
+            onText.accept("Necesitas ");
+            onText.accept("el CAP.\nYa.");
+            return new EasyReadResult("Necesitas el CAP.\nYa.", List.of());
+        });
+        when(professionPictogramService.find("Se precisa el CAP.")).thenReturn(new ProfessionPictogram(
+                List.of("conductor"), new Pictogram(1, "conductor", "https://static.arasaac.org/pictograms/1/1_300.png")));
+
+        String body = postStream("Se precisa el CAP.");
+
+        // Los saltos de línea van escritos como barra y n dentro del JSON, para no romper el formato del stream
+        assertThat(body).containsSubsequence(
+                "event:text", "data:{\"text\":\"Necesitas \"}",
+                "event:text", "data:{\"text\":\"el CAP.\\nYa.\"}",
+                "event:report", "\"adaptedText\":\"Necesitas el CAP.\\nYa.\"", "\"keyword\":\"conductor\"");
+        assertThat(body).doesNotContain("event:error");
+    }
+
+    @Test
+    void streamSendsAnErrorEventWhenTheAiFailsAndSkipsTheProfession() throws Exception {
+        when(easyReadService.adaptStreaming(anyString(), any())).thenThrow(new EasyReadException("Ollama apagado"));
+
+        String body = postStream("Texto difícil");
+
+        assertThat(body).containsSubsequence("event:error", "\"title\":\"No se puede adaptar el texto ahora\"");
+        assertThat(body).doesNotContain("event:report");
+        verifyNoInteractions(professionPictogramService);
+    }
+
+    @Test
+    void streamWithInvalidTextReturnsBadRequestWithoutStream() throws Exception {
+        mockMvc.perform(post("/api/easy-read/stream")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"text\": \"   \"}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.detail").value("Escribe un texto para adaptar."));
+
+        verifyNoInteractions(easyReadService);
+    }
+
+    // Espera a que el stream termine y devuelve todo lo que ha mandado
+    private String postStream(String text) throws Exception {
+        MvcResult result = mockMvc.perform(post("/api/easy-read/stream")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"text\": \"" + text + "\"}"))
+                .andExpect(request().asyncStarted())
+                .andReturn();
+        result.getAsyncResult(5_000);
+        return result.getResponse().getContentAsString(StandardCharsets.UTF_8);
     }
 
     private ResultActions postText(String text) throws Exception {

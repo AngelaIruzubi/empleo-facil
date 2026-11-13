@@ -34,11 +34,16 @@ public class ApiExceptionHandler {
     // 503: la IA ha fallado. Se puede volver a intentar más tarde.
     @ExceptionHandler(EasyReadException.class)
     public ProblemDetail handleEasyReadError(EasyReadException e) {
+        return aiUnavailable();
+    }
+
+    // Público porque la dirección con streaming manda este mismo error dentro del stream
+    public static ProblemDetail aiUnavailable() {
         return problem(HttpStatus.SERVICE_UNAVAILABLE, "No se puede adaptar el texto ahora",
                 "Ahora no podemos adaptar el texto.\nInténtalo otra vez dentro de un rato.");
     }
 
-    private ProblemDetail problem(HttpStatus status, String title, String detail) {
+    private static ProblemDetail problem(HttpStatus status, String title, String detail) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(status, detail);
         problem.setTitle(title);
         return problem;
