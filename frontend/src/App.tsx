@@ -91,7 +91,7 @@ function Waiting({ startedAt }: { startedAt: number }) {
   return (
     <div className="waiting">
       <h2>Estamos adaptando tu texto</h2>
-      <p>Tarda unos 5 minutos.</p>
+      <p>Tarda entre 1 y 3 minutos.</p>
       <p>No cierres esta página.</p>
       <p>{elapsedMessage(minutes)}</p>
     </div>
