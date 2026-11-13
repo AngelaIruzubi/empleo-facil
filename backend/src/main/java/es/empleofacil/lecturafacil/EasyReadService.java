@@ -4,10 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.AdvisorParams;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.ResponseEntity;
+import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import es.empleofacil.llm.AiTimings;
 import es.empleofacil.lecturafacil.analysis.TextSplitter;
 
 // Adapta textos a lectura fácil con el LLM
@@ -32,7 +35,7 @@ public class EasyReadService {
     public EasyReadResult adapt(String text) {
         EasyReadResult result;
         try {
-            result = chatClient.prompt()
+            ResponseEntity<ChatResponse, EasyReadResult> response = chatClient.prompt()
                     .system(systemPrompt)
                     .messages(examples.messages())
                     .user(text)
@@ -40,7 +43,9 @@ public class EasyReadService {
                     // Sin esto, el molde va como texto en el mensaje y a veces el JSON sale roto.
                     .advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT)
                     .call()
-                    .entity(EasyReadResult.class);
+                    .responseEntity(EasyReadResult.class);
+            log.info("Tiempos de la IA en la adaptación: {}", AiTimings.describe(response.getResponse()));
+            result = response.getEntity();
         } catch (RuntimeException e) {
             // El detalle técnico va al log; la persona usuaria verá un mensaje en lectura fácil
             log.error("Error al llamar a la IA para adaptar un texto", e);

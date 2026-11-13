@@ -8,11 +8,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.AdvisorParams;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.ResponseEntity;
+import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+
+import es.empleofacil.llm.AiTimings;
 
 // Busca el pictograma de la profesión de una oferta de trabajo.
 // Es una llamada a la IA aparte de la adaptación: con una sola tarea, un modelo pequeño acierta más.
@@ -53,14 +57,16 @@ public class ProfessionPictogramService {
     // Si la IA falla, seguimos sin pictograma: el pictograma ayuda, pero el texto adaptado ya está hecho
     List<String> professions(String text) {
         try {
-            Professions result = chatClient.prompt()
+            ResponseEntity<ChatResponse, Professions> response = chatClient.prompt()
                     .system(systemPrompt)
                     .user(text)
                     // JSON nativo: Ollama obliga al modelo a escribir un JSON válido con el molde del record.
                     // Sin esto, el molde va como texto en el mensaje y a veces el JSON sale roto.
                     .advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT)
                     .call()
-                    .entity(Professions.class);
+                    .responseEntity(Professions.class);
+            log.info("Tiempos de la IA en la profesión: {}", AiTimings.describe(response.getResponse()));
+            Professions result = response.getEntity();
             if (result == null || result.professions() == null) {
                 return List.of();
             }

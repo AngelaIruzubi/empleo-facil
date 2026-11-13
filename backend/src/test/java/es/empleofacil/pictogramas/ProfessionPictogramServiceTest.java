@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Answers;
 import org.springframework.ai.chat.client.AdvisorParams;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.ResponseEntity;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
@@ -100,9 +101,9 @@ class ProfessionPictogramServiceTest {
     }
 
     private void aiAnswers(Professions professions) {
-        when(chatClient.prompt().system(systemPrompt).user(OFFER).advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT).call().entity(Professions.class))
-                .thenReturn(professions);
+        when(chatClient.prompt().system(systemPrompt).user(OFFER).advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT).call().responseEntity(Professions.class))
+                .thenReturn(new ResponseEntity<>(null, professions));
         when(chatClient.prompt().system(systemPrompt).user("Gracias por venir a la entrevista.").advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT).call()
-                .entity(Professions.class)).thenReturn(professions);
+                .responseEntity(Professions.class)).thenReturn(new ResponseEntity<>(null, professions));
     }
 }
