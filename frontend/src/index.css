@@ -1,7 +1,236 @@
-/* Estilos mínimos. El diseño de lectura fácil llega en las tareas 3.4 y 3.7 */
+/*
+  Diseño de Empleo fácil.
+  Idea: la señalización de un lugar de trabajo. Los avisos importantes son amarillos con negro
+  y los pictogramas de ARASAAC van sobre fondo blanco con bordes gruesos.
+  Sigue las pautas de diseño de docs/lectura-facil.md: letra sin adornos, interlineado de 1,5,
+  texto alineado a la izquierda, mucho contraste y fondos lisos.
+*/
+
+:root {
+  --paper: #ffffff;
+  --ink: #102a43;
+  --ink-soft: #3e5468;
+  --signal: #ffc20e;
+  --signal-pressed: #e6a800;
+  --disabled: #e3e7eb;
+  --error: #b3261e;
+
+  --line: 3px solid var(--ink);
+  --radius: 4px;
+
+  /* Atkinson Hyperlegible: letra creada por el Braille Institute para personas con baja visión */
+  --font: 'Atkinson Hyperlegible Next Variable', Verdana, Arial, sans-serif;
+  --text-small: 1rem;
+  --text: 1.25rem;
+  --text-h3: 1.375rem;
+  --text-h2: 1.75rem;
+  --text-h1: 2.5rem;
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  padding: 1rem;
-  font-family: Verdana, Arial, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--text);
   line-height: 1.5;
+}
+
+main,
+footer {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: var(--text-h1);
+}
+
+h2 {
+  font-size: var(--text-h2);
+}
+
+h3 {
+  font-size: var(--text-h3);
+}
+
+p {
+  margin: 0;
+}
+
+/* Foco visible para quien usa el teclado */
+:focus-visible {
+  outline: 4px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.intro {
+  margin-top: 0.5rem;
+}
+
+/* --- Formulario --- */
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+label {
+  font-weight: 700;
+}
+
+textarea {
+  width: 100%;
+  min-height: 12rem;
+  padding: 0.75rem;
+  border: var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1.125rem;
+  resize: vertical;
+}
+
+.hint {
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
+button {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: var(--line);
+  border-radius: var(--radius);
+  background: var(--signal);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover,
+button:active {
+  background: var(--signal-pressed);
+}
+
+button:disabled {
+  background: var(--disabled);
+  color: var(--ink-soft);
+  border-color: var(--ink-soft);
+  cursor: not-allowed;
+}
+
+/* --- Mensajes --- */
+
+.waiting,
+.error {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border: var(--line);
+  border-radius: var(--radius);
+}
+
+.waiting h2,
+.error h2 {
+  font-size: var(--text-h3);
+  margin-bottom: 0.5rem;
+}
+
+.error {
+  border-color: var(--error);
+}
+
+.error h2 {
+  color: var(--error);
+}
+
+.error p {
+  /* El backend separa las frases con saltos de línea */
+  white-space: pre-line;
+}
+
+/* --- Resultado --- */
+
+.result {
+  margin-top: 3rem;
+}
+
+/* El cartel: el único elemento llamativo de la página */
+.result-sign {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: var(--line);
+  border-radius: var(--radius);
+  background: var(--signal);
+}
+
+.result-pictogram {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border: var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.result-body {
+  margin-top: 1.5rem;
+}
+
+.result-paragraph + .result-paragraph {
+  margin-top: 1.5rem;
+}
+
+.result-paragraph h3 {
+  margin-bottom: 0.25rem;
+}
+
+.result-paragraph ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.result-notice {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: var(--line);
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
+footer {
+  padding-top: 0;
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
+/* En pantallas muy estrechas, el pictograma va encima del título */
+@media (max-width: 22rem) {
+  .result-sign {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
