@@ -69,7 +69,12 @@ export async function adaptText(text: string): Promise<EasyReadReport> {
 
 // Igual que adaptText, pero el servidor manda el texto a trozos según la IA lo escribe.
 // onText recibe todo el texto que ha llegado hasta ahora, para enseñarlo en pantalla.
-export async function adaptTextStreaming(text: string, onText: (textSoFar: string) => void): Promise<EasyReadReport> {
+// onTextEnd avisa cuando el texto está completo. Después la IA aún escribe la lista de cambios y busca el pictograma.
+export async function adaptTextStreaming(
+  text: string,
+  onText: (textSoFar: string) => void,
+  onTextEnd: () => void,
+): Promise<EasyReadReport> {
   const response = await post('/api/easy-read/stream', text)
   if (!response.body) {
     throw AI_UNAVAILABLE
@@ -95,6 +100,8 @@ export async function adaptTextStreaming(text: string, onText: (textSoFar: strin
       if (event === 'text') {
         textSoFar += JSON.parse(data).text
         onText(textSoFar)
+      } else if (event === 'text-end') {
+        onTextEnd()
       } else if (event === 'report') {
         await reader.cancel()
         return JSON.parse(data)

@@ -51,7 +51,8 @@ public class EasyReadController {
     }
 
     // Lo mismo, pero con Server-Sent Events: la respuesta llega en varios mensajes.
-    //   event: text    -> {"text": "..."}  un trozo nuevo del texto adaptado (muchos)
+    //   event: text      -> {"text": "..."}  un trozo nuevo del texto adaptado (muchos)
+    //   event: text-end  -> {"complete": true}  el texto ya está completo; falta la lista de cambios (uno)
     //   event: report  -> el EasyReadReport completo, igual que en /easy-read (uno, al final)
     //   event: error   -> un ProblemDetail si la IA falla (uno, al final)
     // Si el texto no es válido, responde 400 normal, sin stream.
@@ -63,7 +64,8 @@ public class EasyReadController {
             String text = request.text();
             try {
                 EasyReadResult result = easyReadService.adaptStreaming(text,
-                        newText -> send(emitter, "text", Map.of("text", newText)));
+                        newText -> send(emitter, "text", Map.of("text", newText)),
+                        () -> send(emitter, "text-end", Map.of("complete", true)));
                 ProfessionPictogram profession = professionPictogramService.find(text);
                 send(emitter, "report", EasyReadReport.from(text, result, profession));
                 emitter.complete();

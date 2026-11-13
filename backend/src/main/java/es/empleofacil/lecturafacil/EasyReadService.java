@@ -65,7 +65,8 @@ public class EasyReadService {
 
     // Igual que adapt(), pero la IA manda la respuesta a trozos según la escribe.
     // Cada trozo nuevo del texto adaptado va a onText, para enseñarlo en pantalla sin esperar al final.
-    public EasyReadResult adaptStreaming(String text, Consumer<String> onText) {
+    // onTextEnd avisa una vez cuando el texto está completo. Después la IA aún escribe la lista de cambios.
+    public EasyReadResult adaptStreaming(String text, Consumer<String> onText, Runnable onTextEnd) {
         StreamingJsonField adaptedText = new StreamingJsonField("adaptedText");
         StringBuilder json = new StringBuilder();
         AtomicReference<ChatResponse> lastResponse = new AtomicReference<>();
@@ -84,9 +85,13 @@ public class EasyReadService {
                         lastResponse.set(response);
                         String chunk = chunkText(response);
                         json.append(chunk);
+                        boolean wasFinished = adaptedText.isFinished();
                         String newText = adaptedText.accept(chunk);
                         if (!newText.isEmpty()) {
                             onText.accept(newText);
+                        }
+                        if (!wasFinished && adaptedText.isFinished()) {
+                            onTextEnd.run();
                         }
                     })
                     // Espera aquí hasta el último trozo

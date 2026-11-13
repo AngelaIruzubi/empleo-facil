@@ -127,10 +127,12 @@ class EasyReadControllerTest {
 
     @Test
     void streamSendsTextPiecesAndThenTheReport() throws Exception {
-        when(easyReadService.adaptStreaming(eq("Se precisa el CAP."), any())).thenAnswer(invocation -> {
+        when(easyReadService.adaptStreaming(eq("Se precisa el CAP."), any(), any())).thenAnswer(invocation -> {
             Consumer<String> onText = invocation.getArgument(1);
             onText.accept("Necesitas ");
             onText.accept("el CAP.\nYa.");
+            Runnable onTextEnd = invocation.getArgument(2);
+            onTextEnd.run();
             return new EasyReadResult("Necesitas el CAP.\nYa.", List.of());
         });
         when(professionPictogramService.find("Se precisa el CAP.")).thenReturn(new ProfessionPictogram(
@@ -142,13 +144,14 @@ class EasyReadControllerTest {
         assertThat(body).containsSubsequence(
                 "event:text", "data:{\"text\":\"Necesitas \"}",
                 "event:text", "data:{\"text\":\"el CAP.\\nYa.\"}",
+                "event:text-end", "data:{\"complete\":true}",
                 "event:report", "\"adaptedText\":\"Necesitas el CAP.\\nYa.\"", "\"keyword\":\"conductor\"");
         assertThat(body).doesNotContain("event:error");
     }
 
     @Test
     void streamSendsAnErrorEventWhenTheAiFailsAndSkipsTheProfession() throws Exception {
-        when(easyReadService.adaptStreaming(anyString(), any())).thenThrow(new EasyReadException("Ollama apagado"));
+        when(easyReadService.adaptStreaming(anyString(), any(), any())).thenThrow(new EasyReadException("Ollama apagado"));
 
         String body = postStream("Texto difícil");
 

@@ -2,15 +2,20 @@ import type { Pictogram } from './api'
 import { parseAdaptedText, readingOrder, type Block } from './adaptedText'
 import { useSpeech } from './useSpeech'
 
+// writing: la IA está escribiendo el texto, que está a medias.
+// finishing: el texto está completo, pero la IA aún escribe la lista de cambios. Falta el pictograma.
+// done: ya ha llegado todo.
+export type ResultStage = 'writing' | 'finishing' | 'done'
+
 type ResultProps = {
   adaptedText: string
   pictogram: Pictogram | null
-  // true mientras la IA sigue escribiendo: el texto está a medias y aún no hay pictograma
-  writing: boolean
+  stage: ResultStage
 }
 
 // El texto adaptado. La franja amarilla con el pictograma es como un cartel que dice de qué trabajo se trata.
-function Result({ adaptedText, pictogram, writing }: ResultProps) {
+function Result({ adaptedText, pictogram, stage }: ResultProps) {
+  const writing = stage === 'writing'
   const parsed = parseAdaptedText(adaptedText)
   const { title, paragraphs } = parsed
   const speech = useSpeech()
@@ -59,9 +64,9 @@ function Result({ adaptedText, pictogram, writing }: ResultProps) {
         ))}
       </div>
 
-      {writing ? (
-        <p className="result-writing">La inteligencia artificial sigue escribiendo.</p>
-      ) : (
+      {writing && <p className="result-writing">La inteligencia artificial sigue escribiendo.</p>}
+      {stage === 'finishing' && <p className="result-writing">Estamos buscando el dibujo del trabajo.</p>}
+      {!writing && (
         <p className="result-notice">
           Este texto lo ha adaptado una inteligencia artificial.
           <br />

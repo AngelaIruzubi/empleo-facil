@@ -1,12 +1,13 @@
 import { useEffect, useState, type SubmitEvent } from 'react'
 import { adaptTextStreaming, ApiError, MAX_TEXT_LENGTH, type EasyReadReport } from './api'
-import Result from './Result'
+import Result, { type ResultStage } from './Result'
 
 // La pantalla siempre está en uno de estos estados.
-// En 'loading', textSoFar es el texto que la IA ha escrito hasta ahora (vacío al principio).
+// En 'loading', textSoFar es el texto que la IA ha escrito hasta ahora (vacío al principio)
+// y textComplete dice si ya ha terminado el texto (falta la lista de cambios y el pictograma).
 type State =
   | { status: 'idle' }
-  | { status: 'loading'; startedAt: number; textSoFar: string }
+  | { status: 'loading'; startedAt: number; textSoFar: string; textComplete: boolean }
   | { status: 'done'; report: EasyReadReport }
   | { status: 'error'; title: string; detail: string }
 
@@ -17,10 +18,12 @@ function App() {
   async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     const startedAt = Date.now()
-    setState({ status: 'loading', startedAt, textSoFar: '' })
+    setState({ status: 'loading', startedAt, textSoFar: '', textComplete: false })
     try {
-      const report = await adaptTextStreaming(text, (textSoFar) =>
-        setState({ status: 'loading', startedAt, textSoFar }),
+      const report = await adaptTextStreaming(
+        text,
+        (textSoFar) => setState({ status: 'loading', startedAt, textSoFar, textComplete: false }),
+        () => setState((current) => (current.status === 'loading' ? { ...current, textComplete: true } : current)),
       )
       setState({ status: 'done', report })
     } catch (error) {
@@ -37,6 +40,7 @@ function App() {
   }
 
   const loading = state.status === 'loading'
+  const result = resultToShow(state)
 
   return (
     <>
@@ -66,25 +70,22 @@ function App() {
         {/* role="status" y role="alert" hacen que un lector de pantalla lea el mensaje en voz alta */}
         <div role="status">
           {state.status === 'loading' && state.textSoFar === '' && <Waiting startedAt={state.startedAt} />}
-          {state.status === 'loading' && state.textSoFar !== '' && (
+          {result?.stage === 'writing' && (
             <p className="visually-hidden">Ya sale el texto. La inteligencia artificial sigue escribiendo.</p>
           )}
-          {state.status === 'done' && <p className="visually-hidden">Ya está tu texto en lectura fácil.</p>}
+          {result && result.stage !== 'writing' && (
+            <p className="visually-hidden">Ya está tu texto en lectura fácil.</p>
+          )}
         </div>
 
-        {state.status === 'loading' && state.textSoFar !== '' && (
-          <Result adaptedText={state.textSoFar} pictogram={null} writing />
-        )}
+        {/* Un solo Result en un solo sitio: así no se borra (ni se corta la lectura en voz alta) al llegar el informe */}
+        {result && <Result {...result} />}
 
         {state.status === 'error' && (
           <div className="error" role="alert">
             <h2>{state.title}</h2>
             <p>{state.detail}</p>
           </div>
-        )}
-
-        {state.status === 'done' && (
-          <Result adaptedText={state.report.adaptedText} pictogram={state.report.pictogram} writing={false} />
         )}
       </main>
 
@@ -93,6 +94,19 @@ function App() {
       </footer>
     </>
   )
+}
+
+// Qué texto enseñar y en qué momento está: escribiendo, terminando (falta el pictograma) o terminado
+function resultToShow(state: State) {
+  if (state.status === 'loading' && state.textSoFar !== '') {
+    const stage: ResultStage = state.textComplete ? 'finishing' : 'writing'
+    return { adaptedText: state.textSoFar, pictogram: null, stage }
+  }
+  if (state.status === 'done') {
+    const stage: ResultStage = 'done'
+    return { adaptedText: state.report.adaptedText, pictogram: state.report.pictogram, stage }
+  }
+  return null
 }
 
 // La IA tarda unos minutos en este ordenador. Enseñamos el tiempo real, sin barras de progreso inventadas.

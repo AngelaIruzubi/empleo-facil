@@ -88,9 +88,10 @@ class EasyReadServiceTest {
                 chunk(" fácil.\", \"changes\": []}")));
         List<String> pieces = new ArrayList<>();
 
-        EasyReadResult result = service.adaptStreaming("Texto difícil", pieces::add);
+        // Apuntamos "FIN" cuando avisa de que el texto está completo, para ver en qué momento llega
+        EasyReadResult result = service.adaptStreaming("Texto difícil", pieces::add, () -> pieces.add("FIN"));
 
-        assertThat(pieces).containsExactly("Busca", "mos a alguien.\nEs", " fácil.");
+        assertThat(pieces).containsExactly("Busca", "mos a alguien.\nEs", " fácil.", "FIN");
         assertThat(result).isEqualTo(new EasyReadResult("Buscamos a alguien.\nEs fácil.", List.of()));
     }
 
@@ -100,7 +101,7 @@ class EasyReadServiceTest {
                 Flux.just(chunk("{\"adaptedText\": \"Hola")),
                 Flux.error(new RuntimeException("Connection reset"))));
 
-        assertThatThrownBy(() -> service.adaptStreaming("Texto difícil", piece -> { }))
+        assertThatThrownBy(() -> service.adaptStreaming("Texto difícil", piece -> { }, () -> { }))
                 .isInstanceOf(EasyReadException.class)
                 .hasRootCauseMessage("Connection reset");
     }
@@ -109,7 +110,7 @@ class EasyReadServiceTest {
     void adaptStreamingWithoutWordsBecomesEasyReadException() {
         when(streamedChunks()).thenReturn(Flux.just(chunk("{\"adaptedText\": \"...\", \"changes\": []}")));
 
-        assertThatThrownBy(() -> service.adaptStreaming("Texto difícil", piece -> { }))
+        assertThatThrownBy(() -> service.adaptStreaming("Texto difícil", piece -> { }, () -> { }))
                 .isInstanceOf(EasyReadException.class);
     }
 

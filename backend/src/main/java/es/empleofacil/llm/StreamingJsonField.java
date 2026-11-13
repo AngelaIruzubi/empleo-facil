@@ -19,6 +19,11 @@ public final class StreamingJsonField {
         start = Pattern.compile("\"" + Pattern.quote(fieldName) + "\"\\s*:\\s*\"");
     }
 
+    // true cuando ya ha llegado la comilla que cierra el campo
+    public boolean isFinished() {
+        return finished;
+    }
+
     // Recibe un trozo del JSON y devuelve el texto nuevo del campo, ya sin escapes
     public String accept(String chunk) {
         raw.append(chunk);
