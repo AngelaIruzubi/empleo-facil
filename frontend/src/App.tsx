@@ -1,5 +1,6 @@
 import { useEffect, useState, type SubmitEvent } from 'react'
 import { adaptTextStreaming, ApiError, MAX_TEXT_LENGTH, type EasyReadReport } from './api'
+import Report from './Report'
 import Result, { type ResultStage } from './Result'
 
 // La pantalla siempre está en uno de estos estados.
@@ -80,6 +81,8 @@ function App() {
 
         {/* Un solo Result en un solo sitio: así no se borra (ni se corta la lectura en voz alta) al llegar el informe */}
         {result && <Result {...result} />}
+
+        {state.status === 'done' && <Report report={state.report} />}
 
         {state.status === 'error' && (
           <div className="error" role="alert">
