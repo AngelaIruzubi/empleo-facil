@@ -13,10 +13,12 @@ import org.mockito.Answers;
 import org.springframework.ai.chat.client.AdvisorParams;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.ResponseEntity;
+import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 import es.empleofacil.lecturafacil.ReviseRequest.Correction;
+import es.empleofacil.lecturafacil.RevisionAnswer.Item;
 
 // Test unitario: sin Spring, creamos el servicio con new
 class RevisionServiceTest {
@@ -32,13 +34,39 @@ class RevisionServiceTest {
                     new Correction("Las pagas son dinero extra.", "La paga extra ya está dentro del sueldo.")));
 
     @Test
-    void reviseSendsTheOfferTheTextAndTheNumberedCorrectionsAndReturnsTheSentences() {
-        when(answer()).thenReturn(new ResponseEntity<>(null, new RevisedSentences(List.of(
-                " Trabajas 20 horas cada semana.\nTrabajas de lunes a viernes. ",
-                "El sueldo ya incluye la paga extra."))));
+    void reviseSendsTheOfferTheTextAndTheNumberedCorrectionsAndReturnsTheSentencesInOrder() {
+        // La IA contesta en otro orden: el número dice a qué frase marcada corresponde cada una
+        when(answer()).thenReturn(answerWith(
+                new Item(2, " El sueldo ya incluye la paga extra. "),
+                new Item(1, "Trabajas 20 horas cada semana.")));
+
+        assertThat(service.revise(request)).containsExactly(
+                "Trabajas 20 horas cada semana.",
+                "El sueldo ya incluye la paga extra.");
+    }
+
+    @Test
+    void aCorrectionSplitIntoSeveralSentencesStaysTogetherInItsPlace() {
+        // Lo que pasó el 18/11/2026: 1 frase marcada y la IA la corrigió con 2 frases
+        when(answer()).thenReturn(answerWith(
+                new Item(1, "Trabajas 20 horas cada semana."),
+                new Item(1, "Trabajas de lunes a viernes."),
+                new Item(2, "El sueldo ya incluye la paga extra.")));
 
         assertThat(service.revise(request)).containsExactly(
                 "Trabajas 20 horas cada semana.\nTrabajas de lunes a viernes.",
+                "El sueldo ya incluye la paga extra.");
+    }
+
+    @Test
+    void severalSentencesInOneLineGoEachOnItsOwnLine() {
+        // Lo que hizo la IA con la frase del logopeda: 3 frases seguidas en la misma línea
+        when(answer()).thenReturn(answerWith(
+                new Item(1, "Un logopeda ayuda a las personas a hablar bien. Necesitas el Grado en Logopedia."),
+                new Item(2, "El sueldo ya incluye la paga extra.")));
+
+        assertThat(service.revise(request)).containsExactly(
+                "Un logopeda ayuda a las personas a hablar bien.\nNecesitas el Grado en Logopedia.",
                 "El sueldo ya incluye la paga extra.");
     }
 
@@ -53,28 +81,36 @@ class RevisionServiceTest {
     }
 
     @Test
-    void wrongNumberOfSentencesBecomesEasyReadException() {
-        // Si faltan frases, no sabemos cuál va en cada sitio
-        when(answer()).thenReturn(new ResponseEntity<>(null, new RevisedSentences(List.of("Solo una frase."))));
+    void aMissingSentenceBecomesRevisionException() {
+        // Si falta la frase 2, no sabemos qué poner en su sitio
+        when(answer()).thenReturn(answerWith(new Item(1, "Trabajas 20 horas cada semana.")));
 
-        assertThatThrownBy(() -> service.revise(request)).isInstanceOf(EasyReadException.class);
+        assertThatThrownBy(() -> service.revise(request)).isInstanceOf(RevisionException.class);
     }
 
     @Test
-    void sentenceWithoutWordsBecomesEasyReadException() {
-        when(answer()).thenReturn(new ResponseEntity<>(null, new RevisedSentences(List.of("Bien.", "..."))));
+    void aNumberThatDoesNotExistBecomesRevisionException() {
+        when(answer()).thenReturn(answerWith(
+                new Item(1, "Bien."), new Item(2, "Bien."), new Item(3, "Esta frase no se ha pedido.")));
 
-        assertThatThrownBy(() -> service.revise(request)).isInstanceOf(EasyReadException.class);
+        assertThatThrownBy(() -> service.revise(request)).isInstanceOf(RevisionException.class);
     }
 
     @Test
-    void aiErrorBecomesEasyReadException() {
+    void sentenceWithoutWordsBecomesRevisionException() {
+        when(answer()).thenReturn(answerWith(new Item(1, "Bien."), new Item(2, "...")));
+
+        assertThatThrownBy(() -> service.revise(request)).isInstanceOf(RevisionException.class);
+    }
+
+    @Test
+    void aiErrorBecomesRevisionException() {
         when(chatClient.prompt().system(systemPrompt).user(anyString())
                 .advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT).call())
                 .thenThrow(new RuntimeException("Connection refused"));
 
         assertThatThrownBy(() -> service.revise(request))
-                .isInstanceOf(EasyReadException.class)
+                .isInstanceOf(RevisionException.class)
                 .hasRootCauseMessage("Connection refused");
     }
 
@@ -83,12 +119,16 @@ class RevisionServiceTest {
         assertThat(systemPrompt.exists()).isTrue();
     }
 
-    private ResponseEntity<?, RevisedSentences> answer() {
+    private ResponseEntity<ChatResponse, RevisionAnswer> answer() {
         return chatClient.prompt()
                 .system(systemPrompt)
                 .user(RevisionService.userMessage(request))
                 .advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT)
                 .call()
-                .responseEntity(RevisedSentences.class);
+                .responseEntity(RevisionAnswer.class);
+    }
+
+    private static ResponseEntity<ChatResponse, RevisionAnswer> answerWith(Item... items) {
+        return new ResponseEntity<>(null, new RevisionAnswer(List.of(items)));
     }
 }

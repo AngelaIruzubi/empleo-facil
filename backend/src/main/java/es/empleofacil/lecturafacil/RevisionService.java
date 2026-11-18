@@ -1,6 +1,9 @@
 package es.empleofacil.lecturafacil;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
@@ -34,21 +37,21 @@ public class RevisionService {
 
     // Devuelve las frases corregidas en el mismo orden que request.corrections()
     public List<String> revise(ReviseRequest request) {
-        RevisedSentences result;
+        RevisionAnswer answer;
         try {
-            ResponseEntity<ChatResponse, RevisedSentences> response = chatClient.prompt()
+            ResponseEntity<ChatResponse, RevisionAnswer> response = chatClient.prompt()
                     .system(systemPrompt)
                     .user(userMessage(request))
                     .advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT)
                     .call()
-                    .responseEntity(RevisedSentences.class);
+                    .responseEntity(RevisionAnswer.class);
             log.info("Tiempos de la IA en la corrección: {}", AiTimings.describe(response.getResponse()));
-            result = response.getEntity();
+            answer = response.getEntity();
         } catch (RuntimeException e) {
             log.error("Error al llamar a la IA para corregir frases", e);
-            throw new EasyReadException("La IA no ha podido corregir las frases", e);
+            throw new RevisionException("La IA no ha podido corregir las frases", e);
         }
-        return checked(result, request.corrections().size());
+        return byNumber(answer, request.corrections().size());
     }
 
     // Las frases van numeradas para que la IA conteste en el mismo orden
@@ -72,14 +75,30 @@ public class RevisionService {
                 corrections.size(), numbered);
     }
 
-    // La IA tiene que devolver una frase con palabras por cada frase marcada.
-    // Si no, no sabemos qué frase va en qué sitio: mejor avisar que estropear el texto.
-    private static List<String> checked(RevisedSentences result, int expected) {
-        if (result == null || result.sentences() == null || result.sentences().size() != expected
-                || result.sentences().stream().anyMatch(sentence -> sentence == null || TextSplitter.words(sentence).isEmpty())) {
-            log.error("La IA ha devuelto una corrección que no sirve. Esperábamos {} frases: {}", expected, result);
-            throw new EasyReadException("La IA ha devuelto una corrección que no sirve");
+    // Junta las frases de cada número en orden: la frase 1, la 2... Si la IA ha dividido una corrección
+    // en varias frases, van juntas, cada una en su línea.
+    // Si falta algún número o hay un número que no existe, no sabemos qué va en cada sitio:
+    // mejor avisar que estropear el texto.
+    static List<String> byNumber(RevisionAnswer answer, int expected) {
+        Map<Integer, List<String>> sentences = new TreeMap<>();
+        boolean valid = answer != null && answer.sentences() != null;
+        if (valid) {
+            for (RevisionAnswer.Item item : answer.sentences()) {
+                if (item == null || item.number() < 1 || item.number() > expected
+                        || item.text() == null || TextSplitter.words(item.text()).isEmpty()) {
+                    valid = false;
+                    break;
+                }
+                // En lectura fácil cada frase va en su línea. A veces la IA junta varias frases en una:
+                // TextSplitter las separa (respeta "7.5", "Sra." y las fechas).
+                sentences.computeIfAbsent(item.number(), number -> new ArrayList<>())
+                        .addAll(TextSplitter.sentences(item.text()));
+            }
         }
-        return result.sentences().stream().map(String::strip).toList();
+        if (!valid || sentences.size() != expected) {
+            log.error("La IA ha devuelto una corrección que no sirve. Esperábamos {} frases: {}", expected, answer);
+            throw new RevisionException("La IA ha devuelto una corrección que no sirve");
+        }
+        return sentences.values().stream().map(lines -> String.join("\n", lines)).toList();
     }
 }

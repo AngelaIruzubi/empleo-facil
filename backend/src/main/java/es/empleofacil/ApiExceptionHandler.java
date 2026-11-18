@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import es.empleofacil.lecturafacil.EasyReadException;
+import es.empleofacil.lecturafacil.RevisionException;
 
 // Convierte los errores de todos los controladores en respuestas claras y en lectura fácil.
 // Usa ProblemDetail, el formato estándar para errores en APIs web (RFC 9457).
@@ -35,6 +36,13 @@ public class ApiExceptionHandler {
     @ExceptionHandler(EasyReadException.class)
     public ProblemDetail handleEasyReadError(EasyReadException e) {
         return aiUnavailable();
+    }
+
+    // 503: la IA no ha podido corregir las frases marcadas por el preparador laboral
+    @ExceptionHandler(RevisionException.class)
+    public ProblemDetail handleRevisionError(RevisionException e) {
+        return problem(HttpStatus.SERVICE_UNAVAILABLE, "No se pueden corregir las frases ahora",
+                "Ahora no podemos corregir las frases.\nInténtalo otra vez dentro de un rato.");
     }
 
     // Público porque la dirección con streaming manda este mismo error dentro del stream

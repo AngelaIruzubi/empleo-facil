@@ -226,14 +226,17 @@ class EasyReadControllerTest {
     }
 
     @Test
-    void reviseAiFailureReturnsServiceUnavailable() throws Exception {
-        when(revisionService.revise(any())).thenThrow(new EasyReadException("Ollama apagado"));
+    void reviseAiFailureReturnsServiceUnavailableWithItsOwnMessage() throws Exception {
+        when(revisionService.revise(any())).thenThrow(new RevisionException("Ollama apagado"));
 
+        // Dice «corregir», no «adaptar»: la persona ha pedido una corrección
         postRevise("""
                 {"originalText": "Oferta", "adaptedText": "Texto.",
                  "corrections": [{"sentence": "Texto.", "comment": "Está mal."}]}
                 """)
-                .andExpect(status().isServiceUnavailable());
+                .andExpect(status().isServiceUnavailable())
+                .andExpect(jsonPath("$.title").value("No se pueden corregir las frases ahora"))
+                .andExpect(jsonPath("$.detail").value(Matchers.startsWith("Ahora no podemos corregir las frases.")));
     }
 
     private ResultActions postRevise(String json) throws Exception {

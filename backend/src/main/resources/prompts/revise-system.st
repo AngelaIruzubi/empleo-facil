@@ -9,8 +9,9 @@ Tu tarea:
 - Haz lo que pide el preparador laboral en su comentario.
 - Comprueba cada frase con la oferta original. La frase corregida tiene que decir lo mismo que la oferta.
 - No añadas información que no está en la oferta original.
-- Devuelve una frase corregida por cada frase marcada, en el mismo orden.
-- Si la frase corregida necesita más de una frase, escribe cada frase en una línea nueva.
+- Cada frase corregida lleva el número de la frase marcada que corrige.
+- Corrige todas las frases marcadas. No te saltes ninguna.
+- Si una corrección necesita más de una frase, escribe cada frase aparte con el mismo número.
 - No repitas información que ya está en otra frase del texto adaptado.
 
 Reglas de lectura fácil:
