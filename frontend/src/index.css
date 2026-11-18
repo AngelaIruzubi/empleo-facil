@@ -292,8 +292,119 @@ button:disabled {
   background: var(--disabled);
 }
 
-.report[open] summary {
+.report[open] > summary {
   border-bottom: var(--line);
+}
+
+/* Abierto, se ensancha más allá de la columna de texto para que quepan la oferta y el texto adaptado lado a lado */
+.report[open] {
+  --wide: min(72rem, 100vw - 3rem);
+  width: var(--wide);
+  margin-left: calc((100% - var(--wide)) / 2);
+}
+
+.review {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* La oferta se queda a la vista mientras bajas por el texto adaptado */
+.review-original {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  padding: 1rem;
+  border: 1px solid var(--ink-soft);
+  border-radius: var(--radius);
+}
+
+.review-original-text {
+  /* Respeta los saltos de línea de la oferta tal como se pegó */
+  white-space: pre-line;
+}
+
+.review-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* La frase a la izquierda y su botón a la derecha. El comentario ocupa todo el ancho, debajo. */
+.review-line {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 0.25rem 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-left: 4px solid transparent;
+}
+
+/* Marcada: borde rojo y la palabra del botón cambia. El color no es la única pista. */
+.review-line-marked {
+  border-left-color: var(--error);
+  background: #fdf0ef;
+}
+
+.review-line label,
+.review-line textarea {
+  grid-column: 1 / -1;
+}
+
+.review-line label {
+  margin-top: 0.25rem;
+  font-size: var(--text-small);
+}
+
+.review-line textarea {
+  min-height: 0;
+  font-size: var(--text-small);
+}
+
+.review-toggle {
+  margin-top: 0;
+  padding: 0.25rem 0.75rem;
+  background: var(--paper);
+  font-size: var(--text-small);
+}
+
+.review-toggle:hover,
+.review-toggle:active {
+  background: var(--disabled);
+}
+
+.review-count {
+  margin-top: 1rem;
+  font-weight: 700;
+}
+
+.report-more {
+  border: 1px solid var(--ink-soft);
+  border-radius: var(--radius);
+}
+
+.report-more summary {
+  padding: 0.5rem 1rem;
+}
+
+.report-more[open] > summary {
+  border-bottom: 1px solid var(--ink-soft);
+}
+
+@media (max-width: 48rem) {
+  .review {
+    grid-template-columns: 1fr;
+  }
+
+  .review-original {
+    position: static;
+    max-height: none;
+  }
 }
 
 .report-body {

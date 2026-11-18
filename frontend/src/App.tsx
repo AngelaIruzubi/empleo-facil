@@ -9,7 +9,7 @@ import Result, { type ResultStage } from './Result'
 type State =
   | { status: 'idle' }
   | { status: 'loading'; startedAt: number; textSoFar: string; textComplete: boolean }
-  | { status: 'done'; report: EasyReadReport }
+  | { status: 'done'; report: EasyReadReport; originalText: string }
   | { status: 'error'; title: string; detail: string }
 
 function App() {
@@ -19,14 +19,16 @@ function App() {
   async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     const startedAt = Date.now()
+    // La oferta que se adapta. Si la persona cambia el cuadro de texto después, el informe sigue con esta.
+    const originalText = text
     setState({ status: 'loading', startedAt, textSoFar: '', textComplete: false })
     try {
       const report = await adaptTextStreaming(
-        text,
+        originalText,
         (textSoFar) => setState({ status: 'loading', startedAt, textSoFar, textComplete: false }),
         () => setState((current) => (current.status === 'loading' ? { ...current, textComplete: true } : current)),
       )
-      setState({ status: 'done', report })
+      setState({ status: 'done', report, originalText })
     } catch (error) {
       if (error instanceof ApiError) {
         setState({ status: 'error', title: error.title, detail: error.detail })
@@ -82,7 +84,7 @@ function App() {
         {/* Un solo Result en un solo sitio: así no se borra (ni se corta la lectura en voz alta) al llegar el informe */}
         {result && <Result {...result} />}
 
-        {state.status === 'done' && <Report report={state.report} />}
+        {state.status === 'done' && <Report report={state.report} originalText={state.originalText} />}
 
         {state.status === 'error' && (
           <div className="error" role="alert">
