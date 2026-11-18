@@ -48,6 +48,45 @@ export function readingOrder({ title, paragraphs }: AdaptedText): string[] {
   return lines
 }
 
+// Cambia unas líneas del texto por otras. Las líneas se cuentan en el orden de readingOrder:
+// cada línea con letras del texto es una línea de lectura (título, pregunta, frase o elemento de lista).
+// Una línea nueva puede traer varias frases separadas por saltos de línea.
+// Si la línea vieja era un elemento de lista, las nuevas también lo son.
+// Devuelve el texto nuevo y los números de las líneas cambiadas, ya contadas en el texto nuevo.
+export function replaceLines(
+  text: string,
+  replacements: Map<number, string>,
+): { text: string; changedLines: number[] } {
+  const result: string[] = []
+  const changedLines: number[] = []
+  let oldLine = 0
+  let newLine = 0
+  for (const raw of text.split('\n')) {
+    if (raw.trim() === '') {
+      result.push(raw)
+      continue
+    }
+    const replacement = replacements.get(oldLine)
+    oldLine++
+    if (replacement === undefined) {
+      result.push(raw)
+      newLine++
+      continue
+    }
+    const listPrefix = LIST_ITEM.test(raw) ? '- ' : ''
+    const sentences = replacement
+      .split('\n')
+      .map((sentence) => sentence.replace(LIST_ITEM, '').trim())
+      .filter((sentence) => sentence !== '')
+    for (const sentence of sentences) {
+      result.push(listPrefix + sentence)
+      changedLines.push(newLine)
+      newLine++
+    }
+  }
+  return { text: result.join('\n'), changedLines }
+}
+
 function toBlocks(lines: string[]): Block[] {
   const blocks: Block[] = []
   lines.forEach((line, index) => {

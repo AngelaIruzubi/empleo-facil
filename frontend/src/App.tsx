@@ -86,7 +86,16 @@ function App() {
 
         {/* Se puede revisar en cuanto el texto está completo. En el mismo sitio, para no perder las frases marcadas al llegar el informe. */}
         {result && result.stage !== 'writing' && (
-          <Report adaptedText={result.adaptedText} originalText={result.originalText} />
+          <Report
+            adaptedText={result.adaptedText}
+            originalText={result.originalText}
+            canRevise={state.status === 'done'}
+            onRevised={(adaptedText) =>
+              setState((current) =>
+                current.status === 'done' ? { ...current, report: { ...current.report, adaptedText } } : current,
+              )
+            }
+          />
         )}
 
         {state.status === 'error' && (

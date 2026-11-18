@@ -351,6 +351,32 @@ button:disabled {
   background: #fdf0ef;
 }
 
+/* Cambiada por la IA en la última corrección: hay que revisarla otra vez */
+.review-line-corrected {
+  border-left-color: var(--signal-pressed);
+  background: #fff7d6;
+}
+
+.review-corrected-label {
+  font-weight: 700;
+}
+
+.review-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.review-actions .review-count {
+  margin-top: 0;
+}
+
+.review-actions .error {
+  margin-top: 0.5rem;
+}
+
 .review-line label,
 .review-line textarea {
   grid-column: 1 / -1;

@@ -43,6 +43,9 @@ class EasyReadControllerTest {
     @MockitoBean
     private ProfessionPictogramService professionPictogramService;
 
+    @MockitoBean
+    private RevisionService revisionService;
+
     @Test
     void adaptReturnsReportWithTextChangesPictogramReadabilityAndViolations() throws Exception {
         when(easyReadService.adapt("Se precisa el CAP.")).thenReturn(new EasyReadResult("Necesitas el CAP.",
@@ -181,6 +184,62 @@ class EasyReadControllerTest {
                 .andExpect(jsonPath("$.detail").value("Escribe un texto para adaptar."));
 
         verifyNoInteractions(easyReadService);
+    }
+
+    @Test
+    void reviseReturnsTheCorrectedSentencesInOrder() throws Exception {
+        when(revisionService.revise(any())).thenReturn(List.of("Trabajas 20 horas cada semana.", "El sueldo ya incluye la paga extra."));
+
+        postRevise("""
+                {"originalText": "Jornada parcial. El sueldo incluye la paga extra.",
+                 "adaptedText": "Trabajas.\\nLas pagas son dinero extra.",
+                 "corrections": [
+                   {"sentence": "Trabajas.", "comment": "Falta que es media jornada."},
+                   {"sentence": "Las pagas son dinero extra.", "comment": "La paga ya está dentro del sueldo."}]}
+                """)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.sentences[0]").value("Trabajas 20 horas cada semana."))
+                .andExpect(jsonPath("$.sentences[1]").value("El sueldo ya incluye la paga extra."));
+    }
+
+    @Test
+    void reviseWithAMarkedSentenceWithoutCommentReturnsBadRequestWithoutCallingTheAi() throws Exception {
+        postRevise("""
+                {"originalText": "Oferta", "adaptedText": "Texto.",
+                 "corrections": [{"sentence": "Texto.", "comment": "  "}]}
+                """)
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.detail").value("Escribe qué está mal en cada frase marcada."));
+
+        verifyNoInteractions(revisionService);
+    }
+
+    @Test
+    void reviseWithoutCorrectionsReturnsBadRequest() throws Exception {
+        postRevise("""
+                {"originalText": "Oferta", "adaptedText": "Texto.", "corrections": []}
+                """)
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.detail").value("Marca al menos una frase para corregir."));
+
+        verifyNoInteractions(revisionService);
+    }
+
+    @Test
+    void reviseAiFailureReturnsServiceUnavailable() throws Exception {
+        when(revisionService.revise(any())).thenThrow(new EasyReadException("Ollama apagado"));
+
+        postRevise("""
+                {"originalText": "Oferta", "adaptedText": "Texto.",
+                 "corrections": [{"sentence": "Texto.", "comment": "Está mal."}]}
+                """)
+                .andExpect(status().isServiceUnavailable());
+    }
+
+    private ResultActions postRevise(String json) throws Exception {
+        return mockMvc.perform(post("/api/easy-read/revise")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json));
     }
 
     // Espera a que el stream termine y devuelve todo lo que ha mandado

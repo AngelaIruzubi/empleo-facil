@@ -63,7 +63,7 @@ const AI_UNAVAILABLE = new ApiError(
 )
 
 export async function adaptText(text: string): Promise<EasyReadReport> {
-  const response = await post('/api/easy-read', text)
+  const response = await post('/api/easy-read', { text })
   return response.json()
 }
 
@@ -75,7 +75,7 @@ export async function adaptTextStreaming(
   onText: (textSoFar: string) => void,
   onTextEnd: () => void,
 ): Promise<EasyReadReport> {
-  const response = await post('/api/easy-read/stream', text)
+  const response = await post('/api/easy-read/stream', { text })
   if (!response.body) {
     throw AI_UNAVAILABLE
   }
@@ -113,6 +113,24 @@ export async function adaptTextStreaming(
   }
 }
 
+// Una frase que el preparador laboral ha marcado como mal, con su comentario
+export type Correction = {
+  sentence: string
+  comment: string
+}
+
+// La IA corrige solo las frases marcadas. Devuelve una frase corregida por cada corrección, en el mismo orden.
+// Una frase corregida puede tener varias líneas si la IA la ha dividido en frases más cortas.
+export async function reviseSentences(
+  originalText: string,
+  adaptedText: string,
+  corrections: Correction[],
+): Promise<string[]> {
+  const response = await post('/api/easy-read/revise', { originalText, adaptedText, corrections })
+  const { sentences } = (await response.json()) as { sentences: string[] }
+  return sentences
+}
+
 export type ServerSentEvent = { event: string; data: string }
 
 // Formato Server-Sent Events: cada mensaje son líneas "event:..." y "data:..." y acaba con una línea en blanco.
@@ -137,13 +155,13 @@ export function takeEvents(buffer: string): { events: ServerSentEvent[]; rest: s
   return { events, rest }
 }
 
-async function post(url: string, text: string): Promise<Response> {
+async function post(url: string, body: unknown): Promise<Response> {
   let response: Response
   try {
     response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text }),
+      body: JSON.stringify(body),
     })
   } catch {
     throw new ApiError(

@@ -1,6 +1,7 @@
 package es.empleofacil.lecturafacil;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -33,13 +34,25 @@ public class EasyReadController {
 
     private final EasyReadService easyReadService;
     private final ProfessionPictogramService professionPictogramService;
+    private final RevisionService revisionService;
     // Hilos virtuales de Java 21: cada stream espera a la IA en su propio hilo, que es muy barato
     private final ExecutorService streams = Executors.newVirtualThreadPerTaskExecutor();
 
     public EasyReadController(EasyReadService easyReadService,
-                              ProfessionPictogramService professionPictogramService) {
+                              ProfessionPictogramService professionPictogramService,
+                              RevisionService revisionService) {
         this.easyReadService = easyReadService;
         this.professionPictogramService = professionPictogramService;
+        this.revisionService = revisionService;
+    }
+
+    // El preparador laboral ha marcado frases que están mal. La IA corrige solo esas frases.
+    // Responde {"sentences": [...]}: una frase corregida por cada frase marcada, en el mismo orden.
+    // La web pone cada una en el sitio de la frase vieja.
+    @PostMapping("/easy-read/revise")
+    public RevisedSentences revise(@Valid @RequestBody ReviseRequest request) {
+        List<String> sentences = revisionService.revise(request);
+        return new RevisedSentences(sentences);
     }
 
     // Dos llamadas a la IA: primero adapta el texto y, si va bien, busca la profesión.
