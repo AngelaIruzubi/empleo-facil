@@ -3,19 +3,22 @@ import { parseAdaptedText, readingOrder } from './adaptedText'
 import type { Change, EasyReadReport, Readability, RuleViolation } from './api'
 
 type ReportProps = {
-  report: EasyReadReport
+  // El texto adaptado completo
+  adaptedText: string
   // La oferta tal como la pegó la persona
   originalText: string
+  // null mientras la IA termina la lista de cambios: se puede empezar a revisar sin esperar
+  report: EasyReadReport | null
 }
 
 // La revisión del preparador laboral: compara la oferta original con el texto adaptado
 // y marca las frases que están mal, con un comentario para la IA.
 // Debajo, como ayuda: legibilidad, reglas que no cumple y la lista de cambios.
 // Va cerrado: la persona lectora no necesita esto. El preparador lo abre cuando quiere revisar.
-function Report({ report, originalText }: ReportProps) {
+function Report({ adaptedText, originalText, report }: ReportProps) {
   // Las frases marcadas: el número de línea y lo que ha escrito el preparador
   const [comments, setComments] = useState<Record<number, string>>({})
-  const lines = readingOrder(parseAdaptedText(report.adaptedText))
+  const lines = readingOrder(parseAdaptedText(adaptedText))
   const marked = Object.keys(comments).length
 
   function toggle(line: number) {
@@ -58,11 +61,15 @@ function Report({ report, originalText }: ReportProps) {
 
         <details className="report-more">
           <summary>Más datos: legibilidad, reglas y cambios</summary>
-          <div className="report-body">
-            <ReadabilitySection before={report.readabilityBefore} after={report.readabilityAfter} />
-            <ViolationsSection violations={report.violations} />
-            <ChangesSection changes={report.changes} />
-          </div>
+          {report ? (
+            <div className="report-body">
+              <ReadabilitySection before={report.readabilityBefore} after={report.readabilityAfter} />
+              <ViolationsSection violations={report.violations} />
+              <ChangesSection changes={report.changes} />
+            </div>
+          ) : (
+            <p className="report-body">Estos datos salen cuando la inteligencia artificial termine.</p>
+          )}
         </details>
       </div>
     </details>

@@ -64,8 +64,13 @@ function Result({ adaptedText, pictogram, stage }: ResultProps) {
         ))}
       </div>
 
-      {writing && <p className="result-writing">La inteligencia artificial sigue escribiendo.</p>}
-      {stage === 'finishing' && <p className="result-writing">Estamos buscando el dibujo del trabajo.</p>}
+      {stage !== 'done' && (
+        <div className="result-writing">
+          <p>{writing ? 'La inteligencia artificial sigue escribiendo.' : 'Estamos buscando el dibujo del trabajo.'}</p>
+          {/* Si recargas, el trabajo de la IA se pierde y hay que empezar otra vez */}
+          <p>No cierres ni recargues esta página.</p>
+        </div>
+      )}
       {!writing && (
         <p className="result-notice">
           Este texto lo ha adaptado una inteligencia artificial.

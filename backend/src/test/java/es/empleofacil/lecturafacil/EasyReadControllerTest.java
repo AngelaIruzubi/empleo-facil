@@ -127,7 +127,7 @@ class EasyReadControllerTest {
 
     @Test
     void streamSendsTextPiecesAndThenTheReport() throws Exception {
-        when(easyReadService.adaptStreaming(eq("Se precisa el CAP."), any(), any())).thenAnswer(invocation -> {
+        when(easyReadService.adaptStreaming(eq("Se precisa el CAP."), any(), any(), any())).thenAnswer(invocation -> {
             Consumer<String> onText = invocation.getArgument(1);
             onText.accept("Necesitas ");
             onText.accept("el CAP.\nYa.");
@@ -151,12 +151,24 @@ class EasyReadControllerTest {
 
     @Test
     void streamSendsAnErrorEventWhenTheAiFailsAndSkipsTheProfession() throws Exception {
-        when(easyReadService.adaptStreaming(anyString(), any(), any())).thenThrow(new EasyReadException("Ollama apagado"));
+        when(easyReadService.adaptStreaming(anyString(), any(), any(), any())).thenThrow(new EasyReadException("Ollama apagado"));
 
         String body = postStream("Texto difícil");
 
         assertThat(body).containsSubsequence("event:error", "\"title\":\"No se puede adaptar el texto ahora\"");
         assertThat(body).doesNotContain("event:report");
+        verifyNoInteractions(professionPictogramService);
+    }
+
+    @Test
+    void streamStopsQuietlyWhenThePageIsClosedAndSkipsTheProfession() throws Exception {
+        // Así llega al controlador que la página se ha cerrado: el envío al navegador falla
+        when(easyReadService.adaptStreaming(anyString(), any(), any(), any()))
+                .thenThrow(new ClientDisconnectedException(new java.io.IOException("Connection reset")));
+
+        String body = postStream("Texto difícil");
+
+        assertThat(body).doesNotContain("event:error").doesNotContain("event:report");
         verifyNoInteractions(professionPictogramService);
     }
 

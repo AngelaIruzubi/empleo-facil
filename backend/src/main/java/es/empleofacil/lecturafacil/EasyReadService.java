@@ -67,6 +67,12 @@ public class EasyReadService {
     // Cada trozo nuevo del texto adaptado va a onText, para enseñarlo en pantalla sin esperar al final.
     // onTextEnd avisa una vez cuando el texto está completo. Después la IA aún escribe la lista de cambios.
     public EasyReadResult adaptStreaming(String text, Consumer<String> onText, Runnable onTextEnd) {
+        return adaptStreaming(text, onText, onTextEnd, () -> { });
+    }
+
+    // onChunk se llama con cada trozo que manda la IA, también los de la lista de cambios, que no se ven.
+    // El controlador lo usa para comprobar que la página sigue abierta.
+    public EasyReadResult adaptStreaming(String text, Consumer<String> onText, Runnable onTextEnd, Runnable onChunk) {
         StreamingJsonField adaptedText = new StreamingJsonField("adaptedText");
         StringBuilder json = new StringBuilder();
         AtomicReference<ChatResponse> lastResponse = new AtomicReference<>();
@@ -82,6 +88,7 @@ public class EasyReadService {
                     .stream()
                     .chatResponse()
                     .doOnNext(response -> {
+                        onChunk.run();
                         lastResponse.set(response);
                         String chunk = chunkText(response);
                         json.append(chunk);
@@ -99,6 +106,9 @@ public class EasyReadService {
             // Ollama manda los tiempos en el último trozo
             log.info("Tiempos de la IA en la adaptación: {}", AiTimings.describe(lastResponse.get()));
             result = converter.convert(json.toString());
+        } catch (ClientDisconnectedException e) {
+            // Al salir de blockLast se corta la conexión con Ollama y la IA deja de escribir
+            throw e;
         } catch (RuntimeException e) {
             log.error("Error al llamar a la IA para adaptar un texto a trozos", e);
             throw new EasyReadException("La IA no ha podido adaptar el texto", e);

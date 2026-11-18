@@ -107,6 +107,23 @@ class EasyReadServiceTest {
     }
 
     @Test
+    void adaptStreamingStopsWhenThePageIsClosed() {
+        when(streamedChunks()).thenReturn(Flux.just(
+                chunk("{\"adaptedText\": \"Hola.\", "),
+                chunk("\"changes\": [")));
+        List<String> chunks = new ArrayList<>();
+        ClientDisconnectedException closed = new ClientDisconnectedException(new java.io.IOException("Connection reset"));
+
+        // El segundo trozo es de la lista de cambios, que no se ve: ahí el controlador descubre que la página se ha cerrado
+        assertThatThrownBy(() -> service.adaptStreaming("Texto difícil", piece -> { }, () -> { }, () -> {
+            chunks.add("trozo");
+            if (chunks.size() == 2) {
+                throw closed;
+            }
+        })).isSameAs(closed);
+    }
+
+    @Test
     void adaptStreamingWithoutWordsBecomesEasyReadException() {
         when(streamedChunks()).thenReturn(Flux.just(chunk("{\"adaptedText\": \"...\", \"changes\": []}")));
 

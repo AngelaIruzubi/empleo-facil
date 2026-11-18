@@ -8,7 +8,7 @@ import Result, { type ResultStage } from './Result'
 // y textComplete dice si ya ha terminado el texto (falta la lista de cambios y el pictograma).
 type State =
   | { status: 'idle' }
-  | { status: 'loading'; startedAt: number; textSoFar: string; textComplete: boolean }
+  | { status: 'loading'; startedAt: number; originalText: string; textSoFar: string; textComplete: boolean }
   | { status: 'done'; report: EasyReadReport; originalText: string }
   | { status: 'error'; title: string; detail: string }
 
@@ -21,11 +21,11 @@ function App() {
     const startedAt = Date.now()
     // La oferta que se adapta. Si la persona cambia el cuadro de texto después, el informe sigue con esta.
     const originalText = text
-    setState({ status: 'loading', startedAt, textSoFar: '', textComplete: false })
+    setState({ status: 'loading', startedAt, originalText, textSoFar: '', textComplete: false })
     try {
       const report = await adaptTextStreaming(
         originalText,
-        (textSoFar) => setState({ status: 'loading', startedAt, textSoFar, textComplete: false }),
+        (textSoFar) => setState({ status: 'loading', startedAt, originalText, textSoFar, textComplete: false }),
         () => setState((current) => (current.status === 'loading' ? { ...current, textComplete: true } : current)),
       )
       setState({ status: 'done', report, originalText })
@@ -82,9 +82,16 @@ function App() {
         </div>
 
         {/* Un solo Result en un solo sitio: así no se borra (ni se corta la lectura en voz alta) al llegar el informe */}
-        {result && <Result {...result} />}
+        {result && <Result adaptedText={result.adaptedText} pictogram={result.pictogram} stage={result.stage} />}
 
-        {state.status === 'done' && <Report report={state.report} originalText={state.originalText} />}
+        {/* Se puede revisar en cuanto el texto está completo. En el mismo sitio, para no perder las frases marcadas al llegar el informe. */}
+        {result && result.stage !== 'writing' && (
+          <Report
+            adaptedText={result.adaptedText}
+            originalText={result.originalText}
+            report={state.status === 'done' ? state.report : null}
+          />
+        )}
 
         {state.status === 'error' && (
           <div className="error" role="alert">
@@ -105,11 +112,11 @@ function App() {
 function resultToShow(state: State) {
   if (state.status === 'loading' && state.textSoFar !== '') {
     const stage: ResultStage = state.textComplete ? 'finishing' : 'writing'
-    return { adaptedText: state.textSoFar, pictogram: null, stage }
+    return { adaptedText: state.textSoFar, originalText: state.originalText, pictogram: null, stage }
   }
   if (state.status === 'done') {
     const stage: ResultStage = 'done'
-    return { adaptedText: state.report.adaptedText, pictogram: state.report.pictogram, stage }
+    return { adaptedText: state.report.adaptedText, originalText: state.originalText, pictogram: state.report.pictogram, stage }
   }
   return null
 }
@@ -128,7 +135,7 @@ function Waiting({ startedAt }: { startedAt: number }) {
       <h2>Estamos adaptando tu texto</h2>
       <p>El texto empieza a salir en unos segundos.</p>
       <p>Si es la primera vez, puede tardar 2 minutos.</p>
-      <p>No cierres esta página.</p>
+      <p>No cierres ni recargues esta página.</p>
       <p>{elapsedMessage(minutes)}</p>
     </div>
   )

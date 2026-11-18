@@ -1,7 +1,6 @@
 package es.empleofacil.lecturafacil;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -29,6 +28,8 @@ public class EasyReadController {
 
     // La IA tarda 1 o 2 minutos en este ordenador. Damos margen hasta 10.
     private static final long STREAM_TIMEOUT_MS = 10 * 60 * 1000;
+    // Cada cuánto comprobamos que la página sigue abierta mientras la IA escribe lo que no se ve
+    private static final long HEARTBEAT_MS = 2000;
 
     private final EasyReadService easyReadService;
     private final ProfessionPictogramService professionPictogramService;
@@ -55,6 +56,8 @@ public class EasyReadController {
     //   event: text-end  -> {"complete": true}  el texto ya está completo; falta la lista de cambios (uno)
     //   event: report  -> el EasyReadReport completo, igual que en /easy-read (uno, al final)
     //   event: error   -> un ProblemDetail si la IA falla (uno, al final)
+    // Además, cada 2 segundos, una línea de comentario (": sigo"). La web la ignora.
+    // Sirve para saber si la página sigue abierta: si no, el envío falla y paramos la IA.
     // Si el texto no es válido, responde 400 normal, sin stream.
     @PostMapping(path = "/easy-read/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter adaptStreaming(@Valid @RequestBody EasyReadRequest request) {
@@ -62,12 +65,19 @@ public class EasyReadController {
         // El trabajo va en otro hilo para que Spring pueda abrir el stream ya
         streams.execute(() -> {
             String text = request.text();
+            Heartbeat heartbeat = new Heartbeat(emitter);
             try {
                 EasyReadResult result = easyReadService.adaptStreaming(text,
                         newText -> send(emitter, "text", Map.of("text", newText)),
-                        () -> send(emitter, "text-end", Map.of("complete", true)));
+                        () -> send(emitter, "text-end", Map.of("complete", true)),
+                        heartbeat::beatIfDue);
+                // Antes de la segunda llamada a la IA: si la página ya está cerrada, no la hacemos
+                heartbeat.beat();
                 ProfessionPictogram profession = professionPictogramService.find(text);
                 send(emitter, "report", EasyReadReport.from(text, result, profession));
+                emitter.complete();
+            } catch (ClientDisconnectedException e) {
+                log.info("La página se ha cerrado antes de terminar. Paramos la IA.");
                 emitter.complete();
             } catch (EasyReadException e) {
                 sendErrorAndComplete(emitter);
@@ -80,11 +90,36 @@ public class EasyReadController {
     }
 
     private static void send(SseEmitter emitter, String event, Object data) {
+        send(emitter, SseEmitter.event().name(event).data(data, MediaType.APPLICATION_JSON));
+    }
+
+    private static void send(SseEmitter emitter, SseEmitter.SseEventBuilder event) {
         try {
-            emitter.send(SseEmitter.event().name(event).data(data, MediaType.APPLICATION_JSON));
-        } catch (IOException e) {
+            emitter.send(event);
+        } catch (IOException | IllegalStateException e) {
             // La persona ha cerrado la página. Al lanzar la excepción, la IA deja de escribir.
-            throw new UncheckedIOException(e);
+            throw new ClientDisconnectedException(e);
+        }
+    }
+
+    // Manda un comentario SSE para comprobar que la página sigue abierta
+    private static final class Heartbeat {
+        private final SseEmitter emitter;
+        private long last = System.currentTimeMillis();
+
+        Heartbeat(SseEmitter emitter) {
+            this.emitter = emitter;
+        }
+
+        void beatIfDue() {
+            if (System.currentTimeMillis() - last >= HEARTBEAT_MS) {
+                beat();
+            }
+        }
+
+        void beat() {
+            send(emitter, SseEmitter.event().comment("sigo"));
+            last = System.currentTimeMillis();
         }
     }
 
