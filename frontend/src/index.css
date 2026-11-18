@@ -383,19 +383,6 @@ button:disabled {
   font-weight: 700;
 }
 
-.report-more {
-  border: 1px solid var(--ink-soft);
-  border-radius: var(--radius);
-}
-
-.report-more summary {
-  padding: 0.5rem 1rem;
-}
-
-.report-more[open] > summary {
-  border-bottom: 1px solid var(--ink-soft);
-}
-
 @media (max-width: 48rem) {
   .review {
     grid-template-columns: 1fr;
@@ -417,74 +404,6 @@ button:disabled {
 .report h3 {
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
-}
-
-/* En el móvil, la tabla se desplaza de lado en vez de salirse de la pantalla */
-.report-table {
-  margin-top: 0.75rem;
-  overflow-x: auto;
-}
-
-.report table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.report th,
-.report td {
-  padding: 0.5rem;
-  border-bottom: 1px solid var(--ink-soft);
-  text-align: left;
-  vertical-align: top;
-}
-
-.report thead th {
-  border-bottom: var(--line);
-}
-
-.report-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 0.75rem 0 0;
-  padding-left: 1.5rem;
-}
-
-.report-quote {
-  color: var(--ink-soft);
-}
-
-/* Error o aviso: lo dice la palabra, el color solo ayuda */
-.report-error,
-.report-warning {
-  display: inline-block;
-  padding: 0 0.5rem;
-  border-radius: var(--radius);
-  font-weight: 700;
-}
-
-.report-error {
-  background: var(--error);
-  color: var(--paper);
-}
-
-.report-warning {
-  border: 2px solid var(--ink);
-}
-
-.report dl {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.25rem 1rem;
-  margin: 0;
-}
-
-.report dt {
-  font-weight: 700;
-}
-
-.report dd {
-  margin: 0;
 }
 
 footer {

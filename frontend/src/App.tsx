@@ -86,11 +86,7 @@ function App() {
 
         {/* Se puede revisar en cuanto el texto está completo. En el mismo sitio, para no perder las frases marcadas al llegar el informe. */}
         {result && result.stage !== 'writing' && (
-          <Report
-            adaptedText={result.adaptedText}
-            originalText={result.originalText}
-            report={state.status === 'done' ? state.report : null}
-          />
+          <Report adaptedText={result.adaptedText} originalText={result.originalText} />
         )}
 
         {state.status === 'error' && (
