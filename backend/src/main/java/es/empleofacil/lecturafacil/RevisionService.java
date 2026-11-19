@@ -1,10 +1,6 @@
 package es.empleofacil.lecturafacil;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +16,10 @@ import es.empleofacil.llm.AiTimings;
 import es.empleofacil.lecturafacil.analysis.TextSplitter;
 
 // Corrige las frases que ha marcado el preparador laboral, siguiendo sus comentarios.
+// Una llamada a la IA por cada frase: con todas a la vez, numeradas, el modelo pequeño se liaba
+// con los números y la corrección fallaba.
+// No es mucho más lento: todas las llamadas empiezan igual (instrucciones, oferta y texto adaptado)
+// y Ollama no vuelve a leer el principio si es igual que en la llamada anterior.
 // No usa los ejemplos largos de la adaptación: así la IA lee menos y tarda menos.
 @Service
 public class RevisionService {
@@ -35,34 +35,35 @@ public class RevisionService {
         this.systemPrompt = systemPrompt;
     }
 
-    // Devuelve las frases corregidas en el mismo orden que request.corrections()
+    // Devuelve las frases corregidas en el mismo orden que request.corrections().
+    // Una corrección puede tener varias líneas si la IA ha dividido la frase.
     public List<String> revise(ReviseRequest request) {
+        return request.corrections().stream()
+                .map(correction -> reviseOne(request, correction))
+                .toList();
+    }
+
+    private String reviseOne(ReviseRequest request, ReviseRequest.Correction correction) {
         RevisionAnswer answer;
         try {
             ResponseEntity<ChatResponse, RevisionAnswer> response = chatClient.prompt()
                     .system(systemPrompt)
-                    .user(userMessage(request))
+                    .user(userMessage(request, correction))
                     .advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT)
                     .call()
                     .responseEntity(RevisionAnswer.class);
             log.info("Tiempos de la IA en la corrección: {}", AiTimings.describe(response.getResponse()));
             answer = response.getEntity();
         } catch (RuntimeException e) {
-            log.error("Error al llamar a la IA para corregir frases", e);
-            throw new RevisionException("La IA no ha podido corregir las frases", e);
+            log.error("Error al llamar a la IA para corregir una frase", e);
+            throw new RevisionException("La IA no ha podido corregir la frase", e);
         }
-        return byNumber(answer, request.corrections().size());
+        return checked(answer);
     }
 
-    // Las frases van numeradas para que la IA conteste en el mismo orden
-    static String userMessage(ReviseRequest request) {
-        List<ReviseRequest.Correction> corrections = request.corrections();
-        String numbered = String.join("\n\n", IntStream.range(0, corrections.size())
-                .mapToObj(index -> """
-                        %d. Frase: %s
-                        Qué está mal: %s""".formatted(index + 1,
-                        corrections.get(index).sentence().strip(), corrections.get(index).comment().strip()))
-                .toList());
+    // Lo que cambia de una llamada a otra (la frase y el comentario) va al final:
+    // así el principio es igual y Ollama aprovecha lo que ya ha leído.
+    static String userMessage(ReviseRequest request, ReviseRequest.Correction correction) {
         return """
                 OFERTA ORIGINAL:
                 %s
@@ -70,35 +71,21 @@ public class RevisionService {
                 TEXTO ADAPTADO COMPLETO:
                 %s
 
-                FRASES QUE HAY QUE CORREGIR (%d):
+                FRASE QUE HAY QUE CORREGIR:
+                %s
+
+                QUÉ ESTÁ MAL, SEGÚN EL PREPARADOR LABORAL:
                 %s""".formatted(request.originalText().strip(), request.adaptedText().strip(),
-                corrections.size(), numbered);
+                correction.sentence().strip(), correction.comment().strip());
     }
 
-    // Junta las frases de cada número en orden: la frase 1, la 2... Si la IA ha dividido una corrección
-    // en varias frases, van juntas, cada una en su línea.
-    // Si falta algún número o hay un número que no existe, no sabemos qué va en cada sitio:
-    // mejor avisar que estropear el texto.
-    static List<String> byNumber(RevisionAnswer answer, int expected) {
-        Map<Integer, List<String>> sentences = new TreeMap<>();
-        boolean valid = answer != null && answer.sentences() != null;
-        if (valid) {
-            for (RevisionAnswer.Item item : answer.sentences()) {
-                if (item == null || item.number() < 1 || item.number() > expected
-                        || item.text() == null || TextSplitter.words(item.text()).isEmpty()) {
-                    valid = false;
-                    break;
-                }
-                // En lectura fácil cada frase va en su línea. A veces la IA junta varias frases en una:
-                // TextSplitter las separa (respeta "7.5", "Sra." y las fechas).
-                sentences.computeIfAbsent(item.number(), number -> new ArrayList<>())
-                        .addAll(TextSplitter.sentences(item.text()));
-            }
+    // En lectura fácil cada frase va en su línea. A veces la IA junta varias frases en una:
+    // TextSplitter las separa (respeta "7.5", "Sra." y las fechas).
+    static String checked(RevisionAnswer answer) {
+        if (answer == null || answer.correctedText() == null || TextSplitter.words(answer.correctedText()).isEmpty()) {
+            log.error("La IA ha devuelto una corrección vacía: {}", answer);
+            throw new RevisionException("La IA ha devuelto una corrección vacía");
         }
-        if (!valid || sentences.size() != expected) {
-            log.error("La IA ha devuelto una corrección que no sirve. Esperábamos {} frases: {}", expected, answer);
-            throw new RevisionException("La IA ha devuelto una corrección que no sirve");
-        }
-        return sentences.values().stream().map(lines -> String.join("\n", lines)).toList();
+        return String.join("\n", TextSplitter.sentences(answer.correctedText()));
     }
 }

@@ -18,7 +18,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 import es.empleofacil.lecturafacil.ReviseRequest.Correction;
-import es.empleofacil.lecturafacil.RevisionAnswer.Item;
 
 // Test unitario: sin Spring, creamos el servicio con new
 class RevisionServiceTest {
@@ -27,18 +26,17 @@ class RevisionServiceTest {
     private final ChatClient chatClient = mock(ChatClient.class, Answers.RETURNS_DEEP_STUBS);
     private final RevisionService service = new RevisionService(chatClient, systemPrompt);
 
+    private final Correction hours = new Correction("Trabajas de lunes a viernes.", "Falta que son 20 horas.");
+    private final Correction extraPay = new Correction("Las pagas son dinero extra.", "La paga extra ya está dentro del sueldo.");
     private final ReviseRequest request = new ReviseRequest(
             "Jornada parcial de 20 horas. El sueldo incluye la paga extra.",
             "Trabajas de lunes a viernes.\nLas pagas son dinero extra.",
-            List.of(new Correction("Trabajas de lunes a viernes.", "Falta que son 20 horas."),
-                    new Correction("Las pagas son dinero extra.", "La paga extra ya está dentro del sueldo.")));
+            List.of(hours, extraPay));
 
     @Test
-    void reviseSendsTheOfferTheTextAndTheNumberedCorrectionsAndReturnsTheSentencesInOrder() {
-        // La IA contesta en otro orden: el número dice a qué frase marcada corresponde cada una
-        when(answer()).thenReturn(answerWith(
-                new Item(2, " El sueldo ya incluye la paga extra. "),
-                new Item(1, "Trabajas 20 horas cada semana.")));
+    void reviseAsksTheAiOnceForEachMarkedSentenceAndKeepsTheOrder() {
+        when(answer(hours)).thenReturn(answerWith("Trabajas 20 horas cada semana."));
+        when(answer(extraPay)).thenReturn(answerWith(" El sueldo ya incluye la paga extra. "));
 
         assertThat(service.revise(request)).containsExactly(
                 "Trabajas 20 horas cada semana.",
@@ -46,59 +44,34 @@ class RevisionServiceTest {
     }
 
     @Test
-    void aCorrectionSplitIntoSeveralSentencesStaysTogetherInItsPlace() {
-        // Lo que pasó el 18/11/2026: 1 frase marcada y la IA la corrigió con 2 frases
-        when(answer()).thenReturn(answerWith(
-                new Item(1, "Trabajas 20 horas cada semana."),
-                new Item(1, "Trabajas de lunes a viernes."),
-                new Item(2, "El sueldo ya incluye la paga extra.")));
+    void severalSentencesGoEachOnItsOwnLineInThePlaceOfTheMarkedSentence() {
+        // Lo que pasó el 18 y el 19/11/2026: 1 frase marcada y la IA contestó con varias frases
+        when(answer(hours)).thenReturn(answerWith(
+                "Trabajas 20 horas cada semana. Trabajas de lunes a viernes.\nEs media jornada."));
+        when(answer(extraPay)).thenReturn(answerWith("El sueldo ya incluye la paga extra."));
 
         assertThat(service.revise(request)).containsExactly(
-                "Trabajas 20 horas cada semana.\nTrabajas de lunes a viernes.",
+                "Trabajas 20 horas cada semana.\nTrabajas de lunes a viernes.\nEs media jornada.",
                 "El sueldo ya incluye la paga extra.");
     }
 
     @Test
-    void severalSentencesInOneLineGoEachOnItsOwnLine() {
-        // Lo que hizo la IA con la frase del logopeda: 3 frases seguidas en la misma línea
-        when(answer()).thenReturn(answerWith(
-                new Item(1, "Un logopeda ayuda a las personas a hablar bien. Necesitas el Grado en Logopedia."),
-                new Item(2, "El sueldo ya incluye la paga extra.")));
+    void userMessageHasTheOfferTheWholeTextAndAtTheEndTheSentenceAndTheComment() {
+        String message = RevisionService.userMessage(request, extraPay);
 
-        assertThat(service.revise(request)).containsExactly(
-                "Un logopeda ayuda a las personas a hablar bien.\nNecesitas el Grado en Logopedia.",
-                "El sueldo ya incluye la paga extra.");
-    }
-
-    @Test
-    void userMessageHasTheOfferTheWholeTextAndEachSentenceWithItsComment() {
-        assertThat(RevisionService.userMessage(request)).containsSubsequence(
+        assertThat(message).containsSubsequence(
                 "OFERTA ORIGINAL:", "Jornada parcial de 20 horas.",
-                "TEXTO ADAPTADO COMPLETO:", "Las pagas son dinero extra.",
-                "FRASES QUE HAY QUE CORREGIR (2):",
-                "1. Frase: Trabajas de lunes a viernes.", "Qué está mal: Falta que son 20 horas.",
-                "2. Frase: Las pagas son dinero extra.", "Qué está mal: La paga extra ya está dentro del sueldo.");
+                "TEXTO ADAPTADO COMPLETO:", "Trabajas de lunes a viernes.\nLas pagas son dinero extra.",
+                "FRASE QUE HAY QUE CORREGIR:", "Las pagas son dinero extra.",
+                "QUÉ ESTÁ MAL, SEGÚN EL PREPARADOR LABORAL:", "La paga extra ya está dentro del sueldo.");
+        // El principio es igual para todas las frases: Ollama no tiene que volver a leerlo
+        String start = message.substring(0, message.indexOf("FRASE QUE HAY QUE CORREGIR:"));
+        assertThat(RevisionService.userMessage(request, hours)).startsWith(start);
     }
 
     @Test
-    void aMissingSentenceBecomesRevisionException() {
-        // Si falta la frase 2, no sabemos qué poner en su sitio
-        when(answer()).thenReturn(answerWith(new Item(1, "Trabajas 20 horas cada semana.")));
-
-        assertThatThrownBy(() -> service.revise(request)).isInstanceOf(RevisionException.class);
-    }
-
-    @Test
-    void aNumberThatDoesNotExistBecomesRevisionException() {
-        when(answer()).thenReturn(answerWith(
-                new Item(1, "Bien."), new Item(2, "Bien."), new Item(3, "Esta frase no se ha pedido.")));
-
-        assertThatThrownBy(() -> service.revise(request)).isInstanceOf(RevisionException.class);
-    }
-
-    @Test
-    void sentenceWithoutWordsBecomesRevisionException() {
-        when(answer()).thenReturn(answerWith(new Item(1, "Bien."), new Item(2, "...")));
+    void answerWithoutWordsBecomesRevisionException() {
+        when(answer(hours)).thenReturn(answerWith("..."));
 
         assertThatThrownBy(() -> service.revise(request)).isInstanceOf(RevisionException.class);
     }
@@ -119,16 +92,16 @@ class RevisionServiceTest {
         assertThat(systemPrompt.exists()).isTrue();
     }
 
-    private ResponseEntity<ChatResponse, RevisionAnswer> answer() {
+    private ResponseEntity<ChatResponse, RevisionAnswer> answer(Correction correction) {
         return chatClient.prompt()
                 .system(systemPrompt)
-                .user(RevisionService.userMessage(request))
+                .user(RevisionService.userMessage(request, correction))
                 .advisors(AdvisorParams.ENABLE_NATIVE_STRUCTURED_OUTPUT)
                 .call()
                 .responseEntity(RevisionAnswer.class);
     }
 
-    private static ResponseEntity<ChatResponse, RevisionAnswer> answerWith(Item... items) {
-        return new ResponseEntity<>(null, new RevisionAnswer(List.of(items)));
+    private static ResponseEntity<ChatResponse, RevisionAnswer> answerWith(String correctedText) {
+        return new ResponseEntity<>(null, new RevisionAnswer(correctedText));
     }
 }
