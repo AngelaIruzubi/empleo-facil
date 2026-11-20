@@ -1,0 +1,95 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "19-oferta-comedor",
+  "original": "Empresa de restauración colectiva busca monitores/as de comedor escolar para el curso 2026-2027. Horario de 13:00 a 15:00 de lunes a viernes, en días lectivos. 400 € brutos al mes. Imprescindible certificado de manipulador de alimentos y certificado de delitos sexuales. Valorable título de monitor/a de tiempo libre.",
+  "segundos": 132.2,
+  "pictograma_s": 6.9,
+  "primer_texto_s": 7.4,
+  "texto_completo_s": 54.6,
+  "informe": {
+    "adaptedText": "Trabajo de monitor en un comedor escolar\n\nUna empresa busca personas para ser monitores en un colegio.\nEl colegio está en Getafe.\n\n¿Qué haces en este trabajo?\n- Estás en el colegio de lunes a viernes.\n- El horario es de 13 de la tarde a 3 de la tarde.\n- Ayudas a los niños y niñas en el comedor.\n\n¿Cuánto ganas?\nTe pagan 400 euros cada mes.\nEsta cantidad es la que te dan antes de quitarle impuestos.\n\n¿Qué necesitas para este trabajo?\nNecesitas un certificado que demuestra que sabes cómo tratar la comida de forma segura.\nEste certificado se llama certificado de manipulador de alimentos.\nTambién necesitas un certificado que demuestra que sabes cómo proteger a los niños y niñas.\nEste certificado se llama certificado de delitos sexuales.\n\n¿Es bueno tener otro título?\nEs bueno tener un título de monitor de tiempo libre.\nEsto significa que tienes experiencia ayudando a niños y niñas a jugar y aprender.\n\n¿Cuándo es el trabajo?\nEl trabajo es para el curso 2026-2027.",
+    "changes": [
+      {
+        "original": "Empresa de restauración colectiva busca monitores/as de comedor escolar",
+        "adapted": "Trabajo de monitor en un comedor escolar",
+        "reason": "Simplificación de la frase inicial."
+      },
+      {
+        "original": "Horario de 13:00 a 15:00 de lunes a viernes, en días lectivos.",
+        "adapted": "Estás en el colegio de lunes a viernes.",
+        "reason": "Frase más directa y fácil de entender."
+      },
+      {
+        "original": "400 € brutos al mes.",
+        "adapted": "Te pagan 400 euros cada mes.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Imprescindible certificado de manipulador de alimentos",
+        "adapted": "Necesitas un certificado que demuestra que sabes cómo tratar la comida de forma segura.",
+        "reason": "Explicación más clara de la necesidad del certificado."
+      },
+      {
+        "original": "certificado de manipulador de alimentos",
+        "adapted": "Este certificado se llama certificado de manipulador de alimentos.",
+        "reason": "Explicación de la sigla."
+      },
+      {
+        "original": "certificado de delitos sexuales",
+        "adapted": "También necesitas un certificado que demuestra que sabes cómo proteger a los niños y niñas.",
+        "reason": "Explicación de la sigla."
+      },
+      {
+        "original": "Valorable título de monitor/a de tiempo libre.",
+        "adapted": "Es bueno tener un título de monitor de tiempo libre.",
+        "reason": "Simplificación de la frase."
+      },
+      {
+        "original": "Esto significa que tienes experiencia ayudando a niños y niñas en el comedor.",
+        "adapted": "Esto significa que tienes experiencia ayudando a niños y niñas a jugar y aprender.",
+        "reason": "Aclaración del significado del título."
+      },
+      {
+        "original": "Horario de 13:00 a 15:00 de lunes a viernes, en días lectivos.",
+        "adapted": "El trabajo es para el curso 2026-2027.",
+        "reason": "Clarificación del periodo de trabajo."
+      }
+    ],
+    "professions": [
+      "monitor",
+      "monitora"
+    ],
+    "pictogram": {
+      "id": 24789,
+      "keyword": "monitor",
+      "imageUrl": "https://static.arasaac.org/pictograms/24789/24789_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 5,
+      "words": 47,
+      "syllables": 107,
+      "fernandezHuerta": {
+        "value": 60.7,
+        "level": "normal"
+      },
+      "inflesz": {
+        "value": 55.6,
+        "level": "normal"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 20,
+      "words": 167,
+      "syllables": 331,
+      "fernandezHuerta": {
+        "value": 79.4,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 75.0,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": []
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "21-oferta-panaderia",
+  "original": "Panadería artesana necesita ayudante de obrador. Horario de madrugada: de 4:00 a 10:00, de lunes a sábado, incluidos festivos. Contrato indefinido. Salario según convenio de panaderías. Se valorará experiencia, aunque ofrecemos formación. Imprescindible carné de manipulador de alimentos.",
+  "segundos": 95.9,
+  "pictograma_s": 6.4,
+  "primer_texto_s": 7.2,
+  "texto_completo_s": 45.8,
+  "informe": {
+    "adaptedText": "Trabajo en una panadería artesana\n\nUna panadería busca una persona para trabajar en el obrador.\nEl obrador es el sitio donde se hacen los panes y los bolleros.\n\n¿Qué haces en este trabajo?\n- Ayudas a preparar los panes y los bolleros.\n- Limpias el obrador.\n\n¿Cuándo trabajas?\nTrabajas en horario de madrugada.\nEl horario es de 4 de la mañana a 10 de la mañana.\nTrabajas de lunes a sábado.\nTambién trabajas los días que son festivos.\n\n¿Qué es bueno tener?\nEs bueno tener experiencia en hacer panes y bolleros.\nPero la empresa te formará para aprender a hacerlos.\n\n¿Qué necesitas para este trabajo?\nNecesitas el carné de manipulador de alimentos.\nEste carné demuestra que sabes tratar la comida de forma limpia y segura.\n\n¿Qué tipo de contrato tienes?\nTienes un contrato indefinido.",
+    "changes": [
+      {
+        "original": "Panadería artesana necesita ayudante de obrador.",
+        "adapted": "Trabajo en una panadería artesana",
+        "reason": "Frase más directa y fácil de entender."
+      },
+      {
+        "original": "Horario de madrugada: de 4:00 a 10:00, de lunes a sábado, incluidos festivos.",
+        "adapted": "El obrador es el sitio donde se hacen los panes y los bolleros.",
+        "reason": "Explicación de la palabra 'obrador' y descripción del horario."
+      },
+      {
+        "original": "Horario de madrugada: de 4:00 a 10:00, de lunes a sábado, incluidos festivos.",
+        "adapted": "Trabajas de lunes a sábado. También trabajas los días que son festivos.",
+        "reason": "Simplificación de la frase."
+      },
+      {
+        "original": "Se valorará experiencia, aunque ofrecemos formación.",
+        "adapted": "Es bueno tener experiencia en hacer panes y bolleros.",
+        "reason": "Palabra difícil explicada y simplificada."
+      },
+      {
+        "original": "Imprescindible carné de manipulador de alimentos.",
+        "adapted": "Necesitas el carné de manipulador de alimentos.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Contrato indefinido.",
+        "adapted": "Tienes un contrato indefinido.",
+        "reason": "Explicación de la palabra 'contrato' y tipo de contrato."
+      }
+    ],
+    "professions": [
+      "panadero",
+      "pinche de panadería",
+      "pinche"
+    ],
+    "pictogram": {
+      "id": 3358,
+      "keyword": "panadero",
+      "imageUrl": "https://static.arasaac.org/pictograms/3358/3358_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 6,
+      "words": 38,
+      "syllables": 104,
+      "fernandezHuerta": {
+        "value": 36.2,
+        "level": "difícil"
+      },
+      "inflesz": {
+        "value": 30.0,
+        "level": "muy difícil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 19,
+      "words": 132,
+      "syllables": 267,
+      "fernandezHuerta": {
+        "value": 78.4,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 73.9,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": []
+  }
+}

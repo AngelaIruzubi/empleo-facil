@@ -1,0 +1,109 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "27-convocatoria-ordenanza",
+  "original": "ANUNCIO. Bases de la convocatoria para la constitución de una bolsa de empleo de ordenanzas del Ayuntamiento.\nRequisitos de los aspirantes: tener nacionalidad española o de un Estado miembro de la Unión Europea; haber cumplido 16 años y no exceder la edad máxima de jubilación forzosa; estar en posesión del Certificado de Escolaridad o equivalente; no haber sido separado/a mediante expediente disciplinario del servicio de cualquiera de las Administraciones Públicas.\nPlazo de presentación de solicitudes: 20 días hábiles a contar desde el día siguiente al de la publicación del presente anuncio en el BOR.\nSistema de selección: concurso-oposición.",
+  "segundos": 129.1,
+  "pictograma_s": null,
+  "primer_texto_s": 8.5,
+  "texto_completo_s": 42.2,
+  "informe": {
+    "adaptedText": "Información sobre un nuevo trabajo en el Ayuntamiento\n\nEl Ayuntamiento quiere formar una bolsa de empleo para trabajos de ordenanzas.\n\n¿Qué tienes que tener para trabajar?\n- Ser español o de otro país que forma parte de la Unión Europea.\n- Tener al menos 16 años.\n- No tener más años de los que se tiene cuando se deja de trabajar.\n- Tener un certificado que demuestra que has terminado la escuela.\n- No haber sido despedido/a por hacer algo mal en otro trabajo público.\n\n¿Cuándo tienes que pedir el trabajo?\nTienes 20 días para pedir el trabajo.\nEstos 20 días son días laborales, es decir, días de semana.\nEl plazo empieza el día después del día en que se anuncia este trabajo en el Boletín Oficial.\n\n¿Cómo se elige a los que van a trabajar?\nSe hace una prueba, llamada concurso-oposición.",
+    "changes": [
+      {
+        "original": "ANUNCIO. Bases de la convocatoria para la constitución de una bolsa de empleo de ordenanzas del Ayuntamiento.",
+        "adapted": "El Ayuntamiento quiere formar una bolsa de empleo para trabajos de ordenanzas.",
+        "reason": "Simplificación de la frase inicial."
+      },
+      {
+        "original": "tener nacionalidad española o de un Estado miembro de la Unión Europea;",
+        "adapted": "Ser español o de otro país que forma parte de la Unión Europea.",
+        "reason": "Lenguaje más sencillo."
+      },
+      {
+        "original": "no exceder la edad máxima de jubilación forzosa;",
+        "adapted": "No tener más años de los que se tiene cuando se deja de trabajar.",
+        "reason": "Explicación más clara."
+      },
+      {
+        "original": "estar en posesión del Certificado de Escolaridad o equivalente;",
+        "adapted": "Tener un certificado que demuestra que has terminado la escuela.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "no haber sido separado/a mediante expediente disciplinario del servicio de cualquiera de las Administraciones Públicas.",
+        "adapted": "No haber sido despedido/a por hacer algo mal en otro trabajo público.",
+        "reason": "Lenguaje más claro y directo."
+      },
+      {
+        "original": "Plazo de presentación de solicitudes: 20 días hábiles a contar desde el día siguiente al de la publicación del presente anuncio en el BOR.",
+        "adapted": "Tienes 20 días para pedir el trabajo.",
+        "reason": "Simplificación de la información."
+      },
+      {
+        "original": "El plazo empieza el día después del día en que se anuncia este trabajo en el Boletín Oficial.",
+        "adapted": "Estos 20 días son días laborales, es decir, días de semana.",
+        "reason": "Aclaración de lo que son 'días hábiles'."
+      },
+      {
+        "original": "Sistema de selección: concurso-oposición.",
+        "adapted": "Se hace una prueba, llamada concurso-oposición.",
+        "reason": "Explicación de lo que es un concurso-oposición."
+      }
+    ],
+    "professions": [
+      "ordenanzas",
+      "personal de ordenanzas",
+      "funcionarios de ordenanzas"
+    ],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 5,
+      "words": 98,
+      "syllables": 229,
+      "fernandezHuerta": {
+        "value": 46.6,
+        "level": "difícil"
+      },
+      "inflesz": {
+        "value": 41.7,
+        "level": "algo difícil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 14,
+      "words": 137,
+      "syllables": 266,
+      "fernandezHuerta": {
+        "value": 80.4,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 76.1,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "VAGUE_WORD",
+        "severity": "WARNING",
+        "fragment": "algo",
+        "sentence": "- No haber sido despedido/a por hacer algo mal en otro trabajo público.",
+        "advice": "Evita \"cosa\" y \"algo\": no tienen un significado claro."
+      },
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "despedido/a",
+        "sentence": "- No haber sido despedido/a por hacer algo mal en otro trabajo público.",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      },
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "18 palabras",
+        "sentence": "El plazo empieza el día después del día en que se anuncia este trabajo en el Boletín Oficial.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      }
+    ]
+  }
+}

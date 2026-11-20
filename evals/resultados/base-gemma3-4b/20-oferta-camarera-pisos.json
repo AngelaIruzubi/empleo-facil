@@ -1,0 +1,90 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "20-oferta-camarera-pisos",
+  "original": "Hotel de 4 estrellas en la costa contrata camareras/os de pisos para la temporada de verano (junio a septiembre). 6 días a la semana, de 8:00 a 15:00. Sueldo: 1.350 € netos al mes. Alojamiento y manutención incluidos. Se valora experiencia previa en hoteles.",
+  "segundos": 85.5,
+  "pictograma_s": 6.5,
+  "primer_texto_s": 7.0,
+  "texto_completo_s": 41.9,
+  "informe": {
+    "adaptedText": "Trabaja como camarero/a en un hotel de playa\n\nUn hotel de cuatro estrellas, que está en la costa, busca gente para limpiar las habitaciones.\nEste trabajo se hace en verano.\n\n¿Cuándo trabajas?\nTrabajas de junio a septiembre.\nEso significa de junio hasta septiembre.\nTrabajas 6 días a la semana.\nUn día no trabajas, para descansar.\nEl horario es de 8 de la mañana a 3 de la tarde.\n\n¿Cuánto ganas?\nTe pagarán 1.350 euros al mes. Esos euros son netos, es decir, ya pagados los impuestos.\n\n¿Qué más tienes?\nAdemás del dinero, el hotel te da un lugar para dormir.\nTambién te dan comida y dinero para que te alimentes.\n\n¿Es bueno tener experiencia?\nEs bueno que ya sepas limpiar habitaciones de hotel.\n",
+    "changes": [
+      {
+        "original": "Hotel de 4 estrellas en la costa contrata camareras/os de pisos para la temporada de verano (junio a septiembre).",
+        "adapted": "Trabaja como camarero/a en un hotel de playa",
+        "reason": "Frase más sencilla y directa."
+      },
+      {
+        "original": "Se valora experiencia previa en hoteles.",
+        "adapted": "Trabajas de junio a septiembre. Eso significa de junio hasta septiembre.",
+        "reason": "Explicación más clara de la temporada."
+      },
+      {
+        "original": "Sueldo: 1.350 € netos al mes.",
+        "adapted": "Te pagarán 1.350 euros al mes. Esos euros son netos, es decir, ya pagados los impuestos.",
+        "reason": "Explicación del concepto de 'netos' para facilitar la comprensión."
+      },
+      {
+        "original": "Alojamiento y manutención incluidos.",
+        "adapted": "Además del dinero, el hotel te da un lugar para dormir. También te dan comida y dinero para que te alimentes.",
+        "reason": "Explicación más sencilla de los beneficios."
+      },
+      {
+        "original": "Se valora experiencia previa en hoteles.",
+        "adapted": "Es bueno que ya sepas limpiar habitaciones de hotel.",
+        "reason": "Frase más directa y fácil de entender."
+      }
+    ],
+    "professions": [
+      "camarero de pisos",
+      "camarero"
+    ],
+    "pictogram": {
+      "id": 2681,
+      "keyword": "camarero",
+      "imageUrl": "https://static.arasaac.org/pictograms/2681/2681_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 5,
+      "words": 43,
+      "syllables": 85,
+      "fernandezHuerta": {
+        "value": 79.5,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 75.1,
+        "level": "bastante fácil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 17,
+      "words": 123,
+      "syllables": 228,
+      "fernandezHuerta": {
+        "value": 88.2,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 84.1,
+        "level": "muy fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "camarero/a",
+        "sentence": "Trabaja como camarero/a en un hotel de playa",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      },
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "16 palabras",
+        "sentence": "Un hotel de cuatro estrellas, que está en la costa, busca gente para limpiar las habitaciones.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      }
+    ]
+  }
+}

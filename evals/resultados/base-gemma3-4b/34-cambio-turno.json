@@ -1,0 +1,78 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "34-cambio-turno",
+  "original": "Se comunica a todo el personal de almacén que, a partir del lunes 4 de enero de 2027, el turno de tarde pasará a ser de 14:00 a 22:00 (actualmente de 15:00 a 23:00). El turno de mañana no sufre cambios. Las solicitudes de cambio de turno deberán dirigirse al encargado con una semana de antelación.",
+  "segundos": 117.6,
+  "pictograma_s": null,
+  "primer_texto_s": 7.9,
+  "texto_completo_s": 42.3,
+  "informe": {
+    "adaptedText": "Cambio en los horarios del almacén\n\nQuerido personal del almacén,\n\nTenemos una noticia importante sobre los horarios de trabajo.\n\n¿Cuándo son los horarios?\n- El turno de tarde empieza a las 2 de la tarde y termina a las 10 de la noche.\nAntes, el turno de tarde empezaba a las 3 de la tarde y terminaba a las 11 de la noche.\n- El turno de mañana sigue siendo igual.\nEmpieza a las 8 de la mañana y termina a las 4 de la tarde.\n\n¿Cómo podemos cambiar de turno?\nSi quieres cambiar de turno, tienes que hablar con el encargado.\nDebes hacerlo con una semana de antelación.\nEs decir, una semana antes de que quieras cambiar de turno.",
+    "changes": [
+      {
+        "original": "Se comunica a todo el personal de almacén",
+        "adapted": "Querido personal del almacén",
+        "reason": "Voz más amable y directa."
+      },
+      {
+        "original": "a partir del lunes 4 de enero de 2027, el turno de tarde pasará a ser de 14:00 a 22:00 (actualmente de 15:00 a 23:00).",
+        "adapted": "Tenemos una noticia importante sobre los horarios de trabajo.",
+        "reason": "Frase más clara y sencilla. Se eliminan las explicaciones redundantes."
+      },
+      {
+        "original": "El turno de tarde pasará a ser de 14:00 a 22:00. El turno de mañana no sufre cambios.",
+        "adapted": "El turno de tarde empieza a las 2 de la tarde y termina a las 10 de la noche. Antes, el turno de tarde empezaba a las 3 de la tarde y terminaba a las 11 de la noche.",
+        "reason": "Se facilita la información de forma más directa y clara."
+      },
+      {
+        "original": "Las solicitudes de cambio de turno deberán dirigirse al encargado con una semana de antelación.",
+        "adapted": "Debes hablar con el encargado con una semana de antelación.",
+        "reason": "Frase más sencilla y directa."
+      }
+    ],
+    "professions": [],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 3,
+      "words": 56,
+      "syllables": 100,
+      "fernandezHuerta": {
+        "value": 80.7,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 76.9,
+        "level": "bastante fácil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 12,
+      "words": 118,
+      "syllables": 207,
+      "fernandezHuerta": {
+        "value": 91.6,
+        "level": "muy fácil"
+      },
+      "inflesz": {
+        "value": 87.7,
+        "level": "muy fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "19 palabras",
+        "sentence": "- El turno de tarde empieza a las 2 de la tarde y termina a las 10 de la noche.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      },
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "20 palabras",
+        "sentence": "Antes, el turno de tarde empezaba a las 3 de la tarde y terminaba a las 11 de la noche.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      }
+    ]
+  }
+}

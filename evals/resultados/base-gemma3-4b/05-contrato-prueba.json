@@ -1,0 +1,12 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "05-contrato-prueba",
+  "original": "Se establece un período de prueba de un mes, durante el cual cualquiera de las partes podrá resolver la relación laboral sin necesidad de preaviso ni derecho a indemnización. Las vacaciones anuales retribuidas serán de 30 días naturales, cuyo disfrute se fijará de común acuerdo entre la empresa y el trabajador.",
+  "segundos": 600.8,
+  "pictograma_s": null,
+  "primer_texto_s": 5.4,
+  "texto_completo_s": null,
+  "error": {
+    "detail": "El stream terminó sin informe"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "25-oferta-piscinas",
+  "original": "Se busca socorrista y operario/a de mantenimiento para piscinas municipales del martes 1 de junio al miércoles 15 de septiembre de 2027. Horario de 11:00 a 20:00 con 1 hora para comer, 5 días a la semana con descanso rotativo. Requisito: título de socorrista acuático en vigor. Valorable curso de mantenimiento de piscinas. 1.300 € brutos/mes.",
+  "segundos": 147.2,
+  "pictograma_s": 8.8,
+  "primer_texto_s": 9.3,
+  "texto_completo_s": 56.2,
+  "informe": {
+    "adaptedText": "Trabajo en piscinas municipales\n\nLa piscina busca una persona para trabajar en las piscinas públicas.\n\n¿Qué trabajo haces?\n- Un socorrista vigila a la gente en la piscina.\n- Un operario/a de mantenimiento arregla las piscinas.\n\n¿Cuándo trabajas?\nTrabajas del martes 1 de junio al miércoles 15 de septiembre de 2027.\n\n¿Qué horario tienes?\n- Empiezas a las 11 de la mañana.\n- Terminas a las 8 de la tarde.\n- Tienes 1 hora para comer.\n\n¿Cuántos días trabajas?\nTrabajas 5 días a la semana.\n- Un día tienes descanso.\n- El descanso cambia cada semana.\n\n¿Cuánto ganas?\nTe pagan 1.300 euros cada mes.\nEstos euros son brutos, es decir, antes de que te quiten dinero.\n\n¿Qué necesitas para este trabajo?\nNecesitas tener un título de socorrista acuático.\nEste título demuestra que sabes ayudar a la gente en la piscina.\nEs bueno tener un curso de mantenimiento de piscinas.\nEsto te enseña a arreglar las piscinas.\n",
+    "changes": [
+      {
+        "original": "Se busca socorrista y operario/a de mantenimiento para piscinas municipales",
+        "adapted": "Trabajo en piscinas municipales",
+        "reason": "Frase más directa y fácil de entender."
+      },
+      {
+        "original": "funciones: apoyo en la preparación de alimentos, emplatado y limpieza de menaje",
+        "adapted": "Un socorrista vigila a la gente en la piscina.",
+        "reason": "Simplificación de la descripción del trabajo."
+      },
+      {
+        "original": "Horario de 11:00 a 20:00 con 1 hora para comer, 5 días a la semana con descanso rotativo",
+        "adapted": "Trabajas del martes 1 de junio al miércoles 15 de septiembre de 2027.",
+        "reason": "Simplificación de la información del horario."
+      },
+      {
+        "original": "Horario de 11:00 a 20:00 con 1 hora para comer",
+        "adapted": "Tienes 1 hora para comer.",
+        "reason": "Frase más clara y directa."
+      },
+      {
+        "original": "Horario de 11:00 a 20:00 con 1 hora para comer, 5 días a la semana con descanso rotativo",
+        "adapted": "Trabajas 5 días a la semana. Un día tienes descanso. El descanso cambia cada semana.",
+        "reason": "Simplificación de la información del horario."
+      },
+      {
+        "original": "1.300 € brutos/mes",
+        "adapted": "Te pagan 1.300 euros cada mes. Estos euros son brutos, es decir, antes de que te quiten dinero.",
+        "reason": "Explicación del término 'brutos'."
+      },
+      {
+        "original": "Requisito: título de socorrista acuático en vigor",
+        "adapted": "Necesitas tener un título de socorrista acuático.",
+        "reason": "Simplificación de la frase."
+      }
+    ],
+    "professions": [
+      "socorrista",
+      "operario de mantenimiento"
+    ],
+    "pictogram": {
+      "id": 3156,
+      "keyword": "socorrista",
+      "imageUrl": "https://static.arasaac.org/pictograms/3156/3156_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 5,
+      "words": 55,
+      "syllables": 117,
+      "fernandezHuerta": {
+        "value": 68.0,
+        "level": "normal"
+      },
+      "inflesz": {
+        "value": 63.3,
+        "level": "normal"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 23,
+      "words": 149,
+      "syllables": 296,
+      "fernandezHuerta": {
+        "value": 81.0,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 76.6,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "operario/a",
+        "sentence": "- Un operario/a de mantenimiento arregla las piscinas.",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      }
+    ]
+  }
+}

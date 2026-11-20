@@ -1,0 +1,109 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "09-oferta-almacen",
+  "original": "ETT selecciona MOZO/A DE ALMACÉN para importante empresa de distribución.\n- Carga y descarga de camiones, preparación de pedidos con lector de radiofrecuencia.\n- Turnos rotativos semanales M/T/N.\n- Contrato por circunstancias de la producción de 3 meses.\n- 9,80 €/h brutos + plus de nocturnidad.\n- Valorable carné de carretillero en vigor.\n- Calzado de seguridad obligatorio (no lo facilita la empresa).",
+  "segundos": 108.9,
+  "pictograma_s": 13.9,
+  "primer_texto_s": 15.0,
+  "texto_completo_s": 56.9,
+  "informe": {
+    "adaptedText": "Buscamos MOZO/A para un almacén\n\nUna empresa busca una persona para trabajar en su almacén.\n\n¿Qué haces en este trabajo?\n- Cargas y descargas camiones.\n- Preparas los pedidos, usando un aparato que te dice dónde están las cosas.\n- Trabajas en diferentes días de la semana: lunes, martes y miércoles.\n\n¿Cuándo trabajas?\nTrabajas en turnos rotativos. Esto significa que trabajas de mañana, de tarde o de noche.\n\n¿Cuánto ganas?\nTe pagan 9,80 euros por hora. Esto es el dinero antes de quitarle impuestos.\nTambién tienes un extra si trabajas de noche.\n\n¿Qué es bueno tener?\nEs bueno tener el carné de carretillero. Esto significa que sabes usar máquinas que mueven cosas pesadas.\n\n¿Qué tienes que llevar?\nDebes llevar calzado de seguridad. La empresa no te da este calzado.",
+    "changes": [
+      {
+        "original": "ETT selecciona MOZO/A DE ALMACÉN",
+        "adapted": "ETT selecciona MOZO/A de almacén",
+        "reason": "Simplificación del título."
+      },
+      {
+        "original": "Carga y descarga de camiones, preparación de pedidos con lector de radiofrecuencia.",
+        "adapted": "Carga y descarga de camiones, preparación de pedidos con lector de radiofrecuencia.",
+        "reason": "Frase más sencilla."
+      },
+      {
+        "original": "Turnos rotativos semanales M/T/N.",
+        "adapted": "Turnos rotativos semanales M/T/N.",
+        "reason": "Explicación de la rotación y abreviaturas explicadas."
+      },
+      {
+        "original": "9,80 €/h brutos + plus de nocturnidad.",
+        "adapted": "9,80 €/h brutos + plus de nocturnidad.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Valorable carné de carretillero en vigor.",
+        "adapted": "Valorable carné de carretillero en vigor.",
+        "reason": "Explicación de la sigla y condición."
+      },
+      {
+        "original": "Calzado de seguridad obligatorio (no lo facilita la empresa).",
+        "adapted": "Calzado de seguridad obligatorio (no lo facilita la empresa).",
+        "reason": "Frase más directa."
+      }
+    ],
+    "professions": [
+      "mozo de almacén",
+      "almacenista"
+    ],
+    "pictogram": {
+      "id": 39974,
+      "keyword": "mozo de almacén",
+      "imageUrl": "https://static.arasaac.org/pictograms/39974/39974_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 7,
+      "words": 56,
+      "syllables": 129,
+      "fernandezHuerta": {
+        "value": 60.5,
+        "level": "normal"
+      },
+      "inflesz": {
+        "value": 55.3,
+        "level": "normal"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 19,
+      "words": 126,
+      "syllables": 252,
+      "fernandezHuerta": {
+        "value": 80.1,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 75.6,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "ACRONYM",
+        "severity": "WARNING",
+        "fragment": "MOZO",
+        "sentence": "Buscamos MOZO/A para un almacén",
+        "advice": "Es una sigla. Explícala la primera vez que aparece."
+      },
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "MOZO/A",
+        "sentence": "Buscamos MOZO/A para un almacén",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      },
+      {
+        "rule": "VAGUE_WORD",
+        "severity": "WARNING",
+        "fragment": "cosas",
+        "sentence": "- Preparas los pedidos, usando un aparato que te dice dónde están las cosas.",
+        "advice": "Evita \"cosa\" y \"algo\": no tienen un significado claro."
+      },
+      {
+        "rule": "VAGUE_WORD",
+        "severity": "WARNING",
+        "fragment": "cosas",
+        "sentence": "Esto significa que sabes usar máquinas que mueven cosas pesadas.",
+        "advice": "Evita \"cosa\" y \"algo\": no tienen un significado claro."
+      }
+    ]
+  }
+}

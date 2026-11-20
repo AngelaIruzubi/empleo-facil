@@ -1,0 +1,467 @@
+{
+  "resumen": {
+    "textos": 36,
+    "con_error": 1,
+    "inflesz_medio_antes": 57.3,
+    "inflesz_medio_despues": 77.5,
+    "textos_en_lectura_facil": 35,
+    "errores_reglas": 29,
+    "avisos_reglas": 30,
+    "textos_con_numeros_perdidos": 12,
+    "numeros_perdidos": 13,
+    "dias_de_la_semana_equivocados": 0,
+    "pictogramas_bien": 22,
+    "segundos_medios": 129
+  },
+  "textos": [
+    {
+      "texto": "01-oferta-reposicion",
+      "segundos": 204.4,
+      "inflesz_antes": 40.2,
+      "inflesz_despues": 68.8,
+      "lectura_facil": true,
+      "errores_reglas": 2,
+      "avisos_reglas": 2,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "02-oferta-limpieza",
+      "segundos": 96.5,
+      "inflesz_antes": 42.7,
+      "inflesz_despues": 78.9,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [
+        "20"
+      ],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "03-correo-rechazo",
+      "segundos": 111.5,
+      "inflesz_antes": 38.4,
+      "inflesz_despues": 69.5,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "04-primer-dia",
+      "segundos": 148.4,
+      "inflesz_antes": 70.7,
+      "inflesz_despues": 82.0,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 1,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "pictograma de más: almacenista"
+    },
+    {
+      "texto": "05-contrato-prueba",
+      "error": "El stream terminó sin informe"
+    },
+    {
+      "texto": "06-oferta-camarero",
+      "segundos": 132.9,
+      "inflesz_antes": 45.3,
+      "inflesz_despues": 77.3,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 2,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "07-oferta-geriatria",
+      "segundos": 172.1,
+      "inflesz_antes": 35.7,
+      "inflesz_despues": 73.6,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 2,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "sin pictograma"
+    },
+    {
+      "texto": "08-oferta-cocina",
+      "segundos": 125.6,
+      "inflesz_antes": 70.0,
+      "inflesz_despues": 81.7,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "09-oferta-almacen",
+      "segundos": 108.9,
+      "inflesz_antes": 55.3,
+      "inflesz_despues": 75.6,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 4,
+      "numeros_perdidos": [
+        "3"
+      ],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "10-oferta-jardineria",
+      "segundos": 160.3,
+      "inflesz_antes": 60.5,
+      "inflesz_despues": 75.6,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 1,
+      "numeros_perdidos": [
+        "4"
+      ],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "11-oferta-conserje",
+      "segundos": 125.8,
+      "inflesz_antes": 56.8,
+      "inflesz_despues": 76.5,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [
+        "14",
+        "7:30"
+      ],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "12-oferta-lavanderia",
+      "segundos": 164.5,
+      "inflesz_antes": 45.3,
+      "inflesz_despues": 70.5,
+      "lectura_facil": true,
+      "errores_reglas": 4,
+      "avisos_reglas": 1,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "sin pictograma"
+    },
+    {
+      "texto": "13-oferta-dependiente",
+      "segundos": 131.3,
+      "inflesz_antes": 61.4,
+      "inflesz_despues": 78.0,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 1,
+      "numeros_perdidos": [
+        "16"
+      ],
+      "dias_equivocados": [],
+      "pictograma": "sin pictograma"
+    },
+    {
+      "texto": "14-oferta-reparto",
+      "segundos": 126.4,
+      "inflesz_antes": 57.9,
+      "inflesz_despues": 72.7,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 1,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "15-oferta-limpieza-hospital",
+      "segundos": 137.4,
+      "inflesz_antes": 64.4,
+      "inflesz_despues": 74.8,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 1,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "16-oferta-administrativo",
+      "segundos": 153.1,
+      "inflesz_antes": 55.2,
+      "inflesz_despues": 67.0,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 1,
+      "numeros_perdidos": [
+        "14"
+      ],
+      "dias_equivocados": [],
+      "pictograma": "sin pictograma"
+    },
+    {
+      "texto": "17-oferta-vendimia",
+      "segundos": 122.9,
+      "inflesz_antes": 74.2,
+      "inflesz_despues": 77.5,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [
+        "10,20"
+      ],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "18-oferta-limpieza-viaria",
+      "segundos": 120.4,
+      "inflesz_antes": 62.8,
+      "inflesz_despues": 79.2,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "sin pictograma"
+    },
+    {
+      "texto": "19-oferta-comedor",
+      "segundos": 132.2,
+      "inflesz_antes": 55.6,
+      "inflesz_despues": 75.0,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "20-oferta-camarera-pisos",
+      "segundos": 85.5,
+      "inflesz_antes": 75.1,
+      "inflesz_despues": 84.1,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 1,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "pictograma equivocado: camarero"
+    },
+    {
+      "texto": "21-oferta-panaderia",
+      "segundos": 95.9,
+      "inflesz_antes": 30.0,
+      "inflesz_despues": 73.9,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "22-oferta-recepcion-cee",
+      "segundos": 113.3,
+      "inflesz_antes": 33.7,
+      "inflesz_despues": 78.7,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [
+        "14"
+      ],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "23-oferta-produccion",
+      "segundos": 140.2,
+      "inflesz_antes": 53.4,
+      "inflesz_despues": 80.8,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 1,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "sin pictograma"
+    },
+    {
+      "texto": "24-oferta-ayuda-domicilio",
+      "segundos": 151.5,
+      "inflesz_antes": 52.3,
+      "inflesz_despues": 80.5,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "sin pictograma"
+    },
+    {
+      "texto": "25-oferta-piscinas",
+      "segundos": 147.2,
+      "inflesz_antes": 63.3,
+      "inflesz_despues": 76.6,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 1,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "26-oferta-cajero",
+      "segundos": 121.5,
+      "inflesz_antes": 79.1,
+      "inflesz_despues": 80.0,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 3,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "sin pictograma"
+    },
+    {
+      "texto": "27-convocatoria-ordenanza",
+      "segundos": 129.1,
+      "inflesz_antes": 41.7,
+      "inflesz_despues": 76.1,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 2,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "sin pictograma"
+    },
+    {
+      "texto": "28-oferta-construccion",
+      "segundos": 108.4,
+      "inflesz_antes": 77.5,
+      "inflesz_despues": 74.9,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "29-oferta-limpieza-corta",
+      "segundos": 96.9,
+      "inflesz_antes": 105.1,
+      "inflesz_despues": 82.5,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 1,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "30-oferta-centro-ocupacional",
+      "segundos": 159.9,
+      "inflesz_antes": 55.2,
+      "inflesz_despues": 74.8,
+      "lectura_facil": true,
+      "errores_reglas": 1,
+      "avisos_reglas": 2,
+      "numeros_perdidos": [
+        "17:00"
+      ],
+      "dias_equivocados": [],
+      "pictograma": "sin pictograma"
+    },
+    {
+      "texto": "31-citacion-entrevista",
+      "segundos": 109.5,
+      "inflesz_antes": 59.0,
+      "inflesz_despues": 76.6,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 2,
+      "numeros_perdidos": [
+        "10:30"
+      ],
+      "dias_equivocados": [],
+      "pictograma": "pictograma de más: reponedor"
+    },
+    {
+      "texto": "32-falta-documentacion",
+      "segundos": 114.0,
+      "inflesz_antes": 51.3,
+      "inflesz_despues": 69.0,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "33-convenio-nocturnidad",
+      "segundos": 134.6,
+      "inflesz_antes": 60.5,
+      "inflesz_despues": 96.4,
+      "lectura_facil": true,
+      "errores_reglas": 7,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [
+        "24"
+      ],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "34-cambio-turno",
+      "segundos": 117.6,
+      "inflesz_antes": 76.9,
+      "inflesz_despues": 87.7,
+      "lectura_facil": true,
+      "errores_reglas": 2,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [
+        "2027"
+      ],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "35-fin-contrato",
+      "segundos": 102.5,
+      "inflesz_antes": 44.8,
+      "inflesz_despues": 82.2,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    },
+    {
+      "texto": "36-normas-higiene",
+      "segundos": 108.3,
+      "inflesz_antes": 54.3,
+      "inflesz_despues": 84.4,
+      "lectura_facil": true,
+      "errores_reglas": 0,
+      "avisos_reglas": 0,
+      "numeros_perdidos": [],
+      "dias_equivocados": [],
+      "pictograma": "bien"
+    }
+  ]
+}

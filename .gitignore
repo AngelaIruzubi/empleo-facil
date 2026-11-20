@@ -29,3 +29,6 @@ evals/hechos-privados/
 # Sistema operativo
 .DS_Store
 Thumbs.db
+
+# Caché de Python
+__pycache__/

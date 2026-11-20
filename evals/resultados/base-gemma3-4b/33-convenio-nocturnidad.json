@@ -1,0 +1,123 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "33-convenio-nocturnidad",
+  "original": "Artículo 24. Plus de nocturnidad. Las horas trabajadas entre las 22:00 y las 6:00 tendrán una retribución específica incrementada en un 25 % sobre el salario base, salvo que el salario se haya establecido atendiendo a que el trabajo sea nocturno por su propia naturaleza.",
+  "segundos": 134.6,
+  "pictograma_s": null,
+  "primer_texto_s": 7.1,
+  "texto_completo_s": 43.4,
+  "informe": {
+    "adaptedText": "Horas de trabajo por la noche\n\nSi trabajas entre las 10 de la noche y las 6 de la mañana, te pagarán más.\nTe darán un 25% más de dinero, además de tu sueldo normal.\n\nPero esto no se aplica si tu sueldo ya es más alto porque trabajas por la noche.\n\n¿Qué significa 25%?\nSignifica que por cada 100 euros que te paguen, te darán 25 euros más.\n\nPor ejemplo, si tu sueldo es de 1000 euros, y trabajas por la noche, te pagarán 1250 euros.\n\nSi tu sueldo ya es más alto porque trabajas por la noche, no te darán ese 25% extra.",
+    "changes": [
+      {
+        "original": "Artículo 24. Plus de nocturnidad.",
+        "adapted": "Horas de trabajo por la noche",
+        "reason": "Simplifica el título."
+      },
+      {
+        "original": "Las horas trabajadas entre las 22:00 y las 6:00 tendrán una retribución específica incrementada en un 25 % sobre el salario base, salvo que el salario se haya establecido atendiendo a que el trabajo sea nocturno por su propia naturaleza.",
+        "adapted": "Si trabajas entre las 10 de la noche y las 6 de la mañana, te pagarán más.",
+        "reason": "Frase muy compleja simplificada. Se elimina la terminología legal."
+      },
+      {
+        "original": "incrementada en un 25 % sobre el salario base",
+        "adapted": "Te darán un 25% más de dinero, además de tu sueldo normal.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "salvo que el salario se haya establecido atendiendo a que el trabajo sea nocturno por su propia naturaleza.",
+        "adapted": "Pero esto no se aplica si tu sueldo ya es más alto porque trabajas por la noche.",
+        "reason": "Frase muy compleja simplificada."
+      },
+      {
+        "original": "25 %",
+        "adapted": "Significa que por cada 100 euros que te paguen, te darán 25 euros más.",
+        "reason": "Explicación sencilla del porcentaje."
+      },
+      {
+        "original": "Por ejemplo, la empresa firma el contrato",
+        "adapted": "Por ejemplo, si tu sueldo es de 1000 euros, y trabajas por la noche, te pagarán 1250 euros.",
+        "reason": "Ejemplo más claro y sencillo."
+      }
+    ],
+    "professions": [],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 3,
+      "words": 44,
+      "syllables": 93,
+      "fernandezHuerta": {
+        "value": 65.1,
+        "level": "normal"
+      },
+      "inflesz": {
+        "value": 60.5,
+        "level": "normal"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 8,
+      "words": 105,
+      "syllables": 164,
+      "fernandezHuerta": {
+        "value": 99.7,
+        "level": "muy fácil"
+      },
+      "inflesz": {
+        "value": 96.4,
+        "level": "muy fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "17 palabras",
+        "sentence": "Si trabajas entre las 10 de la noche y las 6 de la mañana, te pagarán más.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      },
+      {
+        "rule": "PERCENTAGE",
+        "severity": "ERROR",
+        "fragment": "25%",
+        "sentence": "Te darán un 25% más de dinero, además de tu sueldo normal.",
+        "advice": "Evita los porcentajes. Usa \"muchos\", \"algunos\" o \"pocos\"."
+      },
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "17 palabras",
+        "sentence": "Pero esto no se aplica si tu sueldo ya es más alto porque trabajas por la noche.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      },
+      {
+        "rule": "PERCENTAGE",
+        "severity": "ERROR",
+        "fragment": "25%",
+        "sentence": "¿Qué significa 25%?",
+        "advice": "Evita los porcentajes. Usa \"muchos\", \"algunos\" o \"pocos\"."
+      },
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "18 palabras",
+        "sentence": "Por ejemplo, si tu sueldo es de 1000 euros, y trabajas por la noche, te pagarán 1250 euros.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      },
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "18 palabras",
+        "sentence": "Si tu sueldo ya es más alto porque trabajas por la noche, no te darán ese 25% extra.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      },
+      {
+        "rule": "PERCENTAGE",
+        "severity": "ERROR",
+        "fragment": "25%",
+        "sentence": "Si tu sueldo ya es más alto porque trabajas por la noche, no te darán ese 25% extra.",
+        "advice": "Evita los porcentajes. Usa \"muchos\", \"algunos\" o \"pocos\"."
+      }
+    ]
+  }
+}

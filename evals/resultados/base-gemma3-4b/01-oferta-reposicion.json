@@ -1,0 +1,120 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "01-oferta-reposicion",
+  "original": "Se precisa incorporar personal de reposición para centro logístico. Requisitos: ESO, disponibilidad para turnos rotativos e incorporación inmediata. Se valorará CAP y experiencia mínima de 6 meses en puesto similar. Contrato de 3 meses prorrogable. Salario según convenio.",
+  "segundos": 204.4,
+  "pictograma_s": 116.0,
+  "primer_texto_s": 116.5,
+  "texto_completo_s": 149.8,
+  "informe": {
+    "adaptedText": "Trabajo de reponedor en un almacén\n\nUna empresa busca una persona para trabajar en un almacén.\n\n¿Qué necesitas para este trabajo?\n- Tienes que haber terminado el cole (ESO).\n- Necesitas poder trabajar en diferentes horarios, que cambian.\n- Necesitas empezar a trabajar ahora mismo.\n\n¿Qué es bueno tener?\nEs bueno tener el Certificado de Acceso Profesional (CAP).\nTambién es bueno tener experiencia trabajando en un almacén, al menos 6 meses.\n\n¿Cuánto dura el trabajo?\nEl trabajo dura 3 meses.\nSi quieres, el trabajo puede seguir trabajando más tiempo.\n\n¿Cuánto ganas?\nEl salario es según lo que dice un acuerdo entre la empresa y los trabajadores.\n",
+    "changes": [
+      {
+        "original": "ESO",
+        "adapted": "ESO",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Requisitos: ESO",
+        "adapted": "Tienes que haber terminado el cole (ESO).",
+        "reason": "Frase más clara y sencilla."
+      },
+      {
+        "original": "disponibilidad para turnos rotativos",
+        "adapted": "Necesitas poder trabajar en diferentes horarios, que cambian.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "incorporación inmediata",
+        "adapted": "Necesitas empezar a trabajar ahora mismo.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "CAP",
+        "adapted": "Certificado de Acceso Profesional (CAP)",
+        "reason": "Sigla explicada."
+      },
+      {
+        "original": "experiencia mínima de 6 meses",
+        "adapted": "al menos 6 meses",
+        "reason": "Frase más sencilla."
+      },
+      {
+        "original": "Contrato de 3 meses prorrogable.",
+        "adapted": "3 meses. Si quieres, el trabajo puede seguir trabajando más tiempo.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Salario según convenio.",
+        "adapted": "El salario es según lo que dice un acuerdo entre la empresa y los trabajadores.",
+        "reason": "Palabra difícil explicada."
+      }
+    ],
+    "professions": [
+      "reponedor",
+      "pinche de almacén",
+      "pinche"
+    ],
+    "pictogram": {
+      "id": 39973,
+      "keyword": "reponedor",
+      "imageUrl": "https://static.arasaac.org/pictograms/39973/39973_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 5,
+      "words": 38,
+      "syllables": 97,
+      "fernandezHuerta": {
+        "value": 45.9,
+        "level": "difícil"
+      },
+      "inflesz": {
+        "value": 40.2,
+        "level": "algo difícil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 14,
+      "words": 103,
+      "syllables": 216,
+      "fernandezHuerta": {
+        "value": 73.5,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 68.8,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "FORBIDDEN_SIGN",
+        "severity": "ERROR",
+        "fragment": "(ESO)",
+        "sentence": "- Tienes que haber terminado el cole (ESO).",
+        "advice": "Evita el punto y coma, los puntos suspensivos, los paréntesis, los corchetes y los signos & $ # §."
+      },
+      {
+        "rule": "ACRONYM",
+        "severity": "WARNING",
+        "fragment": "ESO",
+        "sentence": "- Tienes que haber terminado el cole (ESO).",
+        "advice": "Es una sigla. Explícala la primera vez que aparece."
+      },
+      {
+        "rule": "FORBIDDEN_SIGN",
+        "severity": "ERROR",
+        "fragment": "(CAP)",
+        "sentence": "Es bueno tener el Certificado de Acceso Profesional (CAP).",
+        "advice": "Evita el punto y coma, los puntos suspensivos, los paréntesis, los corchetes y los signos & $ # §."
+      },
+      {
+        "rule": "ACRONYM",
+        "severity": "WARNING",
+        "fragment": "CAP",
+        "sentence": "Es bueno tener el Certificado de Acceso Profesional (CAP).",
+        "advice": "Es una sigla. Explícala la primera vez que aparece."
+      }
+    ]
+  }
+}

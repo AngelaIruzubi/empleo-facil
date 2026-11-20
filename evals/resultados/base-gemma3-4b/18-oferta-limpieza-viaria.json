@@ -1,0 +1,85 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "18-oferta-limpieza-viaria",
+  "original": "Se precisan operarios/as de limpieza viaria para turno de noche (22:00 a 5:00) de domingo a jueves. Contrato de interinidad. Retribución según convenio más plus de nocturnidad y plus de toxicidad. Requisitos: carné de conducir B. Se valorará carné C para conducir barredoras.",
+  "segundos": 120.4,
+  "pictograma_s": null,
+  "primer_texto_s": 7.8,
+  "texto_completo_s": 41.6,
+  "informe": {
+    "adaptedText": "Busca gente para limpiar las calles\n\nLa empresa necesita personas para limpiar las calles de la ciudad.\nEs un trabajo para la noche.\n\n¿Cuándo trabajas?\nTrabajas de domingo a jueves, de 10 de la noche a 5 de la mañana.\n\n¿Qué tipo de contrato tienes?\nEs un contrato temporal, que dura poco tiempo.\n\n¿Cuánto ganas?\nGanarás lo que dice el convenio de los trabajadores.\nTambién recibirás un extra por trabajar de noche.\nAdemás, recibirás otro extra porque trabajas en un ambiente sucio.\n\n¿Qué necesitas para este trabajo?\nNecesitas tener el carné de conducir B.\nEsto significa que puedes conducir un coche.\nSi tienes el carné C, es mejor, porque puedes conducir una máquina que barre la calle.\n",
+    "changes": [
+      {
+        "original": "Se precisan operarios/as de limpieza viaria para turno de noche (22:00 a 5:00) de domingo a jueves.",
+        "adapted": "Busca gente para limpiar las calles",
+        "reason": "Frase más directa y fácil de entender."
+      },
+      {
+        "original": "turno de noche (22:00 a 5:00) de domingo a jueves.",
+        "adapted": "Trabajas de domingo a jueves, de 10 de la noche a 5 de la mañana.",
+        "reason": "Horario más claro y fácil de entender."
+      },
+      {
+        "original": "Contrato de interinidad.",
+        "adapted": "Es un contrato temporal, que dura poco tiempo.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Retribución según convenio más plus de nocturnidad y plus de toxicidad.",
+        "adapted": "Ganarás lo que dice el convenio de los trabajadores.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "carné de conducir B.",
+        "adapted": "Necesitas tener el carné de conducir B.",
+        "reason": "Se enfatiza la necesidad."
+      },
+      {
+        "original": "Se valorará carné C para conducir barredoras.",
+        "adapted": "Si tienes el carné C, es mejor, porque puedes conducir una máquina que barre la calle.",
+        "reason": "Se explica la ventaja de tener el carné C."
+      }
+    ],
+    "professions": [
+      "operarios",
+      "operarios de limpieza viaria",
+      "personal de limpieza viaria"
+    ],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 4,
+      "words": 43,
+      "syllables": 92,
+      "fernandezHuerta": {
+        "value": 67.5,
+        "level": "normal"
+      },
+      "inflesz": {
+        "value": 62.8,
+        "level": "normal"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 15,
+      "words": 117,
+      "syllables": 225,
+      "fernandezHuerta": {
+        "value": 83.5,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 79.2,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "16 palabras",
+        "sentence": "Si tienes el carné C, es mejor, porque puedes conducir una máquina que barre la calle.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      }
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "03-correo-rechazo",
+  "original": "Estimado/a candidato/a: Agradecemos su interés en formar parte de nuestro equipo. Tras analizar detenidamente su candidatura, lamentamos comunicarle que en esta ocasión no ha sido seleccionado/a para continuar en el proceso. Conservaremos sus datos durante un período de 12 meses para futuras vacantes que se ajusten a su perfil, conforme a la normativa vigente en materia de protección de datos.",
+  "segundos": 111.5,
+  "pictograma_s": null,
+  "primer_texto_s": 6.5,
+  "texto_completo_s": 25.0,
+  "informe": {
+    "adaptedText": "Te informamos del resultado de tu solicitud\n\nGracias por querer trabajar con nosotros.\nDespués de mirar tu solicitud, no podemos ofrecerte un trabajo ahora.\n\nPero…\nGuardaremos tu información durante 12 meses.\nGuardaremos tu información para que podamos contactarte si hay otro trabajo que te guste.\nEsto es porque la ley nos obliga a guardar tu información.\n\n¡Gracias de nuevo por tu interés!",
+    "changes": [
+      {
+        "original": "Estimado/a candidato/a: Agradecemos su interés en formar parte de nuestro equipo.",
+        "adapted": "Agradecemos su interés en formar parte de nuestro equipo.",
+        "reason": "Voz activa y trato de tú."
+      },
+      {
+        "original": "Tras analizar detenidamente su candidatura, lamentamos comunicarle que en esta ocasión no ha sido seleccionado/a para continuar en el proceso.",
+        "adapted": "Tras analizar detenidamente su candidatura, lamentamos comunicarle que en esta ocasión no ha sido seleccionado/a para continuar en el proceso.",
+        "reason": "Frase más sencilla."
+      },
+      {
+        "original": "Conservaremos sus datos durante un período de 12 meses para futuras vacantes que se ajusten a su perfil, conforme a la normativa vigente en materia de protección de datos.",
+        "adapted": "Conservaremos sus datos durante un período de 12 meses para futuras vacantes que se ajusten a su perfil, conforme a la normativa vigente en materia de protección de datos.",
+        "reason": "Palabra difícil explicada: ‘normativa’ se entiende como ‘ley’."
+      },
+      {
+        "original": "Guardaremos sus datos durante un período de 12 meses.",
+        "adapted": "Guardaremos tu información durante 12 meses.",
+        "reason": "Uso de ‘tu’ para trato más personal."
+      }
+    ],
+    "professions": [],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 3,
+      "words": 60,
+      "syllables": 143,
+      "fernandezHuerta": {
+        "value": 43.4,
+        "level": "difícil"
+      },
+      "inflesz": {
+        "value": 38.4,
+        "level": "muy difícil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 8,
+      "words": 62,
+      "syllables": 129,
+      "fernandezHuerta": {
+        "value": 74.1,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 69.5,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "FORBIDDEN_SIGN",
+        "severity": "ERROR",
+        "fragment": "…",
+        "sentence": "Pero…",
+        "advice": "Evita el punto y coma, los puntos suspensivos, los paréntesis, los corchetes y los signos & $ # §."
+      }
+    ]
+  }
+}

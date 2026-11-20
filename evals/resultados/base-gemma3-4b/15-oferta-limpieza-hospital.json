@@ -1,0 +1,89 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "15-oferta-limpieza-hospital",
+  "original": "Empresa adjudicataria del servicio de limpieza del hospital comarcal precisa limpiadores/as para cubrir refuerzo de invierno.\nPeriodo: del martes 1 de diciembre de 2026 al miércoles 30 de junio de 2027.\nJornada: 30 h semanales en turno de tarde (15:00 a 21:00), de lunes a viernes.\nSalario: 1.020 € brutos/mes, pagas extra aparte.\nRequisitos: experiencia en limpieza hospitalaria (mínimo 3 meses). Formación en riesgos biológicos a cargo de la empresa.",
+  "segundos": 137.4,
+  "pictograma_s": null,
+  "primer_texto_s": 10.3,
+  "texto_completo_s": 51.8,
+  "informe": {
+    "adaptedText": "Busca limpiadores/as para un hospital\n\nEl hospital necesita gente para limpiar.\nEs un refuerzo de invierno.\n\n¿Cuándo es este trabajo?\nEl trabajo empieza el martes 1 de diciembre de 2026.\nEl trabajo termina el miércoles 30 de junio de 2027.\n\n¿Cuántas horas trabajas?\nTrabajas 30 horas cada semana.\nEl horario es de 15 de la tarde a 9 de la noche.\nDe lunes a viernes.\n\n¿Cuánto ganas?\nGanarás 1.020 euros cada mes.\nAdemás, recibirás un pago extra.\n\n¿Qué necesitas para este trabajo?\nNecesitas haber limpiado en un hospital antes.\nNecesitas haber trabajado como mínimo 3 meses limpiando en un hospital.\nLa empresa te dará formación sobre cómo evitar enfermedades.\nEsta formación es gratuita para ti.",
+    "changes": [
+      {
+        "original": "Empresa adjudicataria del servicio de limpieza del hospital comarcal precisa limpiadores/as para cubrir refuerzo de invierno.",
+        "adapted": "Busca limpiadores/as para un hospital",
+        "reason": "Simplificación de la frase inicial."
+      },
+      {
+        "original": "Periodo: del martes 1 de diciembre de 2026 al miércoles 30 de junio de 2027.",
+        "adapted": "El trabajo empieza el martes 1 de diciembre de 2026.",
+        "reason": "Frase más clara y directa."
+      },
+      {
+        "original": "Jornada: 30 h semanales en turno de tarde (15:00 a 21:00), de lunes a viernes.",
+        "adapted": "Trabajas 30 horas cada semana.",
+        "reason": "Simplificación del horario."
+      },
+      {
+        "original": "Salario: 1.020 € brutos/mes, pagas extra aparte.",
+        "adapted": "Ganarás 1.020 euros cada mes.",
+        "reason": "Palabra difícil explicada y formato simplificado."
+      },
+      {
+        "original": "Requisitos: experiencia en limpieza hospitalaria (mínimo 3 meses).",
+        "adapted": "Necesitas haber limpiado en un hospital antes.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Formación en riesgos biológicos a cargo de la empresa.",
+        "adapted": "La empresa te dará formación sobre cómo evitar enfermedades.",
+        "reason": "Explicación más clara y directa."
+      }
+    ],
+    "professions": [
+      "limpiador",
+      "limpiadora",
+      "personal de limpieza hospitalaria"
+    ],
+    "pictogram": {
+      "id": 15744,
+      "keyword": "limpiador",
+      "imageUrl": "https://static.arasaac.org/pictograms/15744/15744_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 6,
+      "words": 69,
+      "syllables": 145,
+      "fernandezHuerta": {
+        "value": 69.0,
+        "level": "normal"
+      },
+      "inflesz": {
+        "value": 64.4,
+        "level": "normal"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 18,
+      "words": 115,
+      "syllables": 232,
+      "fernandezHuerta": {
+        "value": 79.3,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 74.8,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "limpiadores/as",
+        "sentence": "Busca limpiadores/as para un hospital",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      }
+    ]
+  }
+}

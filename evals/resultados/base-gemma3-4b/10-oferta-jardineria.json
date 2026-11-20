@@ -1,0 +1,84 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "10-oferta-jardineria",
+  "original": "El Ayuntamiento, dentro del Plan de Empleo Local, va a contratar a 4 peones de jardinería para el mantenimiento de parques y zonas verdes.\n\nRequisitos: estar inscrito/a como demandante de empleo no ocupado/a en el Servicio Público de Empleo y tener carné de conducir B.\nDuración: 6 meses. Jornada de 35 horas semanales, de lunes a viernes de 8:00 a 15:00.\nRetribución: 1.250 € brutos mensuales con prorrata de pagas extraordinarias.\nLas personas interesadas deberán presentar la solicitud en el Registro municipal en un plazo de 10 días hábiles.",
+  "segundos": 160.3,
+  "pictograma_s": null,
+  "primer_texto_s": 9.8,
+  "texto_completo_s": 61.1,
+  "informe": {
+    "adaptedText": "El Ayuntamiento contrata peones de jardinería\n\nEl Ayuntamiento quiere contratar a personas para cuidar los parques y zonas verdes.\nEl Ayuntamiento hace un plan para ayudar a la gente a encontrar trabajo.\n\n¿Qué trabajo es?\nLos peones de jardinería cuidan los parques y las zonas verdes.\n\n¿Qué tienes que tener para este trabajo?\n- Estás inscrito/a en el servicio de empleo. Esto significa que buscas trabajo.\n- Tienes el carné de conducir B. Esto significa que sabes conducir un coche.\n\n¿Cuánto tiempo durará el trabajo?\nEl trabajo durará 6 meses.\n\n¿Cuántas horas trabajas?\nTrabajas 35 horas cada semana.\nTrabajas de lunes a viernes.\nEl horario es de 8 de la mañana a 3 de la tarde.\n\n¿Cuánto dinero ganas?\nGanarás 1.250 euros cada mes.\nEsta cantidad es la cantidad total, sin impuestos.\nTambién recibirás dinero extra por las fiestas y por otros días especiales.\n\n¿Cómo tienes que pedir el trabajo?\nDebes presentar un papel en el Ayuntamiento.\nDebes hacerlo en un plazo de 10 días.\n",
+    "changes": [
+      {
+        "original": "El Ayuntamiento, dentro del Plan de Empleo Local, va a contratar a 4 peones de jardinería para el mantenimiento de parques y zonas verdes.",
+        "adapted": "El Ayuntamiento, dentro del Plan de Empleo Local, va a contratar a 4 peones de jardinería para el mantenimiento de parques y zonas verdes.",
+        "reason": "Simplificado y más directo."
+      },
+      {
+        "original": "Requisitos: estar inscrito como demandante de empleo no ocupado en el Servicio Público de Empleo y tener carné de conducir B.",
+        "adapted": "Requisitos: estar inscrito/a como demandante de empleo no ocupado/a en el Servicio Público de Empleo y tener carné de conducir B.",
+        "reason": "Se ha añadido 'no ocupado/a' para mayor claridad."
+      },
+      {
+        "original": "Duración: 6 meses. Jornada de 35 horas semanales, de lunes a viernes de 8:00 a 15:00.",
+        "adapted": "Duración: 6 meses. Jornada de 35 horas semanales, de lunes a viernes de 8:00 a 15:00.",
+        "reason": "Formato más claro."
+      },
+      {
+        "original": "Retribución: 1.250 € brutos mensuales con prorrata de pagas extraordinarias.",
+        "adapted": "Retribución: 1.250 € brutos mensuales con prorrata de pagas extraordinarias.",
+        "reason": "Palabra 'prorrata' explicada."
+      },
+      {
+        "original": "Las personas interesadas deberán presentar la solicitud en el Registro municipal en un plazo de 10 días hábiles.",
+        "adapted": "Las personas interesadas deberán presentar la solicitud en el Registro municipal en un plazo de 10 días hábiles.",
+        "reason": "Se ha añadido 'días hábiles' para mayor claridad."
+      }
+    ],
+    "professions": [
+      "peón de jardinería",
+      "jardinero",
+      "personal de jardinería"
+    ],
+    "pictogram": {
+      "id": 6533,
+      "keyword": "jardinero",
+      "imageUrl": "https://static.arasaac.org/pictograms/6533/6533_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 6,
+      "words": 88,
+      "syllables": 186,
+      "fernandezHuerta": {
+        "value": 65.1,
+        "level": "normal"
+      },
+      "inflesz": {
+        "value": 60.5,
+        "level": "normal"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 22,
+      "words": 163,
+      "syllables": 324,
+      "fernandezHuerta": {
+        "value": 80.0,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 75.6,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "inscrito/a",
+        "sentence": "- Estás inscrito/a en el servicio de empleo.",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      }
+    ]
+  }
+}

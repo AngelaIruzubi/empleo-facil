@@ -1,0 +1,95 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "31-citacion-entrevista",
+  "original": "Estimado/a candidato/a: Nos complace comunicarle que su candidatura para el puesto de reponedor/a ha sido preseleccionada. Le citamos a una entrevista personal el lunes 18 de enero de 2027 a las 10:30 h en nuestras oficinas. Rogamos confirme su asistencia respondiendo a este correo antes del jueves 14 de enero. Deberá traer el DNI y una copia del CV.",
+  "segundos": 109.5,
+  "pictograma_s": 9.1,
+  "primer_texto_s": 9.7,
+  "texto_completo_s": 50.5,
+  "informe": {
+    "adaptedText": "Te hemos elegido para una entrevista\n\n¡Buenas noticias! Nos gusta mucho tu solicitud para el trabajo de reponedor/a.\nEsto significa que vamos a hablar contigo para conocerte mejor.\n\n¿Cuándo es la entrevista?\nLa entrevista es el lunes 18 de enero de 2027.\nLa entrevista empieza a las diez y media de la mañana.\n\n¿Dónde es la entrevista?\nLa entrevista es en nuestras oficinas.\n\n¿Qué tienes que hacer?\n- Por favor, responde a este correo para decirnos que puedes venir.\n- Hazlo antes del jueves 14 de enero.\n- Debes llevar tu DNI, que es tu documento de identidad.\n- También debes llevar una copia de tu currículum.\nEl currículum es el documento donde pones tu formación y tus trabajos.\n\n¡Gracias!",
+    "changes": [
+      {
+        "original": "Estimado/a candidato/a: Nos complace comunicarle",
+        "adapted": "Te hemos elegido",
+        "reason": "Voz activa, trato de tú y sin el signo /."
+      },
+      {
+        "original": "Nos complace comunicarle que su candidatura para el puesto de reponedor/a ha sido preseleccionada.",
+        "adapted": "su candidatura para el puesto de reponedor/a ha sido preseleccionada.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Le citamos a una entrevista personal",
+        "adapted": "Le citamos a una entrevista personal",
+        "reason": "Frase más sencilla."
+      },
+      {
+        "original": "el lunes 18 de enero de 2027 a las 10:30 h",
+        "adapted": "el lunes 18 de enero de 2027 a las 10:30 h",
+        "reason": "Hora escrita de forma más fácil."
+      },
+      {
+        "original": "Rogamos confirme su asistencia respondiendo a este correo antes del jueves 14 de enero.",
+        "adapted": "Rogamos confirme su asistencia respondiendo a este correo antes del jueves 14 de enero.",
+        "reason": "Frase más sencilla."
+      },
+      {
+        "original": "Deberá traer el DNI y una copia del CV.",
+        "adapted": "Deberá traer el DNI y una copia del CV.",
+        "reason": "Palabra difícil explicada."
+      }
+    ],
+    "professions": [
+      "reponedor",
+      "reponedora"
+    ],
+    "pictogram": {
+      "id": 39973,
+      "keyword": "reponedor",
+      "imageUrl": "https://static.arasaac.org/pictograms/39973/39973_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 4,
+      "words": 59,
+      "syllables": 126,
+      "fernandezHuerta": {
+        "value": 63.7,
+        "level": "normal"
+      },
+      "inflesz": {
+        "value": 59.0,
+        "level": "normal"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 16,
+      "words": 116,
+      "syllables": 229,
+      "fernandezHuerta": {
+        "value": 81.0,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 76.6,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "reponedor/a.",
+        "sentence": "Nos gusta mucho tu solicitud para el trabajo de reponedor/a.",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      },
+      {
+        "rule": "ACRONYM",
+        "severity": "WARNING",
+        "fragment": "DNI",
+        "sentence": "- Debes llevar tu DNI, que es tu documento de identidad.",
+        "advice": "Es una sigla. Explícala la primera vez que aparece."
+      }
+    ]
+  }
+}

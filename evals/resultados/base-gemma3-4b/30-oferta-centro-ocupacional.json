@@ -1,0 +1,109 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "30-oferta-centro-ocupacional",
+  "original": "Asociación de familias de personas con discapacidad intelectual busca cuidador/a para centro ocupacional. Funciones: apoyo en las actividades de taller, en la comida y en la higiene personal de los usuarios. Horario de 9:00 a 17:00 de lunes a viernes. Contrato indefinido. Salario según el XV Convenio colectivo general de centros y servicios de atención a personas con discapacidad. Valorable título de Técnico en Integración Social.",
+  "segundos": 159.9,
+  "pictograma_s": null,
+  "primer_texto_s": 11.7,
+  "texto_completo_s": 64.3,
+  "informe": {
+    "adaptedText": "Buscan cuidador/a para un centro\n\nUna asociación de familias busca una persona para ayudar en un centro.\nEl centro ayuda a personas con discapacidad intelectual.\n\n¿Qué haces en este trabajo?\n- Ayudas a las personas a hacer las actividades del taller.\n- Ayudas a las personas a comer.\n- Ayudas a las personas a lavarse y a vestirse.\n\n¿Cuándo trabajas?\nTrabajas de lunes a viernes.\nEl horario es de 9 de la mañana a 7 de la tarde.\n\n¿Qué tipo de contrato tienes?\nTienes un contrato indefinido. Esto significa que trabajas en el centro por mucho tiempo.\n\n¿Cuánto te pagan?\nTe pagan según un acuerdo entre los trabajadores y la empresa.\nEste acuerdo se llama XV Convenio colectivo general de centros y servicios de atención a personas con discapacidad.\n\n¿Es bueno tener un título?\nEs bueno tener un título de Técnico en Integración Social.",
+    "changes": [
+      {
+        "original": "Asociación de familias de personas con discapacidad intelectual busca cuidador/a para centro ocupacional.",
+        "adapted": "Buscan cuidador/a para un centro",
+        "reason": "Simplificación de la frase inicial."
+      },
+      {
+        "original": "apoyo en las actividades de taller",
+        "adapted": "Ayudas a las personas a hacer las actividades del taller.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "en la comida",
+        "adapted": "Ayudas a las personas a comer.",
+        "reason": "Clarificación de la función."
+      },
+      {
+        "original": "en la higiene personal de los usuarios",
+        "adapted": "Ayudas a las personas a lavarse y a vestirse.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Horario de 9:00 a 17:00 de lunes a viernes.",
+        "adapted": "Trabajas de lunes a viernes.",
+        "reason": "Simplificación del horario."
+      },
+      {
+        "original": "Contrato indefinido.",
+        "adapted": "Tienes un contrato indefinido.",
+        "reason": "Frase más clara y directa."
+      },
+      {
+        "original": "Salario según el XV Convenio colectivo general de centros y servicios de atención a personas con discapacidad.",
+        "adapted": "Te pagan según un acuerdo entre los trabajadores y la empresa.",
+        "reason": "Explicación más sencilla del salario."
+      },
+      {
+        "original": "Valorable título de Técnico en Integración Social.",
+        "adapted": "Es bueno tener un título de Técnico en Integración Social.",
+        "reason": "Palabra difícil explicada."
+      }
+    ],
+    "professions": [
+      "cuidador",
+      "personal de apoyo",
+      "técnico en integración social"
+    ],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 6,
+      "words": 66,
+      "syllables": 149,
+      "fernandezHuerta": {
+        "value": 60.2,
+        "level": "normal"
+      },
+      "inflesz": {
+        "value": 55.2,
+        "level": "normal"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 18,
+      "words": 141,
+      "syllables": 281,
+      "fernandezHuerta": {
+        "value": 79.3,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 74.8,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "cuidador/a",
+        "sentence": "Buscan cuidador/a para un centro",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      },
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "18 palabras",
+        "sentence": "Este acuerdo se llama XV Convenio colectivo general de centros y servicios de atención a personas con discapacidad.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      },
+      {
+        "rule": "ACRONYM",
+        "severity": "WARNING",
+        "fragment": "XV",
+        "sentence": "Este acuerdo se llama XV Convenio colectivo general de centros y servicios de atención a personas con discapacidad.",
+        "advice": "Es una sigla. Explícala la primera vez que aparece."
+      }
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "35-fin-contrato",
+  "original": "Por medio de la presente le comunicamos que su contrato de trabajo de duración determinada finalizará el domingo 31 de octubre de 2027, fecha de vencimiento pactada. Se le abonará la liquidación correspondiente, que incluye las vacaciones no disfrutadas y la indemnización de 12 días de salario por año trabajado.",
+  "segundos": 102.5,
+  "pictograma_s": null,
+  "primer_texto_s": 6.3,
+  "texto_completo_s": 32.3,
+  "informe": {
+    "adaptedText": "Tu contrato termina\n\nTe informamos que tu trabajo tiene una fecha de fin.\nTu contrato terminará el domingo 31 de octubre de 2027.\nEsta fecha es la fecha que hemos acordado.\n\n¿Qué pasa con tu dinero?\nTe darás un dinero extra al final de tu trabajo.\nEste dinero extra incluye las vacaciones que no has usado.\nTambién te darán 12 días de dinero por cada año que has trabajado.\n\n¿Cuándo termina tu trabajo?\nTu trabajo termina el domingo 31 de octubre de 2027.",
+    "changes": [
+      {
+        "original": "Por medio de la presente le comunicamos que su contrato de trabajo de duración determinada finalizará...",
+        "adapted": "Te informamos que tu trabajo tiene una fecha de fin.",
+        "reason": "Frase más sencilla y directa."
+      },
+      {
+        "original": "fecha de vencimiento pactada",
+        "adapted": "Tu contrato terminará el domingo 31 de octubre de 2027. Esta fecha es la fecha que hemos acordado.",
+        "reason": "Explicación más clara."
+      },
+      {
+        "original": "Se le abonará la liquidación correspondiente",
+        "adapted": "Te darás un dinero extra al final de tu trabajo.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "que incluye las vacaciones no disfrutadas",
+        "adapted": "Este dinero extra incluye las vacaciones que no has usado.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "la indemnización de 12 días de salario por año trabajado.",
+        "adapted": "También te darán 12 días de dinero por cada año que has trabajado.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "fecha de vencimiento pactada",
+        "adapted": "Tu trabajo termina el domingo 31 de octubre de 2027.",
+        "reason": "Repetición de la fecha para mayor claridad."
+      }
+    ],
+    "professions": [],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 2,
+      "words": 50,
+      "syllables": 110,
+      "fernandezHuerta": {
+        "value": 49.3,
+        "level": "difícil"
+      },
+      "inflesz": {
+        "value": 44.8,
+        "level": "algo difícil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 10,
+      "words": 83,
+      "syllables": 155,
+      "fernandezHuerta": {
+        "value": 86.3,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 82.2,
+        "level": "muy fácil"
+      }
+    },
+    "violations": []
+  }
+}

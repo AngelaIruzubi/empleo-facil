@@ -1,0 +1,105 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "24-oferta-ayuda-domicilio",
+  "original": "Entidad del tercer sector busca auxiliar de ayuda a domicilio para atender a personas mayores en sus casas. Tareas: aseo personal, preparación de comidas, limpieza básica del hogar y acompañamiento a citas médicas. Jornada partida (mañanas de 8:00 a 13:00 y tardes de 17:00 a 19:00), de lunes a viernes. Imprescindible carné de conducir y vehículo propio; se abona el kilometraje a 0,19 €/km. Requisito: certificado de profesionalidad de Atención sociosanitaria a personas en el domicilio.",
+  "segundos": 151.5,
+  "pictograma_s": null,
+  "primer_texto_s": 9.0,
+  "texto_completo_s": 51.7,
+  "informe": {
+    "adaptedText": "Trabajo ayudando a personas mayores\n\nUna organización sin ánimo de lucro busca una persona para ayudar a personas mayores en sus casas.\n\n¿Qué haces en este trabajo?\n- Limpias el cuerpo de las personas mayores.\n- Preparas la comida para ellas.\n- Limpias un poco la casa.\n- Vas con ellas a ver al médico.\n\n¿Cuándo trabajas?\nTrabajas en dos partes del día:\n- Por la mañana, de 8 de la mañana a 13 de la tarde.\n- Por la tarde, de 17 de la tarde a 19 de la tarde.\nEstos horarios son de lunes a viernes.\n\n¿Qué necesitas para este trabajo?\nNecesitas tener un carné de conducir.\nTambién necesitas tener un coche propio.\nNecesitas tener un certificado.\nEste certificado demuestra que sabes cuidar a las personas mayores en su casa.\n\n¿Cuánto ganas?\nTe pagamos por los kilómetros que haces.\nTe pagamos 0,19 euros por cada kilómetro que recorres.\n\n¿Dónde trabajas?\nTrabajas en las casas de las personas mayores.\n",
+    "changes": [
+      {
+        "original": "Entidad del tercer sector busca auxiliar de ayuda a domicilio para atender a personas mayores en sus casas.",
+        "adapted": "Una organización sin ánimo de lucro busca una persona para ayudar a personas mayores en sus casas.",
+        "reason": "Simplificado y más directo."
+      },
+      {
+        "original": "aseo personal",
+        "adapted": "Limpias el cuerpo de las personas mayores.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "preparación de comidas",
+        "adapted": "Preparas la comida para ellas.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "limpieza básica del hogar",
+        "adapted": "Limpias un poco la casa.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "acompañamiento a citas médicas",
+        "adapted": "Vas con ellas a ver al médico.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Jornada partida (mañanas de 8:00 a 13:00 y tardes de 17:00 a 19:00)",
+        "adapted": "Trabajas en dos partes del día: por la mañana, de 8 de la mañana a 13 de la tarde. Por la tarde, de 17 de la tarde a 19 de la tarde.",
+        "reason": "Formato más claro y fácil de entender."
+      },
+      {
+        "original": "carné de conducir",
+        "adapted": "Necesitas tener un carné de conducir.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "vehículo propio",
+        "adapted": "Necesitas tener un coche propio.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "se abona el kilometraje a 0,19 €/km",
+        "adapted": "Te pagamos por los kilómetros que haces. Te pagamos 0,19 euros por cada kilómetro que recorres.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Requisito: certificado de profesionalidad de Atención sociosanitaria a personas en el domicilio.",
+        "adapted": "Necesitas tener un certificado. Este certificado demuestra que sabes cuidar a las personas mayores en su casa.",
+        "reason": "Palabra difícil explicada."
+      }
+    ],
+    "professions": [
+      "auxiliar de ayuda a domicilio",
+      "personal de atención a personas mayores",
+      "atentador de ayuda a domicilio"
+    ],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 5,
+      "words": 76,
+      "syllables": 170,
+      "fernandezHuerta": {
+        "value": 57.1,
+        "level": "bastante difícil"
+      },
+      "inflesz": {
+        "value": 52.3,
+        "level": "algo difícil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 22,
+      "words": 154,
+      "syllables": 295,
+      "fernandezHuerta": {
+        "value": 84.8,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 80.5,
+        "level": "muy fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "17 palabras",
+        "sentence": "Una organización sin ánimo de lucro busca una persona para ayudar a personas mayores en sus casas.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      }
+    ]
+  }
+}

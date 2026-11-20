@@ -1,0 +1,90 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "23-oferta-produccion",
+  "original": "Fábrica de conservas vegetales precisa operarios/as de línea de producción. Trabajo en cadena: selección de producto, envasado y etiquetado. Turnos rotativos de mañana y tarde. Contrato de puesta a disposición a través de ETT, con posibilidad de incorporación a la plantilla de la empresa usuaria. 1.380 € brutos/mes. Uso obligatorio de EPI (gorro, guantes y bata), facilitados por la empresa.",
+  "segundos": 140.2,
+  "pictograma_s": null,
+  "primer_texto_s": 8.4,
+  "texto_completo_s": 60.9,
+  "informe": {
+    "adaptedText": "Busca operarios/as para una fábrica de conservas\n\nUna fábrica de conservas de verduras busca gente para trabajar en la producción.\n\n¿Qué haces en este trabajo?\n- Eliges las verduras.\n- Pones las verduras en los envases.\n- Pones etiquetas en los envases.\n\nEs un trabajo en cadena, lo que significa que trabajas con otras personas.\n\n¿Cuándo trabajas?\nTrabajas en turnos rotativos.\n- Turno de mañana: empiezas a las 7 de la mañana y terminas a las 3 de la tarde.\n- Turno de tarde: empiezas a las 15:00 y terminas a las 21:00.\n\n¿Cuánto ganas?\nTe pagan 1.380 euros cada mes.\nEsta cantidad es la que te dan antes de quitar las impuestos.\n\n¿Qué tienes que llevar?\nNecesitas llevar:\n- Un gorro para protegerte el pelo.\n- Guantes para proteger tus manos.\n- Una bata para cubrirte.\nLa empresa te da estos materiales.\n\n¿Dónde trabajas?\nTrabajas en una fábrica de conservas de verduras.",
+    "changes": [
+      {
+        "original": "Fábrica de conservas vegetales precisa operarios/as de línea de producción",
+        "adapted": "Busca operarios/as para una fábrica de conservas",
+        "reason": "Simplificación de la frase y uso de un lenguaje más directo."
+      },
+      {
+        "original": "Trabajo en cadena",
+        "adapted": "Trabajando en cadena",
+        "reason": "Explicación del concepto."
+      },
+      {
+        "original": "selección de producto, envasado y etiquetado",
+        "adapted": "Eliges las verduras. Pones las verduras en los envases. Pones etiquetas en los envases.",
+        "reason": "Palabra difícil explicada con frases sencillas."
+      },
+      {
+        "original": "Turnos rotativos de mañana y tarde",
+        "adapted": "Turno de mañana: empiezas a las 7 de la mañana y terminas a las 3 de la tarde. Turno de tarde: empiezas a las 15:00 y terminas a las 21:00.",
+        "reason": "Horarios explicados de forma clara y sencilla."
+      },
+      {
+        "original": "1.380 € brutos/mes",
+        "adapted": "1.380 euros cada mes. Esta cantidad es la que te dan antes de quitar las impuestos.",
+        "reason": "Explicación del concepto de bruto y la deducción de impuestos."
+      },
+      {
+        "original": "Uso obligatorio de EPI (gorro, guantes y bata), facilitados por la empresa.",
+        "adapted": "Necesitas llevar: Un gorro para protegerte el pelo. Guantes para proteger tus manos. Una bata para cubrirte.",
+        "reason": "Explicación de los EPI y quién los proporciona."
+      }
+    ],
+    "professions": [
+      "productor"
+    ],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 6,
+      "words": 59,
+      "syllables": 136,
+      "fernandezHuerta": {
+        "value": 58.5,
+        "level": "bastante difícil"
+      },
+      "inflesz": {
+        "value": 53.4,
+        "level": "algo difícil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 22,
+      "words": 145,
+      "syllables": 278,
+      "fernandezHuerta": {
+        "value": 85.1,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 80.8,
+        "level": "muy fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "operarios/as",
+        "sentence": "Busca operarios/as para una fábrica de conservas",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      },
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "18 palabras",
+        "sentence": "- Turno de mañana: empiezas a las 7 de la mañana y terminas a las 3 de la tarde.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      }
+    ]
+  }
+}

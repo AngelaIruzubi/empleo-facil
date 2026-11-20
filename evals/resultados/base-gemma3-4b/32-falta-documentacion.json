@@ -1,0 +1,68 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "32-falta-documentacion",
+  "original": "En relación con su inscripción en el proceso de selección, le informamos de que su solicitud está incompleta. Falta la copia del certificado de discapacidad y la vida laboral actualizada. Dispone de 10 días naturales desde la recepción de esta comunicación para aportar la documentación; en caso contrario, se le tendrá por desistido/a de su solicitud.",
+  "segundos": 114.0,
+  "pictograma_s": null,
+  "primer_texto_s": 6.9,
+  "texto_completo_s": 38.1,
+  "informe": {
+    "adaptedText": "Tu solicitud no está completa\n\nTenemos un problema con tu solicitud de trabajo.\nTu solicitud no tiene toda la información que necesitamos.\n\n¿Qué falta?\n- Necesitamos una copia de tu certificado de discapacidad.\n- Necesitamos tu currículum actualizado, con tus trabajos y formación más recientes.\n\n¿Qué tienes que hacer?\nTienes 10 días para traer la documentación.\nEstos 10 días son desde que recibes esta carta.\nSi no traes la documentación, se considera que no quieres el trabajo.\n\n¿Qué pasa si no traes la documentación?\nSi no traes la documentación en 10 días, se considera que no quieres el trabajo.\n",
+    "changes": [
+      {
+        "original": "En relación con su inscripción en el proceso de selección, le informamos de que su solicitud está incompleta.",
+        "adapted": "Tu solicitud no está completa",
+        "reason": "Frase más sencilla y directa."
+      },
+      {
+        "original": "Falta la copia del certificado de discapacidad.",
+        "adapted": "Necesitamos una copia de tu certificado de discapacidad.",
+        "reason": "Reformulación para facilitar la comprensión."
+      },
+      {
+        "original": "Dispone de 10 días naturales desde la recepción de esta comunicación para aportar la documentación; en caso contrario, se le tendrá por desistido/a de su solicitud.",
+        "adapted": "Necesitamos tu currículum actualizado, con tus trabajos y formación más recientes.",
+        "reason": "Simplificación de la frase compleja y explicación del resultado de no aportar la documentación."
+      },
+      {
+        "original": "Tienes 10 días naturales desde la recepción de esta comunicación para aportar la documentación; en caso contrario, se le tendrá por desistido/a de su solicitud.",
+        "adapted": "Tienes 10 días para traer la documentación.",
+        "reason": "Simplificación de la frase compleja."
+      },
+      {
+        "original": "En caso contrario, se le tendrá por desistido/a de su solicitud.",
+        "adapted": "Si no traes la documentación en 10 días, se considera que no quieres el trabajo.",
+        "reason": "Explicación clara del resultado."
+      }
+    ],
+    "professions": [],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 3,
+      "words": 56,
+      "syllables": 123,
+      "fernandezHuerta": {
+        "value": 56.0,
+        "level": "bastante difícil"
+      },
+      "inflesz": {
+        "value": 51.3,
+        "level": "algo difícil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 12,
+      "words": 97,
+      "syllables": 202,
+      "fernandezHuerta": {
+        "value": 73.6,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 69.0,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": []
+  }
+}

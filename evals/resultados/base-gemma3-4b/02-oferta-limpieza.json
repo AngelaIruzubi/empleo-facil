@@ -1,0 +1,78 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "02-oferta-limpieza",
+  "original": "Empresa de servicios integrales precisa limpiador/a para oficinas en turno de tarde (L-V, 17:00-21:00 h). Imprescindible residir en Alcobendas o San Sebastián de los Reyes. Valorable certificado de discapacidad ≥33% (contratación bonificada). Contrato indefinido a tiempo parcial (20 h/sem). Retribución: SMI prorrateado.",
+  "segundos": 96.5,
+  "pictograma_s": 12.2,
+  "primer_texto_s": 13.3,
+  "texto_completo_s": 49.0,
+  "informe": {
+    "adaptedText": "Trabajo de limpieza en oficinas\n\nUna empresa necesita una persona para limpiar oficinas.\nEl trabajo es en horario de tarde.\n\n¿Cuándo trabajas?\nTrabajas de lunes a viernes.\nEl horario es de 5 de la tarde a 9 de la noche.\n\n¿Dónde trabajas?\nTrabajas en Alcobendas o San Sebastián de los Reyes.\nEsto significa que tienes que vivir en esas ciudades.\n\n¿Qué es importante?\nEs importante que tengas un certificado que diga que tienes problemas de salud.\nEste certificado es de al menos un 33%.",
+    "changes": [
+      {
+        "original": "Empresa de servicios integrales precisa limpiador/a para oficinas",
+        "adapted": "Trabajo de limpieza en oficinas",
+        "reason": "Simplificación de la frase inicial."
+      },
+      {
+        "original": "Imp.resindible residir en Alcobendas o San Sebastián de los Reyes. Imprescindible residir en Alcobendas o San Sebastián de los Reyes.",
+        "adapted": "Trabajas de lunes a viernes. El horario es de 5 de la tarde a 9 de la noche.",
+        "reason": "Simplificación de la frase y eliminación de la repetición."
+      },
+      {
+        "original": "Valorable certificado de discapacidad ≥33% (contratación bonificada).",
+        "adapted": "Esto significa que tienes que vivir en esas ciudades.",
+        "reason": "Explicación sencilla del requisito."
+      },
+      {
+        "original": "Valorable certificado de discapacidad ≥33% (contratación bonificada).",
+        "adapted": "Es importante que tengas un certificado que diga que tienes problemas de salud.",
+        "reason": "Explicación sencilla del requisito."
+      }
+    ],
+    "professions": [
+      "limpiador de oficinas",
+      "limpiador"
+    ],
+    "pictogram": {
+      "id": 15744,
+      "keyword": "limpiador",
+      "imageUrl": "https://static.arasaac.org/pictograms/15744/15744_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 5,
+      "words": 42,
+      "syllables": 105,
+      "fernandezHuerta": {
+        "value": 48.3,
+        "level": "difícil"
+      },
+      "inflesz": {
+        "value": 42.7,
+        "level": "algo difícil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 12,
+      "words": 84,
+      "syllables": 163,
+      "fernandezHuerta": {
+        "value": 83.3,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 78.9,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "PERCENTAGE",
+        "severity": "ERROR",
+        "fragment": "33%",
+        "sentence": "Este certificado es de al menos un 33%.",
+        "advice": "Evita los porcentajes. Usa \"muchos\", \"algunos\" o \"pocos\"."
+      }
+    ]
+  }
+}

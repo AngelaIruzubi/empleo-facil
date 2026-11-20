@@ -1,0 +1,111 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "16-oferta-administrativo",
+  "original": "Gestoría precisa auxiliar administrativo/a a media jornada (20 h, de lunes a viernes de 9:00 a 13:00). Funciones: archivo, escaneo de documentos, atención telefónica y registro de facturas. Imprescindible ESO. Valorable manejo de Excel y experiencia en tareas de oficina. Contrato temporal de 1 año. 650 € brutos/mes en 14 pagas.",
+  "segundos": 153.1,
+  "pictograma_s": null,
+  "primer_texto_s": 7.7,
+  "texto_completo_s": 46.6,
+  "informe": {
+    "adaptedText": "Trabajo de auxiliar administrativo en una gestoría\n\nUna empresa necesita una persona para trabajar en una gestoría.\nEs un trabajo a media jornada.\n\n¿Qué haces en este trabajo?\n- Guardas documentos en archivos.\n- Escaneas documentos con una máquina.\n- Hablas por teléfono con gente.\n- Escribes información sobre las facturas.\n\n¿Qué necesitas para este trabajo?\nNecesitas haber terminado el Bachillerato (ESO).\nEs bueno saber usar el programa Excel.\nTambién es bueno tener experiencia trabajando en una oficina.\n\n¿Cuánto trabajas?\nTrabajas 20 horas cada semana.\nTrabajas de lunes a viernes.\nEl horario es de 9 de la mañana a 13 de la tarde.\n\n¿Cuánto dinero ganas?\nGanarás 650 euros cada mes.\nEste dinero es el dinero que recibes antes de que te quiten impuestos.\nEl contrato es por un año.\n",
+    "changes": [
+      {
+        "original": "Gestoría precisa auxiliar administrativo/a a media jornada (20 h, de lunes a viernes de 9:00 a 13:00).",
+        "adapted": "Trabajo de auxiliar administrativo en una gestoría",
+        "reason": "Simplificación de la frase inicial."
+      },
+      {
+        "original": "archivo",
+        "adapted": "Guardas documentos en archivos.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "escaneo de documentos",
+        "adapted": "Escaneas documentos con una máquina.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "atención telefónica",
+        "adapted": "Hablas por teléfono con gente.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "registro de facturas",
+        "adapted": "Escribes información sobre las facturas.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Imprescindible ESO.",
+        "adapted": "Necesitas haber terminado el Bachillerato (ESO).",
+        "reason": "Explicación de la exigencia."
+      },
+      {
+        "original": "Valorable manejo de Excel",
+        "adapted": "Es bueno saber usar el programa Excel.",
+        "reason": "Explicación de la habilidad."
+      },
+      {
+        "original": "experiencia en tareas de oficina",
+        "adapted": "También es bueno tener experiencia trabajando en una oficina.",
+        "reason": "Explicación de la habilidad."
+      },
+      {
+        "original": "Funciones: archivo, escaneo de documentos, atención telefónica y registro de facturas.",
+        "adapted": "Trabajas 20 horas cada semana.",
+        "reason": "Reorganización de la información para facilitar la comprensión."
+      },
+      {
+        "original": "650 € brutos/mes en 14 pagas.",
+        "adapted": "Ganarás 650 euros cada mes. Este dinero es el dinero que recibes antes de que te quiten impuestos.",
+        "reason": "Explicación del concepto de "
+      }
+    ],
+    "professions": [
+      "auxiliar administrativo",
+      "administrativo"
+    ],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 6,
+      "words": 50,
+      "syllables": 115,
+      "fernandezHuerta": {
+        "value": 60.3,
+        "level": "normal"
+      },
+      "inflesz": {
+        "value": 55.2,
+        "level": "normal"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 20,
+      "words": 126,
+      "syllables": 270,
+      "fernandezHuerta": {
+        "value": 71.8,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 67.0,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "FORBIDDEN_SIGN",
+        "severity": "ERROR",
+        "fragment": "(ESO)",
+        "sentence": "Necesitas haber terminado el Bachillerato (ESO).",
+        "advice": "Evita el punto y coma, los puntos suspensivos, los paréntesis, los corchetes y los signos & $ # §."
+      },
+      {
+        "rule": "ACRONYM",
+        "severity": "WARNING",
+        "fragment": "ESO",
+        "sentence": "Necesitas haber terminado el Bachillerato (ESO).",
+        "advice": "Es una sigla. Explícala la primera vez que aparece."
+      }
+    ]
+  }
+}

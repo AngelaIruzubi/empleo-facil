@@ -1,0 +1,119 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "07-oferta-geriatria",
+  "original": "Residencia de personas mayores precisa Técnico/a en Cuidados Auxiliares de Enfermería (TCAE) para sustitución por baja maternal.\n\nFunciones: aseo e higiene de los residentes, ayuda en las comidas, movilizaciones y cambios posturales, y registro de incidencias.\n\nRequisitos imprescindibles: título de TCAE o certificado de profesionalidad de Atención sociosanitaria a personas dependientes en instituciones sociales.\n\nCondiciones: turnos rotativos de mañana, tarde y noche, incluidos fines de semana alternos. Contrato de sustitución hasta la reincorporación de la titular y, como máximo, hasta el miércoles 30 de junio de 2027. Salario según convenio de residencias privadas de tercera edad.",
+  "segundos": 172.1,
+  "pictograma_s": null,
+  "primer_texto_s": 13.9,
+  "texto_completo_s": 64.5,
+  "informe": {
+    "adaptedText": "Buscan técnico/a para cuidar a personas mayores\n\nUna residencia busca una persona para ayudar a cuidar a personas mayores.\nEsta persona va a sustituir a una enfermera que está de baja por tener un bebé.\n\n¿Qué tienes que hacer?\n- Limpiar y asearte a los residentes.\n- Ayudar a comer.\n- Ayudar a levantarse y a cambiar de posición.\n- Anotar cualquier problema que surja.\n\n¿Qué necesitas para este trabajo?\nNecesitas un título de técnico/a en cuidados auxiliares de enfermería.\nO necesitas un certificado que diga que sabes cuidar a personas mayores en una residencia.\n\n¿Qué horarios tienes?\nTrabajas en turnos que cambian cada día.\nLos turnos son de mañana, tarde o noche.\nTambién tienes que trabajar los fines de semana, pero no todos los fines de semana.\n\n¿Cuánto tiempo trabajas?\nTrabajas hasta que la enfermera que está de baja vuelva a trabajar.\nEsta fecha es el miércoles 30 de junio de 2027.\n\n¿Cuánto te pagan?\nTe pagan según lo que dice el convenio para las residencias de ancianos.",
+    "changes": [
+      {
+        "original": "Residencia de personas mayores precisa Técnico/a en Cuidados Auxiliares de Enfermería (TCAE) para sustitución por baja maternal.",
+        "adapted": "Buscan técnico/a para cuidar a personas mayores",
+        "reason": "Frase más directa y fácil de entender."
+      },
+      {
+        "original": "Funciones: aseo e higiene de los residentes, ayuda en las comidas, movilizaciones y cambios posturales, y registro de incidencias.",
+        "adapted": "Esta persona va a sustituir a una enfermera que está de baja por tener un bebé.",
+        "reason": "Explicación más clara de la función."
+      },
+      {
+        "original": "aseo e higiene de los residentes",
+        "adapted": "Limpiar y asearte a los residentes.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "ayuda en las comidas",
+        "adapted": "Ayudar a comer.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "movilizaciones y cambios posturales",
+        "adapted": "Ayudar a levantarse y a cambiar de posición.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "y registro de incidencias",
+        "adapted": "Anotar cualquier problema que surja.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "título de TCAE o certificado de profesionalidad de Atención sociosanitaria a personas dependientes en instituciones sociales.",
+        "adapted": "Necesitas un título de técnico/a en cuidados auxiliares de enfermería.",
+        "reason": "Simplificación de la información."
+      },
+      {
+        "original": "turnos rotativos de mañana, tarde y noche, incluidos fines de semana alternos.",
+        "adapted": "Trabajas en turnos que cambian cada día.",
+        "reason": "Frase más sencilla."
+      },
+      {
+        "original": "incluidos fines de semana alternos.",
+        "adapted": "También tienes que trabajar los fines de semana, pero no todos los fines de semana.",
+        "reason": "Explicación más clara."
+      },
+      {
+        "original": "Salario según convenio de residencias privadas de tercera edad.",
+        "adapted": "Te pagan según lo que dice el convenio para las residencias de ancianos.",
+        "reason": "Lenguaje más sencillo."
+      }
+    ],
+    "professions": [
+      "tcae",
+      "técnico en cuidados auxiliares de enfermería",
+      "auxiliar de enfermería"
+    ],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 6,
+      "words": 96,
+      "syllables": 239,
+      "fernandezHuerta": {
+        "value": 41.1,
+        "level": "difícil"
+      },
+      "inflesz": {
+        "value": 35.7,
+        "level": "muy difícil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 20,
+      "words": 165,
+      "syllables": 331,
+      "fernandezHuerta": {
+        "value": 78.1,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 73.6,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "técnico/a",
+        "sentence": "Buscan técnico/a para cuidar a personas mayores",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      },
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "16 palabras",
+        "sentence": "Esta persona va a sustituir a una enfermera que está de baja por tener un bebé.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      },
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "técnico/a",
+        "sentence": "Necesitas un título de técnico/a en cuidados auxiliares de enfermería.",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      }
+    ]
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "04-primer-dia",
+  "original": "El día de su incorporación deberá personarse en recepción a las 8:00 h con la documentación requerida (DNI, n.º de afiliación a la Seguridad Social y n.º de cuenta bancaria). Se le hará entrega de los EPI y del uniforme. Es obligatorio el uso de calzado de seguridad en todo momento dentro del almacén. La jornada incluye una pausa de 15 min. computable como tiempo de trabajo.",
+  "segundos": 148.4,
+  "pictograma_s": null,
+  "primer_texto_s": 8.9,
+  "texto_completo_s": 55.3,
+  "informe": {
+    "adaptedText": "Qué tienes que hacer cuando empiezas\n\nCuando empieces a trabajar, tienes que ir a la recepción a las 8 de la mañana.\nDebes llevar los documentos que te piden:\n- Tu DNI, que es tu documento de identidad.\n- El número de afiliación a la Seguridad Social. Este número te identifica como trabajador.\n- El número de cuenta bancaria donde te pagarán tu sueldo.\n\n¿Qué te dan al principio?\nTe dan el equipo de protección. Este equipo te ayuda a estar seguro.\nTambién te dan la ropa de trabajo, que es el uniforme.\n\n¿Qué tienes que usar siempre?\nSiempre tienes que usar zapatos de seguridad dentro del almacén.\nEstos zapatos protegen tus pies.\n\n¿Cuánto tiempo tienes de descanso?\nTienes una pausa de 15 minutos durante el día.\nEsta pausa se cuenta como tiempo de trabajo.\n",
+    "changes": [
+      {
+        "original": "El día de su incorporación deberá personarse en recepción a las 8:00 h",
+        "adapted": "Cuando empieces a trabajar, tienes que ir a la recepción a las 8 de la mañana.",
+        "reason": "Frase más directa y sencilla."
+      },
+      {
+        "original": "Se le hará entrega de los EPI y del uniforme.",
+        "adapted": "Debes llevar los documentos que te piden:",
+        "reason": "Reorganización de la frase para facilitar la comprensión."
+      },
+      {
+        "original": "n.º de afiliación a la Seguridad Social.",
+        "adapted": "Este número te identifica como trabajador.",
+        "reason": "Explicación de la sigla."
+      },
+      {
+        "original": "n.º de cuenta bancaria",
+        "adapted": "El número de cuenta bancaria donde te pagarán tu sueldo.",
+        "reason": "Aclaración del propósito de la cuenta."
+      },
+      {
+        "original": "Se le hará entrega de los EPI",
+        "adapted": "Te dan el equipo de protección. Este equipo te ayuda a estar seguro.",
+        "reason": "Explicación de la sigla."
+      },
+      {
+        "original": "Es obligatorio el uso de calzado de seguridad en todo momento dentro del almacén.",
+        "adapted": "Siempre tienes que usar zapatos de seguridad dentro del almacén.",
+        "reason": "Frase más directa y sencilla."
+      },
+      {
+        "original": "La jornada incluye una pausa de 15 min. computable como tiempo de trabajo.",
+        "adapted": "Tienes una pausa de 15 minutos durante el día.",
+        "reason": "Simplificación de la frase."
+      }
+    ],
+    "professions": [
+      "almacenista",
+      "mozo de almacén",
+      "operario de almacén"
+    ],
+    "pictogram": {
+      "id": 39974,
+      "keyword": "almacenista",
+      "imageUrl": "https://static.arasaac.org/pictograms/39974/39974_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 5,
+      "words": 67,
+      "syllables": 132,
+      "fernandezHuerta": {
+        "value": 75.0,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 70.7,
+        "level": "bastante fácil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 17,
+      "words": 132,
+      "syllables": 248,
+      "fernandezHuerta": {
+        "value": 86.2,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 82.0,
+        "level": "muy fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "16 palabras",
+        "sentence": "Cuando empieces a trabajar, tienes que ir a la recepción a las 8 de la mañana.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      },
+      {
+        "rule": "ACRONYM",
+        "severity": "WARNING",
+        "fragment": "DNI",
+        "sentence": "- Tu DNI, que es tu documento de identidad.",
+        "advice": "Es una sigla. Explícala la primera vez que aparece."
+      }
+    ]
+  }
+}

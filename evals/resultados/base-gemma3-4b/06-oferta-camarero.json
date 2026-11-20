@@ -1,0 +1,95 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "06-oferta-camarero",
+  "original": "Restaurante de cocina tradicional en el centro histórico busca camarero/a para servicio de sala y barra durante la temporada de verano.\n\nOfrecemos:\n- Contrato fijo discontinuo (llamamiento cada temporada, de mayo a octubre).\n- Jornada completa de 40 h semanales en turno partido, de martes a domingo.\n- Salario: 19.600 € brutos anuales con pagas extraordinarias prorrateadas.\n- Comida del personal incluida.\n\nRequisitos: experiencia mínima de 1 año como camarero/a. Se valorará nivel básico de inglés.",
+  "segundos": 132.9,
+  "pictograma_s": 12.8,
+  "primer_texto_s": 13.7,
+  "texto_completo_s": 68.1,
+  "informe": {
+    "adaptedText": "Buscamos camarero/a para un restaurante\n\nUn restaurante de cocina tradicional busca una persona para trabajar en el restaurante.\nEl restaurante está en el centro de la ciudad.\n\n¿Qué haces en este trabajo?\n- Sirves la comida a los clientes en las mesas.\n- Sirves las bebidas en la barra.\n\n¿Cuándo trabajas?\nTrabajas todos los días de la semana.\nTrabajas de martes a domingo.\nTrabajas 40 horas cada semana.\nTrabajas en turnos, es decir, trabajas por la mañana y por la tarde.\nTrabajas de mayo a octubre. Esto significa que trabajas durante el verano.\n\n¿Cuánto ganas?\nTe pagan 19.600 euros al año. Esto es la cantidad total que te pagan.\nAdemás, te pagan un poco más si trabajas los días festivos.\n\n¿Qué más tienes?\n- La empresa te da comida gratis.\n\n¿Qué necesitas para este trabajo?\nNecesitas tener al menos un año de experiencia trabajando como camarero/a.\nEs bueno saber un poco de inglés, pero no es obligatorio.",
+    "changes": [
+      {
+        "original": "Restaurante de cocina tradicional en el centro histórico busca camarero/a para servicio de sala y barra durante la temporada de verano.",
+        "adapted": "Buscamos camarero/a para un restaurante",
+        "reason": "Frase más directa y fácil de entender."
+      },
+      {
+        "original": "Contrato fijo discontinuo (llamamiento cada temporada, de mayo a octubre).",
+        "adapted": "Contrato fijo discontinuo (llamamiento cada temporada, de mayo a octubre).",
+        "reason": "Explicación simplificada de la forma de contrato."
+      },
+      {
+        "original": "Jornada completa de 40 h semanales en turno partido, de martes a domingo.",
+        "adapted": "Jornada completa de 40 h semanales en turno partido, de martes a domingo.",
+        "reason": "Palabra difícil explicada: turno partido."
+      },
+      {
+        "original": "Salario: 19.600 € brutos anuales con pagas extraordinarias prorrateadas.",
+        "adapted": "Salario: 19.600 € brutos anuales con pagas extraordinarias prorrateadas.",
+        "reason": "Palabra difícil explicada: brutos, prorrateadas."
+      },
+      {
+        "original": "Comida del personal incluida.",
+        "adapted": "Comida del personal incluida.",
+        "reason": "Explicación sencilla."
+      },
+      {
+        "original": "Se valorará nivel básico de inglés.",
+        "adapted": "Se valorará nivel básico de inglés.",
+        "reason": "Explicación de la valoración."
+      }
+    ],
+    "professions": [
+      "camarero",
+      "mesero"
+    ],
+    "pictogram": {
+      "id": 2681,
+      "keyword": "camarero",
+      "imageUrl": "https://static.arasaac.org/pictograms/2681/2681_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 8,
+      "words": 71,
+      "syllables": 174,
+      "fernandezHuerta": {
+        "value": 50.7,
+        "level": "bastante difícil"
+      },
+      "inflesz": {
+        "value": 45.3,
+        "level": "algo difícil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 22,
+      "words": 154,
+      "syllables": 303,
+      "fernandezHuerta": {
+        "value": 81.6,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 77.3,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "camarero/a",
+        "sentence": "Buscamos camarero/a para un restaurante",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      },
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "camarero/a.",
+        "sentence": "Necesitas tener al menos un año de experiencia trabajando como camarero/a.",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      }
+    ]
+  }
+}

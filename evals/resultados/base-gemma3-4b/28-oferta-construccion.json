@@ -1,0 +1,85 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "28-oferta-construccion",
+  "original": "Constructora precisa peones de albañilería para obra de edificación. Imprescindible curso de PRL de 20 horas (TPC) en vigor. Jornada de 40 h, de lunes a viernes de 8:00 a 17:00 con 1 h para comer. Contrato fijo de obra según convenio de la construcción. Dietas y desplazamiento a cargo de la empresa.",
+  "segundos": 108.4,
+  "pictograma_s": 7.1,
+  "primer_texto_s": 7.5,
+  "texto_completo_s": 45.7,
+  "informe": {
+    "adaptedText": "Busca peón de albañilería para una obra\n\nUna empresa necesita personas para trabajar en una obra de edificios.\n\n¿Qué tienes que hacer en este trabajo?\n- Ayudas a construir edificios.\n- Pones ladrillos y cemento.\n- Limpias el sitio de trabajo.\n\n¿Qué necesitas para este trabajo?\n- Necesitas un curso de seguridad. Es un curso de 20 horas.\n- El curso de seguridad debe estar en vigor. Esto significa que está actual.\n- Necesitas trabajar de lunes a viernes.\n- Necesitas trabajar de 8 de la mañana a 5 de la tarde.\n- Necesitas una hora para comer.\n\n¿Qué te ofrece la empresa?\n- Trabajas 40 horas cada semana.\n- La empresa paga tu comida.\n- La empresa te ayuda a ir y venir al trabajo.\n- Trabajas con un contrato de obra. Esto significa que tienes un trabajo fijo.\n\n¿Qué es un convenio?\nEl convenio es un acuerdo entre los trabajadores y la empresa.",
+    "changes": [
+      {
+        "original": "Constructora precisa peones de albañilería para obra de edificación.",
+        "adapted": "Busca peón de albañilería para una obra",
+        "reason": "Frase más sencilla y directa."
+      },
+      {
+        "original": "Imprescindible curso de PRL de 20 horas (TPC) en vigor.",
+        "adapted": "Necesitas un curso de seguridad. Es un curso de 20 horas.",
+        "reason": "Palabra técnica explicada."
+      },
+      {
+        "original": "en vigor",
+        "adapted": "El curso de seguridad debe estar en vigor. Esto significa que está actual.",
+        "reason": "Explicación más clara."
+      },
+      {
+        "original": "Jornada de 40 h, de lunes a viernes de 8:00 a 17:00 con 1 h para comer.",
+        "adapted": "Necesitas trabajar de lunes a viernes. Necesitas trabajar de 8 de la mañana a 5 de la tarde. Necesitas una hora para comer.",
+        "reason": "Frase más sencilla y directa."
+      },
+      {
+        "original": "Jornada de 40 h, de lunes a viernes de 8:00 a 17:00 con 1 h para comer.",
+        "adapted": "Trabajas 40 horas cada semana.",
+        "reason": "Simplificación de la jornada."
+      },
+      {
+        "original": "Dietas y desplazamiento a cargo de la empresa.",
+        "adapted": "La empresa paga tu comida. La empresa te ayuda a ir y venir al trabajo.",
+        "reason": "Explicación más clara de los beneficios."
+      },
+      {
+        "original": "Contrato fijo de obra según convenio de la construcción.",
+        "adapted": "Trabajas con un contrato de obra. Esto significa que tienes un trabajo fijo.",
+        "reason": "Explicación más clara del tipo de contrato."
+      }
+    ],
+    "professions": [
+      "albañil",
+      "peón de albañilería"
+    ],
+    "pictogram": {
+      "id": 2642,
+      "keyword": "albañil",
+      "imageUrl": "https://static.arasaac.org/pictograms/2642/2642_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 5,
+      "words": 53,
+      "syllables": 101,
+      "fernandezHuerta": {
+        "value": 81.7,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 77.5,
+        "level": "bastante fácil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 22,
+      "words": 143,
+      "syllables": 288,
+      "fernandezHuerta": {
+        "value": 79.4,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 74.9,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": []
+  }
+}

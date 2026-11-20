@@ -1,0 +1,93 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "14-oferta-reparto",
+  "original": "Buscamos repartidor/a para paquetería urbana. Requisitos: carné B con más de 1 año de antigüedad (imprescindible), conocer la zona. Furgoneta y móvil de empresa. Jornada de 40 h, L-S en turnos de 8 h con 2 días libres rotativos. Retribución: salario fijo de 1.200 € netos + variable por entregas realizadas. Incorporación inmediata.",
+  "segundos": 126.4,
+  "pictograma_s": 7.3,
+  "primer_texto_s": 8.0,
+  "texto_completo_s": 51.9,
+  "informe": {
+    "adaptedText": "Necesitamos un repartidor/a\n\nBuscamos una persona para llevar paquetes por la ciudad.\n\n¿Qué necesitas para este trabajo?\n- Necesitas tener el carné B. Este carné te permite conducir.\n- El carné tiene que tener más de un año de antigüedad.\n- Necesitas saber bien la ciudad donde trabajas.\n\n¿Qué te damos?\n- La empresa te da una furgoneta para llevar los paquetes.\n- La empresa te da un móvil para que te comuniques.\n\n¿Cuántas horas trabajas?\nTrabajas 40 horas cada semana.\n- Trabajas de lunes a sábado.\n- Trabajas 8 horas cada día.\n- Tienes 2 días libres, pero cambian cada semana.\n\n¿Cuánto ganas?\n- Te pagamos una cantidad fija de 1.200 euros cada mes, después de impuestos.\n- Además, ganas dinero por cada paquete que entregas.\n\n¿Cuándo empiezas?\nEmpiezas a trabajar ahora mismo.",
+    "changes": [
+      {
+        "original": "Buscamos repartidor/a para paquetería urbana.",
+        "adapted": "Necesitamos un repartidor/a",
+        "reason": "Frase más directa y sencilla."
+      },
+      {
+        "original": "carné B con más de 1 año de antigüedad (imprescindible)",
+        "adapted": "carné B con más de 1 año de antigüedad (imprescindible)",
+        "reason": "Se explica el significado de 'carné B'."
+      },
+      {
+        "original": "conocer la zona",
+        "adapted": "conocer la zona",
+        "reason": "Se explica que es saber bien la ciudad."
+      },
+      {
+        "original": "Furgoneta y móvil de empresa",
+        "adapted": "Furgoneta y móvil de empresa",
+        "reason": "Se explica que la empresa proporciona estos elementos."
+      },
+      {
+        "original": "Jornada de 40 h, L-S en turnos de 8 h con 2 días libres rotativos.",
+        "adapted": "Jornada de 40 h, L-S en turnos de 8 h con 2 días libres rotativos.",
+        "reason": "Se simplifica la descripción de la jornada laboral."
+      },
+      {
+        "original": "Retribución: salario fijo de 1.200 € netos + variable por entregas realizadas.",
+        "adapted": "Retribución: salario fijo de 1.200 € netos + variable por entregas realizadas.",
+        "reason": "Se explica que 'netos' significa después de impuestos."
+      },
+      {
+        "original": "Incorporación inmediata.",
+        "adapted": "Incorporación inmediata.",
+        "reason": "Se añade una frase explicativa."
+      }
+    ],
+    "professions": [
+      "repartidor",
+      "mensajero"
+    ],
+    "pictogram": {
+      "id": 9194,
+      "keyword": "repartidor",
+      "imageUrl": "https://static.arasaac.org/pictograms/9194/9194_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 6,
+      "words": 51,
+      "syllables": 115,
+      "fernandezHuerta": {
+        "value": 62.9,
+        "level": "normal"
+      },
+      "inflesz": {
+        "value": 57.9,
+        "level": "normal"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 19,
+      "words": 124,
+      "syllables": 254,
+      "fernandezHuerta": {
+        "value": 77.3,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 72.7,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "repartidor/a",
+        "sentence": "Necesitamos un repartidor/a",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      }
+    ]
+  }
+}

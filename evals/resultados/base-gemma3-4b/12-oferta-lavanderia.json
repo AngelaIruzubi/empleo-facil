@@ -1,0 +1,118 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "12-oferta-lavanderia",
+  "original": "Centro Especial de Empleo (CEE) incorpora operarios/as de lavandería industrial.\nImprescindible: certificado de discapacidad igual o superior al 33 %.\nTareas: clasificación de ropa, carga de lavadoras, planchado con calandra y plegado.\nTurno de mañana de 6:00 a 14:00, de lunes a viernes. Jornada completa.\nSalario mínimo interprofesional. Contrato temporal de 6 meses con posibilidad de indefinido.",
+  "segundos": 164.5,
+  "pictograma_s": null,
+  "primer_texto_s": 15.0,
+  "texto_completo_s": 81.2,
+  "informe": {
+    "adaptedText": "Trabajo en una lavandería especial\n\nEl Centro Especial de Empleo (CEE) busca gente para trabajar en una lavandería.\nEsta lavandería es especial para personas con discapacidad.\n\n¿Qué tienes que tener?\nNecesitas un certificado que diga que tienes una discapacidad.\nEste certificado debe ser igual o superior al 33%.\nEsto significa que tienes una discapacidad que te ayuda a encontrar este trabajo.\n\n¿Qué haces en este trabajo?\n- Clasificas la ropa, es decir, separas la ropa por colores y tamaños.\n- Cargas las lavadoras con la ropa.\n- Planchas la ropa con una máquina especial llamada calandra.\n- Pones la ropa doblada y lista.\n\n¿Cuándo trabajas?\nTrabajas de lunes a viernes, por la mañana.\nEl horario es de 6 de la mañana a 2 de la tarde.\n\n¿Cuánto ganas?\nTe pagarán el salario mínimo, que es la cantidad mínima que se paga por trabajar.\n\n¿Qué tipo de contrato tienes?\nTienes un contrato temporal, que dura 6 meses.\nSi te gusta el trabajo, la empresa puede ofrecerte un contrato de trabajo para siempre (indefinido).",
+    "changes": [
+      {
+        "original": "Centro Especial de Empleo (CEE)",
+        "adapted": "Centro Especial de Empleo (CEE)",
+        "reason": "Simplificación y claridad."
+      },
+      {
+        "original": "Imprescindible: certificado de discapacidad igual o superior al 33 %",
+        "adapted": "necesitas un certificado que diga que tienes una discapacidad.",
+        "reason": "Explicación más clara y sencilla."
+      },
+      {
+        "original": "clasificación de ropa",
+        "adapted": "clasificación de ropa, es decir, separas la ropa por colores y tamaños.",
+        "reason": "Añadida la explicación para facilitar la comprensión."
+      },
+      {
+        "original": "planchado con calandra y plegado",
+        "adapted": "planchado con calandra",
+        "reason": "Simplificado para facilitar la comprensión."
+      },
+      {
+        "original": "Turno de mañana de 6:00 a 14:00, de lunes a viernes. Jornada completa.",
+        "adapted": "Turno de mañana de 6:00 a 14:00, de lunes a viernes. Jornada completa.",
+        "reason": "Repetición eliminada para mayor claridad."
+      },
+      {
+        "original": "Salario mínimo interprofesional.",
+        "adapted": "Salario mínimo interprofesional.",
+        "reason": "Explicación implícita."
+      },
+      {
+        "original": "contrato temporal de 6 meses con posibilidad de indefinido.",
+        "adapted": "contrato temporal de 6 meses con posibilidad de indefinido.",
+        "reason": "Explicación más directa."
+      }
+    ],
+    "professions": [
+      "operario de lavandería",
+      "lavandero",
+      "personal de lavandería industrial"
+    ],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 7,
+      "words": 56,
+      "syllables": 138,
+      "fernandezHuerta": {
+        "value": 50.8,
+        "level": "bastante difícil"
+      },
+      "inflesz": {
+        "value": 45.3,
+        "level": "algo difícil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 20,
+      "words": 168,
+      "syllables": 345,
+      "fernandezHuerta": {
+        "value": 75.1,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 70.5,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "FORBIDDEN_SIGN",
+        "severity": "ERROR",
+        "fragment": "(CEE)",
+        "sentence": "El Centro Especial de Empleo (CEE) busca gente para trabajar en una lavandería.",
+        "advice": "Evita el punto y coma, los puntos suspensivos, los paréntesis, los corchetes y los signos & $ # §."
+      },
+      {
+        "rule": "ACRONYM",
+        "severity": "WARNING",
+        "fragment": "CEE",
+        "sentence": "El Centro Especial de Empleo (CEE) busca gente para trabajar en una lavandería.",
+        "advice": "Es una sigla. Explícala la primera vez que aparece."
+      },
+      {
+        "rule": "PERCENTAGE",
+        "severity": "ERROR",
+        "fragment": "33%",
+        "sentence": "Este certificado debe ser igual o superior al 33%.",
+        "advice": "Evita los porcentajes. Usa \"muchos\", \"algunos\" o \"pocos\"."
+      },
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "16 palabras",
+        "sentence": "Si te gusta el trabajo, la empresa puede ofrecerte un contrato de trabajo para siempre (indefinido).",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      },
+      {
+        "rule": "FORBIDDEN_SIGN",
+        "severity": "ERROR",
+        "fragment": "(indefinido)",
+        "sentence": "Si te gusta el trabajo, la empresa puede ofrecerte un contrato de trabajo para siempre (indefinido).",
+        "advice": "Evita el punto y coma, los puntos suspensivos, los paréntesis, los corchetes y los signos & $ # §."
+      }
+    ]
+  }
+}

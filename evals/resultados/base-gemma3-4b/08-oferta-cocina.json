@@ -1,0 +1,86 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "08-oferta-cocina",
+  "original": "Se necesita ayudante de cocina para restaurante de menú del día. Imprescindible carné de manipulador de alimentos. Jornada parcial de 25 horas semanales, de lunes a viernes de 11:00 a 16:00. Incorporación el lunes 11 de enero de 2027. Contrato de 6 meses con posibilidad de pasar a indefinido. Salario: 900 € brutos al mes más la parte proporcional de las pagas extra. No es necesaria experiencia.",
+  "segundos": 125.6,
+  "pictograma_s": 8.1,
+  "primer_texto_s": 8.6,
+  "texto_completo_s": 57.7,
+  "informe": {
+    "adaptedText": "Trabajo de ayudante de cocina en restaurante\n\nBuscamos una persona para ayudar en la cocina de un restaurante.\nEl restaurante hace menú del día, es decir, ofrece un menú diferente cada día.\n\n¿Qué tienes que hacer?\n- Ayudas a preparar la comida.\n- Sirves la comida en los platos.\n- Limpias los platos, los vasos y los cubiertos.\n\n¿Qué necesitas para este trabajo?\nNecesitas el carné de manipulador de alimentos.\nEste carné demuestra que sabes tratar la comida de forma limpia y segura.\n\n¿Cuántas horas trabajas?\nTrabajas 25 horas cada semana.\nTrabajas de lunes a viernes.\nEl horario es de 11 de la mañana a 4 de la tarde.\n\n¿Cuándo empiezas?\nEmpiezas el lunes 11 de enero de 2027.\n\n¿Cuánto ganas?\nTe pagamos 900 euros cada mes.\nEsta cantidad es antes de que te quiten las pagas extra.\n\n¿Qué más?\nEl contrato es de 6 meses.\nSi te gusta el trabajo, puedes tener un contrato de trabajo para siempre.\nNo hace falta que tengas experiencia.\n\n",
+    "changes": [
+      {
+        "original": "Se necesita ayudante de cocina para restaurante de menú del día.",
+        "adapted": "Trabajo de ayudante de cocina en restaurante",
+        "reason": "Frase más directa y sencilla."
+      },
+      {
+        "original": "Imp.rescindible carné de manipulador de alimentos.",
+        "adapted": "El restaurante hace menú del día, es decir, ofrece un menú diferente cada día.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Jornada parcial de 25 horas semanales, de lunes a viernes de 11:00 a 16:00.",
+        "adapted": "Trabajas 25 horas cada semana.",
+        "reason": "Frase más corta y fácil de entender."
+      },
+      {
+        "original": "Incorporación el lunes 11 de enero de 2027.",
+        "adapted": "Empiezas el lunes 11 de enero de 2027.",
+        "reason": "Forma más clara y directa."
+      },
+      {
+        "original": "Salario: 900 € brutos al mes más la parte proporcional de las pagas extra.",
+        "adapted": "Te pagamos 900 euros cada mes.",
+        "reason": "Palabra difícil quitada y explicación simplificada."
+      },
+      {
+        "original": "Contrato de 6 meses con posibilidad de pasar a indefinido.",
+        "adapted": "El contrato es de 6 meses.",
+        "reason": "Frase más clara y directa."
+      },
+      {
+        "original": "No es necesaria experiencia.",
+        "adapted": "No hace falta que tengas experiencia.",
+        "reason": "Forma más amable y directa."
+      }
+    ],
+    "professions": [
+      "cocinero",
+      "pinche de cocina",
+      "pinche"
+    ],
+    "pictogram": {
+      "id": 30526,
+      "keyword": "cocinero",
+      "imageUrl": "https://static.arasaac.org/pictograms/30526/30526_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 7,
+      "words": 66,
+      "syllables": 135,
+      "fernandezHuerta": {
+        "value": 74.5,
+        "level": "bastante fácil"
+      },
+      "inflesz": {
+        "value": 70.0,
+        "level": "bastante fácil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 23,
+      "words": 162,
+      "syllables": 307,
+      "fernandezHuerta": {
+        "value": 86.0,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 81.7,
+        "level": "muy fácil"
+      }
+    },
+    "violations": []
+  }
+}

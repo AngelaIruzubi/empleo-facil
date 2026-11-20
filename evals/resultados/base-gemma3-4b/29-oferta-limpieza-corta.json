@@ -1,0 +1,83 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "29-oferta-limpieza-corta",
+  "original": "Se busca limp. ofic. L-V 6-9h, 15h/sem, 600€ br/mes. Incorp. inmed. Interesados/as enviar CV por la web.",
+  "segundos": 96.9,
+  "pictograma_s": 4.7,
+  "primer_texto_s": 5.1,
+  "texto_completo_s": 51.4,
+  "informe": {
+    "adaptedText": "Trabajo de limpieza de oficinas\n\nEstamos buscando una persona para limpiar oficinas.\n\n¿Qué tienes que hacer?\n- Limpiar las oficinas.\n\n¿Cuándo trabajas?\nTrabajas de lunes a viernes.\n- De 6 de la mañana a 9 de la mañana.\n- De 15 de la tarde hasta las 19 de la tarde.\n\n¿Cuánto ganas?\nTe pagamos 600 euros al mes.\nEste dinero es tu salario, es decir, lo que te dan por trabajar.\n\n¿Cuándo empiezas?\nEmpiezas inmediatamente.\n\n¿Cómo podemos contactarte?\nSi te interesa, envía tu currículum a través de la página web de la empresa.",
+    "changes": [
+      {
+        "original": "L-V 6-9h, 15h/sem",
+        "adapted": "L-V 6-9h, 15h/sem",
+        "reason": "Abreviaturas explicadas."
+      },
+      {
+        "original": "15h/sem",
+        "adapted": "15/sem",
+        "reason": "Abreviatura explicada."
+      },
+      {
+        "original": "600€ br/mes",
+        "adapted": "600€ br/mes",
+        "reason": "Palabra difícil explicada: 'br' significa 'bruto', es decir, sin impuestos."
+      },
+      {
+        "original": "Incorp. inmed.",
+        "adapted": "Incorp. inmed.",
+        "reason": "Palabra difícil explicada: 'Incorp.' significa 'incorporación'."
+      },
+      {
+        "original": "Interesados/as enviar CV por la web",
+        "adapted": "Interesados/as enviar CV por la web",
+        "reason": "Se mantiene la frase para que sea clara."
+      }
+    ],
+    "professions": [
+      "limpiador de oficinas",
+      "limpiador"
+    ],
+    "pictogram": {
+      "id": 15744,
+      "keyword": "limpiador",
+      "imageUrl": "https://static.arasaac.org/pictograms/15744/15744_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 6,
+      "words": 17,
+      "syllables": 27,
+      "fernandezHuerta": {
+        "value": 108.7,
+        "level": "muy fácil"
+      },
+      "inflesz": {
+        "value": 105.1,
+        "level": "muy fácil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 15,
+      "words": 90,
+      "syllables": 171,
+      "fernandezHuerta": {
+        "value": 86.7,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 82.5,
+        "level": "muy fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "MENTE_WORD",
+        "severity": "WARNING",
+        "fragment": "inmediatamente",
+        "sentence": "Empiezas inmediatamente.",
+        "advice": "Evita las palabras en -mente: \"rápidamente\" pasa a \"rápido\"."
+      }
+    ]
+  }
+}

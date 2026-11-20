@@ -1,0 +1,97 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "26-oferta-cajero",
+  "original": "¿Te gusta el trato con el público? Cadena de tiendas de bricolaje busca cajeros/as. No se requiere experiencia: la formación corre a cargo de la empresa. Contrato de 3 meses + 6 meses + indefinido. Jornada de 30 h en horario de tarde, de lunes a sábado. Salario según convenio. Periodo de prueba de 15 días.",
+  "segundos": 121.5,
+  "pictograma_s": null,
+  "primer_texto_s": 11.5,
+  "texto_completo_s": 53.6,
+  "informe": {
+    "adaptedText": "Trabaja como cajero/a en una tienda de bricolaje\n\n¿Te gusta hablar con la gente?\nUna tienda de bricolaje busca un/a cajero/a.\n\n¿Qué tienes que hacer en este trabajo?\n- Recibes el dinero de la gente que compra.\n- Ayudas a la gente a encontrar lo que necesitan en la tienda.\n\n¿Qué necesitas para este trabajo?\n- No necesitas experiencia.\n- La empresa te enseña a trabajar.\n\n¿Cuánto tiempo dura el trabajo?\nEl trabajo dura 3 meses al principio.\nDespués, dura otros 6 meses.\nSi te gusta el trabajo, puedes trabajar para siempre.\n\n¿Cuántas horas trabajas?\nTrabajas 30 horas cada semana.\nTrabajas de lunes a sábado.\nEl horario es por la tarde.\n\n¿Cuánto ganas?\nTe pagan lo que dice el convenio.\nEl convenio es un acuerdo entre la empresa y los trabajadores.\n\n¿Cuánto tiempo tienes que probarte?\nTienes que probarte 15 días para ver si te gusta el trabajo.",
+    "changes": [
+      {
+        "original": "¿Te gusta el trato con el público? Cadena de tiendas de bricolaje busca cajeros/as.",
+        "adapted": "Trabaja como cajero/a en una tienda de bricolaje",
+        "reason": "Frase más directa y sencilla."
+      },
+      {
+        "original": "No se requiere experiencia: la formación corre a cargo de la empresa.",
+        "adapted": "No se requiere experiencia: la formación corre a cargo de la empresa.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Contrato de 3 meses + 6 meses + indefinido.",
+        "adapted": "El trabajo dura 3 meses al principio. Después, dura otros 6 meses. Si te gusta el trabajo, puedes trabajar para siempre.",
+        "reason": "Simplificado para facilitar la comprensión."
+      },
+      {
+        "original": "Jornada de 30 h en horario de tarde, de lunes a sábado.",
+        "adapted": "Trabajas 30 horas cada semana. Trabajas de lunes a sábado. El horario es por la tarde.",
+        "reason": "Lenguaje más claro y directo."
+      },
+      {
+        "original": "Salario según convenio.",
+        "adapted": "Te pagan lo que dice el convenio. El convenio es un acuerdo entre la empresa y los trabajadores.",
+        "reason": "Explicación sencilla del concepto."
+      },
+      {
+        "original": "Periodo de prueba de 15 días.",
+        "adapted": "Tienes que probarte 15 días para ver si te gusta el trabajo.",
+        "reason": "Explicación más clara del periodo de prueba."
+      }
+    ],
+    "professions": [
+      "cajero"
+    ],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 7,
+      "words": 54,
+      "syllables": 104,
+      "fernandezHuerta": {
+        "value": 83.4,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 79.1,
+        "level": "bastante fácil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 22,
+      "words": 144,
+      "syllables": 278,
+      "fernandezHuerta": {
+        "value": 84.3,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 80.0,
+        "level": "muy fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "cajero/a",
+        "sentence": "Trabaja como cajero/a en una tienda de bricolaje",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      },
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "un/a",
+        "sentence": "Una tienda de bricolaje busca un/a cajero/a.",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      },
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "cajero/a.",
+        "sentence": "Una tienda de bricolaje busca un/a cajero/a.",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      }
+    ]
+  }
+}

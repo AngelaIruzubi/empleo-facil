@@ -1,0 +1,103 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "22-oferta-recepcion-cee",
+  "original": "Centro Especial de Empleo selecciona recepcionista-telefonista para oficinas. Requisito indispensable: certificado de discapacidad ≥ 33 %. Funciones: atención de llamadas, recepción de visitas y reparto de paquetería interna. Jornada continua de 9:00 a 14:00 (25 h/semana). Contrato indefinido. 780 € brutos/mes x 14 pagas. Se valorará conocimiento de inglés.",
+  "segundos": 113.3,
+  "pictograma_s": 6.8,
+  "primer_texto_s": 7.3,
+  "texto_completo_s": 46.7,
+  "informe": {
+    "adaptedText": "Trabajo de recepcionista y telefonista\n\nUn centro busca una persona para trabajar en la recepción y contestar teléfonos.\n\n¿Qué haces en este trabajo?\n- Recibes las llamadas de gente que llama al centro.\n- Recibes a las personas que vienen a visitar el centro.\n- Llevas las cajas y paquetes dentro del centro.\n\n¿Qué necesitas para este trabajo?\nNecesitas un certificado que diga que tienes una discapacidad.\nEl certificado tiene que decir que tu discapacidad es mayor o igual al 33%.\n\n¿Cuántas horas trabajas?\nTrabajas 25 horas cada semana.\nEl horario es de 9 de la mañana a 2 de la tarde.\n\n¿Cuánto ganas?\nTe pagan 780 euros cada mes.\nEstos euros son la cantidad total que recibes.\n\n¿Qué es bueno tener, pero no es obligatorio?\nEs bueno saber hablar inglés.\n\n¿Qué tipo de contrato tienes?\nTienes un contrato de trabajo que dura para siempre.\n",
+    "changes": [
+      {
+        "original": "Centro Especial de Empleo selecciona recepcionista-telefonista para oficinas.",
+        "adapted": "Trabajo de recepcionista y telefonista",
+        "reason": "Simplificación y claridad."
+      },
+      {
+        "original": "atención de llamadas",
+        "adapted": "Recibes las llamadas de gente que llama al centro.",
+        "reason": "Frase más clara y directa."
+      },
+      {
+        "original": "recepción de visitas",
+        "adapted": "Recibes a las personas que vienen a visitar el centro.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "reparto de paquetería interna",
+        "adapted": "Llevas las cajas y paquetes dentro del centro.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Requisito indispensable: certificado de discapacidad ≥ 33 %",
+        "adapted": "Necesitas un certificado que diga que tienes una discapacidad.",
+        "reason": "Simplificación y lenguaje más accesible."
+      },
+      {
+        "original": "Funciones: atención de llamadas, recepción de visitas y reparto de paquetería interna.",
+        "adapted": "El certificado tiene que decir que tu discapacidad es mayor o igual al 33%",
+        "reason": "Clarificación del requisito."
+      },
+      {
+        "original": "Jornada continua de 9:00 a 14:00 (25 h/semana)",
+        "adapted": "Trabajas 25 horas cada semana.",
+        "reason": "Simplificación del horario."
+      },
+      {
+        "original": "780 € brutos/mes x 14 pagas.",
+        "adapted": "Te pagan 780 euros cada mes.",
+        "reason": "Eliminación de términos complejos y explicación de "
+      },
+      {
+        "original": "Contrato indefinido.",
+        "adapted": "Tienes un contrato de trabajo que dura para siempre.",
+        "reason": "Explicación del concepto."
+      }
+    ],
+    "professions": [
+      "recepcionista",
+      "telefonista"
+    ],
+    "pictogram": {
+      "id": 22072,
+      "keyword": "recepcionista",
+      "imageUrl": "https://static.arasaac.org/pictograms/22072/22072_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 7,
+      "words": 46,
+      "syllables": 123,
+      "fernandezHuerta": {
+        "value": 39.7,
+        "level": "difícil"
+      },
+      "inflesz": {
+        "value": 33.7,
+        "level": "muy difícil"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 19,
+      "words": 142,
+      "syllables": 275,
+      "fernandezHuerta": {
+        "value": 83.0,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 78.7,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "PERCENTAGE",
+        "severity": "ERROR",
+        "fragment": "33%",
+        "sentence": "El certificado tiene que decir que tu discapacidad es mayor o igual al 33%.",
+        "advice": "Evita los porcentajes. Usa \"muchos\", \"algunos\" o \"pocos\"."
+      }
+    ]
+  }
+}

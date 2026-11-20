@@ -1,0 +1,97 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "13-oferta-dependiente",
+  "original": "Supermercado de barrio busca dependiente/a para fines de semana. Jornada de 16 horas: sábados y domingos de 9:00 a 17:00. Contrato indefinido a tiempo parcial. Salario según convenio de comercio de alimentación. Funciones: atención en caja y en el mostrador de charcutería. Se valorará experiencia en corte de fiambre.",
+  "segundos": 131.3,
+  "pictograma_s": null,
+  "primer_texto_s": 7.8,
+  "texto_completo_s": 53.8,
+  "informe": {
+    "adaptedText": "Buscan dependiente/a para trabajar los fines de semana\n\nUn supermercado busca una persona para trabajar los fines de semana.\nEl supermercado está en tu barrio.\n\n¿Qué tienes que hacer?\n- Ayudas a los clientes en la caja.\n- Sirves la comida en el mostrador de charcutería.\n- Cortas fiambres (carne para comer).\n\n¿Cuándo trabajas?\nTrabajas los sábados y los domingos.\nEl horario es de 9 de la mañana a 5 de la tarde.\n\n¿Qué tipo de contrato tienes?\nTienes un contrato indefinido. Esto significa que puedes trabajar en el supermercado por mucho tiempo.\nEl trabajo es a tiempo parcial. Esto significa que trabajas pocas horas a la semana.\n\n¿Cuánto ganas?\nTe pagarán lo que dice el convenio. El convenio es un acuerdo entre los trabajadores y la empresa.\n\n¿Qué es bueno tener?\nEs bueno saber cortar fiambres. Esto significa que sabes cómo cortar carne para comer.\n",
+    "changes": [
+      {
+        "original": "Supermercado de barrio busca dependiente/a para fines de semana",
+        "adapted": "Buscan dependiente/a para trabajar los fines de semana",
+        "reason": "Frase más directa y fácil de entender."
+      },
+      {
+        "original": "emplatado",
+        "adapted": "Sirves la comida en el mostrador de charcutería.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Se valorará experiencia en corte de fiambre.",
+        "adapted": "Cortas fiambres (carne para comer).",
+        "reason": "Palabra difícil explicada con un ejemplo."
+      },
+      {
+        "original": "sábados y domingos de 9:00 a 17:00.",
+        "adapted": "Trabajas los sábados y los domingos.",
+        "reason": "Horario más claro."
+      },
+      {
+        "original": "Contrato indefinido a tiempo parcial.",
+        "adapted": "Tienes un contrato indefinido. Esto significa que puedes trabajar en el supermercado por mucho tiempo.",
+        "reason": "Explicación más sencilla del concepto."
+      },
+      {
+        "original": "Salario según convenio de comercio de alimentación.",
+        "adapted": "Te pagarán lo que dice el convenio. El convenio es un acuerdo entre los trabajadores y la empresa.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Se valorará experiencia en corte de fiambre.",
+        "adapted": "Es bueno saber cortar fiambres. Esto significa que sabes cómo cortar carne para comer.",
+        "reason": "Explicación más clara y sencilla."
+      }
+    ],
+    "professions": [
+      "dependiente",
+      "comerciante",
+      "cajero"
+    ],
+    "pictogram": null,
+    "readabilityBefore": {
+      "sentences": 6,
+      "words": 49,
+      "syllables": 108,
+      "fernandezHuerta": {
+        "value": 66.3,
+        "level": "normal"
+      },
+      "inflesz": {
+        "value": 61.4,
+        "level": "normal"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 21,
+      "words": 143,
+      "syllables": 280,
+      "fernandezHuerta": {
+        "value": 82.4,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 78.0,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "SLASH",
+        "severity": "WARNING",
+        "fragment": "dependiente/a",
+        "sentence": "Buscan dependiente/a para trabajar los fines de semana",
+        "advice": "Evita la barra /. Escribe las palabras completas."
+      },
+      {
+        "rule": "FORBIDDEN_SIGN",
+        "severity": "ERROR",
+        "fragment": "(carne para comer)",
+        "sentence": "- Cortas fiambres (carne para comer).",
+        "advice": "Evita el punto y coma, los puntos suspensivos, los paréntesis, los corchetes y los signos & $ # §."
+      }
+    ]
+  }
+}

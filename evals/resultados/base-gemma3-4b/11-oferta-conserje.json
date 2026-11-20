@@ -1,0 +1,102 @@
+{
+  "prueba": "base-gemma3-4b",
+  "texto": "11-oferta-conserje",
+  "original": "Colegio concertado necesita conserje. Horario de 7:30 a 15:00 de lunes a viernes. Contrato indefinido desde el inicio. Salario de 1.150 € brutos en 14 pagas. Funciones: apertura y cierre del centro, control de accesos, reparto de correo y pequeñas tareas de mantenimiento. Se requiere certificado negativo del Registro Central de Delincuentes Sexuales.",
+  "segundos": 125.8,
+  "pictograma_s": 6.0,
+  "primer_texto_s": 6.5,
+  "texto_completo_s": 50.4,
+  "informe": {
+    "adaptedText": "Trabajo de conserje en un colegio\n\nUn colegio necesita una persona para limpiar y cuidar el colegio.\n\n¿Qué haces en este trabajo?\n- Abres el colegio por la mañana.\n- Cierras el colegio por la tarde.\n- Controlas quién entra y sale del colegio.\n- Entregas el correo a los profesores y alumnos.\n- Haces pequeñas reparaciones si es necesario.\n\n¿Cuándo trabajas?\nTrabajas de lunes a viernes.\nEl horario es de 7 y media de la mañana a 3 y media de la tarde.\n\n¿Qué tipo de contrato tienes?\nTienes un contrato indefinido. Esto significa que trabajas en el colegio por mucho tiempo.\n\n¿Cuánto ganas?\nTe pagan 1.150 euros cada mes. Esto es la cantidad que te dan antes de que se quiten los impuestos.\n\n¿Qué necesitas para este trabajo?\nNecesitas un certificado. Este certificado demuestra que no has hecho nada malo con niños.\nNecesitas este certificado del Registro Central de Delincuentes Sexuales.",
+    "changes": [
+      {
+        "original": "Colegio concertado necesita conserje.",
+        "adapted": "Trabajo de conserje en un colegio",
+        "reason": "Simplificado y más directo."
+      },
+      {
+        "original": "apertura y cierre del centro",
+        "adapted": "Abres el colegio por la mañana.",
+        "reason": "Lenguaje más sencillo."
+      },
+      {
+        "original": "control de accesos",
+        "adapted": "Controlas quién entra y sale del colegio.",
+        "reason": "Explicación sencilla."
+      },
+      {
+        "original": "reparto de correo",
+        "adapted": "Entregas el correo a los profesores y alumnos.",
+        "reason": "Explicación sencilla."
+      },
+      {
+        "original": "pequeñas tareas de mantenimiento",
+        "adapted": "Haces pequeñas reparaciones si es necesario.",
+        "reason": "Explicación sencilla."
+      },
+      {
+        "original": "Horario de 7:30 a 15:00 de lunes a viernes.",
+        "adapted": "Trabajas de lunes a viernes.",
+        "reason": "Simplificado."
+      },
+      {
+        "original": "Contrato indefinido desde el inicio.",
+        "adapted": "Tienes un contrato indefinido. Esto significa que trabajas en el colegio por mucho tiempo.",
+        "reason": "Explicación clara del concepto."
+      },
+      {
+        "original": "Salario de 1.150 € brutos en 14 pagas.",
+        "adapted": "Te pagan 1.150 euros cada mes. Esto es la cantidad que te dan antes de que se quiten los impuestos.",
+        "reason": "Palabra difícil explicada."
+      },
+      {
+        "original": "Se requiere certificado negativo del Registro Central de Delincuentes Sexuales.",
+        "adapted": "Necesitas un certificado. Este certificado demuestra que no has hecho nada malo con niños.",
+        "reason": "Explicación sencilla y clara del propósito del certificado."
+      }
+    ],
+    "professions": [
+      "conserje"
+    ],
+    "pictogram": {
+      "id": 2353,
+      "keyword": "conserje",
+      "imageUrl": "https://static.arasaac.org/pictograms/2353/2353_300.png"
+    },
+    "readabilityBefore": {
+      "sentences": 6,
+      "words": 52,
+      "syllables": 118,
+      "fernandezHuerta": {
+        "value": 61.8,
+        "level": "normal"
+      },
+      "inflesz": {
+        "value": 56.8,
+        "level": "normal"
+      }
+    },
+    "readabilityAfter": {
+      "sentences": 21,
+      "words": 148,
+      "syllables": 293,
+      "fernandezHuerta": {
+        "value": 80.9,
+        "level": "fácil"
+      },
+      "inflesz": {
+        "value": 76.5,
+        "level": "bastante fácil"
+      }
+    },
+    "violations": [
+      {
+        "rule": "LONG_SENTENCE",
+        "severity": "ERROR",
+        "fragment": "17 palabras",
+        "sentence": "El horario es de 7 y media de la mañana a 3 y media de la tarde.",
+        "advice": "La frase tiene más de 15 palabras. Divídela en frases más cortas."
+      }
+    ]
+  }
+}
