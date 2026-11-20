@@ -31,3 +31,40 @@ jobs:
       # 3. Compila y pasa todos los tests
       - name: Compilar y pasar los tests
         run: ./mvnw -B verify
+
+  frontend:
+    name: Frontend (lint, tests y build)
+    runs-on: ubuntu-latest
+
+    # Todos los comandos se ejecutan dentro de la carpeta frontend/
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      # 1. Descarga el código del repositorio en la máquina
+      - uses: actions/checkout@v7
+
+      # 2. Instala Node 24 (el mismo que en tu PC)
+      #    y guarda las librerías de npm para que la próxima vez vaya más rápido
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      # 3. Instala exactamente las versiones de package-lock.json
+      - name: Instalar las dependencias
+        run: npm ci
+
+      # 4. Busca errores típicos en el código
+      - name: Lint
+        run: npm run lint
+
+      # 5. Pasa los tests de Vitest
+      - name: Tests
+        run: npm test
+
+      # 6. Comprueba los tipos de TypeScript y construye la web
+      - name: Build
+        run: npm run build
