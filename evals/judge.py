@@ -166,7 +166,12 @@ def main() -> None:
                 continue
             facts = json.loads((facts_dir / path.name).read_text(encoding="utf-8"))["hechos"]
             print(f"juez · {path.stem} ...", flush=True)
-            judged = ask_judge(model, result["original"], result["informe"]["adaptedText"], facts)
+            try:
+                judged = ask_judge(model, result["original"], result["informe"]["adaptedText"], facts)
+            except (OSError, ValueError) as error:
+                # Si tarda demasiado o responde mal, sigue con el siguiente: la próxima pasada lo repite
+                print(f"  ERROR: {error}", flush=True)
+                continue
             done.append({"texto": path.stem, **judged})
             output.write_text(json.dumps({"juez": model, "resumen": summary(done), "textos": done},
                                          ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
