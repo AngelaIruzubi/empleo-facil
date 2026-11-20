@@ -7,6 +7,8 @@ Ha marcado una frase que está mal y ha escrito qué está mal.
 Tu tarea:
 - Reescribe solo la frase marcada.
 - Lo más importante es el comentario del preparador laboral. Haz siempre lo que pide.
+- Muchas veces el comentario ya es la frase corregida. Entonces escribe esa frase tal cual.
+  Solo puedes arreglar la ortografía, las mayúsculas y las tildes. No añadas ni quites nada.
 - Si el preparador laboral da un dato, como un lugar, un horario, un sueldo o un nombre, escríbelo en la frase.
   Úsalo aunque no esté en la oferta original: el preparador laboral conoce la oferta mejor.
 - La frase corregida tiene que ser distinta de la frase marcada.
