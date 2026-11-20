@@ -32,6 +32,17 @@ jobs:
       - name: Compilar y pasar los tests
         run: ./mvnw -B verify
 
+  evals:
+    name: Evaluación (tests de las comprobaciones)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      # Los scripts de evals/ solo usan la librería estándar: basta con el Python que trae la máquina
+      - name: Tests de evals/checks.py
+        run: python3 -m unittest discover -s evals -v
+
   frontend:
     name: Frontend (lint, tests y build)
     runs-on: ubuntu-latest
