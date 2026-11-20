@@ -52,13 +52,16 @@ export function readingOrder({ title, paragraphs }: AdaptedText): string[] {
 // cada línea con letras del texto es una línea de lectura (título, pregunta, frase o elemento de lista).
 // Una línea nueva puede traer varias frases separadas por saltos de línea.
 // Si la línea vieja era un elemento de lista, las nuevas también lo son.
-// Devuelve el texto nuevo y los números de las líneas cambiadas, ya contadas en el texto nuevo.
+// Devuelve el texto nuevo, los números de las líneas cambiadas ya contadas en el texto nuevo
+// y newLineOf: dónde queda cada línea vieja en el texto nuevo (si una línea de antes se ha
+// dividido en dos, las de después bajan un puesto).
 export function replaceLines(
   text: string,
   replacements: Map<number, string>,
-): { text: string; changedLines: number[] } {
+): { text: string; changedLines: number[]; newLineOf: number[] } {
   const result: string[] = []
   const changedLines: number[] = []
+  const newLineOf: number[] = []
   let oldLine = 0
   let newLine = 0
   for (const raw of text.split('\n')) {
@@ -67,6 +70,7 @@ export function replaceLines(
       continue
     }
     const replacement = replacements.get(oldLine)
+    newLineOf[oldLine] = newLine
     oldLine++
     if (replacement === undefined) {
       result.push(raw)
@@ -84,7 +88,18 @@ export function replaceLines(
       newLine++
     }
   }
-  return { text: result.join('\n'), changedLines }
+  return { text: result.join('\n'), changedLines, newLineOf }
+}
+
+// Dos frases son iguales si solo cambian las mayúsculas, los espacios o el punto final
+export function sameSentence(a: string, b: string): boolean {
+  const normalize = (sentence: string) =>
+    sentence
+      .toLowerCase()
+      .replace(/\s+/g, ' ')
+      .replace(/[.!?\s]+$/, '')
+      .trim()
+  return normalize(a) === normalize(b)
 }
 
 function toBlocks(lines: string[]): Block[] {

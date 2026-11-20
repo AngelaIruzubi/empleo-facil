@@ -1,5 +1,5 @@
 import { useId, useState } from 'react'
-import { parseAdaptedText, readingOrder, replaceLines } from './adaptedText'
+import { parseAdaptedText, readingOrder, replaceLines, sameSentence } from './adaptedText'
 import { ApiError, reviseSentences } from './api'
 
 type ReportProps = {
@@ -26,6 +26,8 @@ function Report({ adaptedText, originalText, canRevise, onRevised }: ReportProps
   // Las líneas que ha cambiado la última corrección, para que el preparador las revise otra vez
   const [corrected, setCorrected] = useState<number[]>([])
   const [revision, setRevision] = useState<Revision>({ status: 'idle' })
+  // Cuántas frases ha devuelto la IA sin cambiar en la última corrección
+  const [unchangedCount, setUnchangedCount] = useState(0)
 
   const lines = readingOrder(parseAdaptedText(adaptedText))
   const markedLines = Object.keys(comments)
@@ -46,10 +48,21 @@ function Report({ adaptedText, originalText, canRevise, onRevised }: ReportProps
         adaptedText,
         markedLines.map((line) => ({ sentence: lines[line], comment: comments[line] })),
       )
-      const replacements = new Map(markedLines.map((line, index) => [line, sentences[index]]))
+      // Si la IA ha devuelto la misma frase, no la cambiamos: se queda marcada con su comentario
+      // para que el preparador lo intente otra vez o lo explique de otra forma
+      const replacements = new Map<number, string>()
+      const unchanged: number[] = []
+      markedLines.forEach((line, index) => {
+        if (sameSentence(sentences[index], lines[line])) {
+          unchanged.push(line)
+        } else {
+          replacements.set(line, sentences[index])
+        }
+      })
       const revised = replaceLines(adaptedText, replacements)
-      setComments({})
+      setComments(Object.fromEntries(unchanged.map((line) => [revised.newLineOf[line], comments[line]])))
       setCorrected(revised.changedLines)
+      setUnchangedCount(unchanged.length)
       setRevision({ status: 'idle' })
       onRevised(revised.text)
     } catch (error) {
@@ -108,6 +121,14 @@ function Report({ adaptedText, originalText, canRevise, onRevised }: ReportProps
                   {!canRevise && <p className="hint">Puedes pedirlo cuando la inteligencia artificial termine.</p>}
                   {canRevise && missingComment && <p className="hint">Escribe qué está mal en cada frase marcada.</p>}
                 </>
+              )}
+              {unchangedCount > 0 && !revising && (
+                <p className="review-unchanged" role="status">
+                  {unchangedCount === 1
+                    ? 'La IA no ha cambiado 1 frase. Sigue marcada.'
+                    : `La IA no ha cambiado ${unchangedCount} frases. Siguen marcadas.`}{' '}
+                  Prueba otra vez o explica qué está mal de otra forma.
+                </p>
               )}
               {revision.status === 'error' && (
                 <div className="error" role="alert">

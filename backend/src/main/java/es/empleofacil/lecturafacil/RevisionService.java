@@ -58,7 +58,11 @@ public class RevisionService {
             log.error("Error al llamar a la IA para corregir una frase", e);
             throw new RevisionException("La IA no ha podido corregir la frase", e);
         }
-        return checked(answer);
+        String corrected = checked(answer);
+        // Para poder revisar después qué ha contestado la IA. Los textos son ofertas de trabajo, sin datos personales.
+        log.info("Corrección: «{}» con el comentario «{}» -> «{}»",
+                correction.sentence(), correction.comment(), corrected.replace("\n", " / "));
+        return corrected;
     }
 
     // Lo que cambia de una llamada a otra (la frase y el comentario) va al final:

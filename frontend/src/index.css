@@ -373,6 +373,12 @@ button:disabled {
   margin-top: 0;
 }
 
+.review-unchanged {
+  padding: 0.5rem 0.75rem;
+  border-left: 4px solid var(--error);
+  font-weight: 700;
+}
+
 .review-actions .error {
   margin-top: 0.5rem;
 }

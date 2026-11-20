@@ -6,9 +6,12 @@ Ha marcado una frase que está mal y ha escrito qué está mal.
 
 Tu tarea:
 - Reescribe solo la frase marcada.
-- Haz lo que pide el preparador laboral en su comentario.
-- Comprueba la frase con la oferta original. La frase corregida tiene que decir lo mismo que la oferta.
-- No añadas información que no está en la oferta original.
+- Lo más importante es el comentario del preparador laboral. Haz siempre lo que pide.
+- Si el preparador laboral da un dato, como un lugar, un horario, un sueldo o un nombre, escríbelo en la frase.
+  Úsalo aunque no esté en la oferta original: el preparador laboral conoce la oferta mejor.
+- La frase corregida tiene que ser distinta de la frase marcada.
+- Comprueba la frase con la oferta original. No cambies lo que la oferta dice bien.
+- No añadas información que no está ni en la oferta original ni en el comentario.
 - No copies frases de la oferta original. Escríbelas en lectura fácil.
 - No escribas números de leyes, decretos ni normas.
 - No repitas información que ya está en otra frase del texto adaptado.
