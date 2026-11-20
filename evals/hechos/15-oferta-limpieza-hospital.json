@@ -1,0 +1,41 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "limpiador",
+    "limpiadora"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Limpieza en un hospital"
+    },
+    {
+      "tipo": "fecha",
+      "dato": "Desde el martes 1 de diciembre de 2026 hasta el miércoles 30 de junio de 2027"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "30 horas a la semana"
+    },
+    {
+      "tipo": "horario",
+      "dato": "Por la tarde, de 15:00 a 21:00, de lunes a viernes"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "1.020 euros brutos al mes, y las pagas extra se cobran aparte"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Haber limpiado en un hospital 3 meses como mínimo"
+    },
+    {
+      "tipo": "otros",
+      "dato": "La empresa paga el curso sobre riesgos biológicos"
+    }
+  ],
+  "trampas": [
+    "pagas extra aparte, no dentro del sueldo",
+    "las dos fechas con día de la semana"
+  ]
+}

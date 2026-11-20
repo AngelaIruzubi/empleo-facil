@@ -1,0 +1,40 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "operario de fábrica",
+    "operaria de fábrica",
+    "envasador",
+    "envasadora"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Trabajar en la cadena de una fábrica de conservas"
+    },
+    {
+      "tipo": "funciones",
+      "dato": "Elegir el producto, meterlo en envases y poner etiquetas"
+    },
+    {
+      "tipo": "horario",
+      "dato": "Turnos que cambian: mañana y tarde"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Contrato con una empresa de trabajo temporal; puede que después te contrate la fábrica"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "1.380 euros brutos al mes"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Llevar gorro, guantes y bata, que da la empresa"
+    }
+  ],
+  "trampas": [
+    "operario es palabra general",
+    "ETT y EPI son siglas",
+    "posibilidad no es seguro"
+  ]
+}

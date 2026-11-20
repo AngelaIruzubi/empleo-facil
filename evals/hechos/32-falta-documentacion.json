@@ -1,0 +1,27 @@
+{
+  "oferta": false,
+  "profesiones_validas": [],
+  "hechos": [
+    {
+      "tipo": "mensaje",
+      "dato": "Tu solicitud está incompleta"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Falta la copia del certificado de discapacidad y la vida laboral actualizada"
+    },
+    {
+      "tipo": "fecha",
+      "dato": "Tienes 10 días naturales desde que recibes el mensaje para entregarlos"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Si no los entregas, sales del proceso"
+    }
+  ],
+  "trampas": [
+    "días naturales",
+    "se le tendrá por desistido",
+    "no es una oferta"
+  ]
+}

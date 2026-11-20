@@ -1,0 +1,19 @@
+{
+  "oferta": false,
+  "profesiones_validas": [],
+  "hechos": [
+    {
+      "tipo": "contrato",
+      "dato": "Tu contrato temporal termina el domingo 31 de octubre de 2027"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "Te pagan la liquidación: las vacaciones que no has cogido y una indemnización de 12 días de sueldo por cada año trabajado"
+    }
+  ],
+  "trampas": [
+    "no es una oferta",
+    "no es un despido: el contrato acaba en la fecha pactada",
+    "liquidación e indemnización son palabras difíciles"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "recepcionista",
+    "telefonista"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Recepcionista y telefonista en unas oficinas, en un Centro Especial de Empleo"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Certificado de discapacidad del 33 % o más"
+    },
+    {
+      "tipo": "funciones",
+      "dato": "Coger el teléfono, atender a las visitas y repartir paquetes dentro de la oficina"
+    },
+    {
+      "tipo": "horario",
+      "dato": "De 9:00 a 14:00 seguido"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "25 horas a la semana"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Contrato indefinido"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "780 euros brutos al mes en 14 pagas"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "Saber inglés (no es obligatorio)"
+    }
+  ],
+  "trampas": [
+    "≥ es un signo",
+    "x 14 pagas"
+  ]
+}

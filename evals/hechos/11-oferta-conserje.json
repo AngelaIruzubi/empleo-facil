@@ -1,0 +1,37 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "conserje",
+    "portero"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Conserje en un colegio"
+    },
+    {
+      "tipo": "horario",
+      "dato": "De lunes a viernes, de 7:30 a 15:00"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Contrato indefinido desde el primer día"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "1.150 euros brutos en cada una de las 14 pagas (12 meses y 2 pagas extra)"
+    },
+    {
+      "tipo": "funciones",
+      "dato": "Abrir y cerrar el colegio, controlar quién entra, repartir el correo y hacer arreglos pequeños"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Un papel que dice que no tienes delitos sexuales"
+    }
+  ],
+  "trampas": [
+    "14 pagas: hay 2 pagas extra aparte",
+    "certificado negativo"
+  ]
+}

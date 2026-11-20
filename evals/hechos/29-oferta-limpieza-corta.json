@@ -1,0 +1,37 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "limpiador",
+    "limpiadora"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Limpieza de oficinas"
+    },
+    {
+      "tipo": "horario",
+      "dato": "De lunes a viernes, de 6:00 a 9:00"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "15 horas a la semana"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "600 euros brutos al mes"
+    },
+    {
+      "tipo": "fecha",
+      "dato": "Empiezas enseguida"
+    },
+    {
+      "tipo": "como_apuntarse",
+      "dato": "Mandar el currículum por la web"
+    }
+  ],
+  "trampas": [
+    "todo abreviado: limp., ofic., br, incorp. inmed.",
+    "CV es una sigla"
+  ]
+}

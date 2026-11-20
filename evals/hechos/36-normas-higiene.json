@@ -1,0 +1,30 @@
+{
+  "oferta": false,
+  "profesiones_validas": [],
+  "hechos": [
+    {
+      "tipo": "otros",
+      "dato": "Lavarse las manos al entrar y después de cada descanso"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Llevar el pelo recogido y con gorro"
+    },
+    {
+      "tipo": "otros",
+      "dato": "No llevar anillos, pulseras ni relojes"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Solo se puede comer, beber y fumar en los sitios preparados para eso"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Si no cumples las normas, te pueden sancionar"
+    }
+  ],
+  "trampas": [
+    "prohibiciones: no se deben volver afirmaciones al revés",
+    "no es una oferta"
+  ]
+}

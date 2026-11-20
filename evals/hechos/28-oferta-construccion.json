@@ -1,0 +1,39 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "albañil",
+    "peón de albañil",
+    "peón de construcción"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Peón de albañil en una obra"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Curso de prevención de riesgos de 20 horas (tarjeta TPC) sin caducar"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "40 horas a la semana"
+    },
+    {
+      "tipo": "horario",
+      "dato": "De lunes a viernes, de 8:00 a 17:00, con 1 hora para comer"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Contrato fijo de obra, según el convenio de la construcción"
+    },
+    {
+      "tipo": "otros",
+      "dato": "La empresa paga la comida y el viaje (dietas y desplazamiento)"
+    }
+  ],
+  "trampas": [
+    "PRL y TPC son siglas",
+    "peón es palabra general",
+    "fijo de obra"
+  ]
+}

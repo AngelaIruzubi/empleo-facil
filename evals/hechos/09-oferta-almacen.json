@@ -1,0 +1,45 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "mozo de almacén",
+    "moza de almacén",
+    "almacenista",
+    "carretillero"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Mozo o moza de almacén"
+    },
+    {
+      "tipo": "funciones",
+      "dato": "Cargar y descargar camiones y preparar pedidos con un lector"
+    },
+    {
+      "tipo": "horario",
+      "dato": "Turnos que cambian cada semana: mañana, tarde y noche"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Contrato temporal de 3 meses, a través de una empresa de trabajo temporal"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "9,80 euros brutos por hora, y más dinero por las noches"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "Carné de carretillero (no es obligatorio)"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Llevar calzado de seguridad, que tienes que comprar tú"
+    }
+  ],
+  "trampas": [
+    "ETT es una sigla",
+    "M/T/N con barras",
+    "el calzado no lo da la empresa",
+    "valorable no es obligatorio"
+  ]
+}

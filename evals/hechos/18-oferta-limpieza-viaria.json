@@ -1,0 +1,40 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "barrendero",
+    "barrendera",
+    "limpiador",
+    "limpiadora"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Limpiar las calles"
+    },
+    {
+      "tipo": "horario",
+      "dato": "De noche, de 22:00 a 5:00, de domingo a jueves"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Contrato de interinidad: sustituyes a alguien o cubres un puesto hasta que se ocupe"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "El del convenio, y más dinero por trabajar de noche y por trabajar con productos tóxicos"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Carné de conducir B"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "Carné C para conducir barredoras (no es obligatorio)"
+    }
+  ],
+  "trampas": [
+    "de domingo a jueves",
+    "interinidad",
+    "pluses"
+  ]
+}

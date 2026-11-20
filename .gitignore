@@ -14,6 +14,10 @@ node_modules/
 dist/
 coverage/
 
+# Evaluación: ofertas reales (aunque sin datos personales, el texto es de quien la publicó)
+evals/textos-privados/
+evals/hechos-privados/
+
 # IDE
 .idea/
 *.iml

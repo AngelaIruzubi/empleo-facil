@@ -1,0 +1,47 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "cocinero",
+    "cocinera",
+    "pinche de cocina",
+    "ayudante de cocina"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Ayudante de cocina en un restaurante"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Carné de manipulador de alimentos"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "Media jornada: 25 horas a la semana"
+    },
+    {
+      "tipo": "horario",
+      "dato": "De lunes a viernes, de 11:00 a 16:00"
+    },
+    {
+      "tipo": "fecha",
+      "dato": "Empiezas el lunes 11 de enero de 2027"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Contrato de 6 meses; después puede ser indefinido"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "900 euros brutos al mes, y además la parte de las pagas extra"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "No hace falta experiencia"
+    }
+  ],
+  "trampas": [
+    "la parte proporcional de las pagas se cobra además de los 900 euros",
+    "posibilidad no es seguro"
+  ]
+}

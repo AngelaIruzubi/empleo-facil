@@ -1,0 +1,40 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "camarera de pisos",
+    "camarero de pisos",
+    "limpiadora",
+    "limpiador"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Camarera o camarero de pisos: limpiar y ordenar las habitaciones de un hotel"
+    },
+    {
+      "tipo": "fecha",
+      "dato": "En verano, de junio a septiembre"
+    },
+    {
+      "tipo": "horario",
+      "dato": "6 días a la semana, de 8:00 a 15:00"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "1.350 euros netos al mes"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Te dan donde dormir y la comida"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "Experiencia en hoteles (no es obligatoria)"
+    }
+  ],
+  "trampas": [
+    "camarera de pisos no es camarera de bar",
+    "netos",
+    "manutención es la comida"
+  ]
+}

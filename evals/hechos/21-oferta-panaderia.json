@@ -1,0 +1,37 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "panadero",
+    "panadera"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Ayudante para hacer pan en una panadería"
+    },
+    {
+      "tipo": "horario",
+      "dato": "De madrugada, de 4:00 a 10:00, de lunes a sábado, también los festivos"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Contrato indefinido"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "El del convenio (no da una cantidad)"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "Experiencia (no es obligatoria; te enseñan)"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Carné de manipulador de alimentos"
+    }
+  ],
+  "trampas": [
+    "obrador es una palabra difícil",
+    "también festivos"
+  ]
+}

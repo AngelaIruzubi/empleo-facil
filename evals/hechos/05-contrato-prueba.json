@@ -1,0 +1,26 @@
+{
+  "oferta": false,
+  "profesiones_validas": [],
+  "hechos": [
+    {
+      "tipo": "contrato",
+      "dato": "Periodo de prueba de 1 mes"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "En ese mes, la empresa o el trabajador pueden terminar el contrato sin avisar antes y sin indemnización"
+    },
+    {
+      "tipo": "otros",
+      "dato": "30 días naturales de vacaciones pagadas al año"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Las fechas de las vacaciones se deciden entre la empresa y el trabajador"
+    }
+  ],
+  "trampas": [
+    "sin preaviso ni indemnización",
+    "días naturales cuentan también los fines de semana"
+  ]
+}

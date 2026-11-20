@@ -1,0 +1,27 @@
+{
+  "oferta": false,
+  "profesiones_validas": [],
+  "hechos": [
+    {
+      "tipo": "mensaje",
+      "dato": "Te han elegido para una entrevista para el puesto de reponedor"
+    },
+    {
+      "tipo": "fecha",
+      "dato": "La entrevista es el lunes 18 de enero de 2027 a las 10:30, en sus oficinas"
+    },
+    {
+      "tipo": "fecha",
+      "dato": "Tienes que confirmar que vas contestando al correo antes del jueves 14 de enero"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Lleva el DNI y una copia de tu currículum"
+    }
+  ],
+  "trampas": [
+    "no es una oferta",
+    "el 14 de enero de 2027 es jueves",
+    "preseleccionada no es contratado"
+  ]
+}

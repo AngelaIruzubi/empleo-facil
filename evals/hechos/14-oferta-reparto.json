@@ -1,0 +1,48 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "repartidor",
+    "repartidora",
+    "conductor",
+    "conductora"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Repartidor o repartidora de paquetes en la ciudad"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Carné de conducir B desde hace más de 1 año"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Conocer la zona"
+    },
+    {
+      "tipo": "otros",
+      "dato": "La empresa da la furgoneta y el móvil"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "40 horas a la semana, en turnos de 8 horas"
+    },
+    {
+      "tipo": "horario",
+      "dato": "De lunes a sábado, con 2 días libres que cambian"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "1.200 euros netos al mes fijos, y más dinero según los paquetes que entregues"
+    },
+    {
+      "tipo": "fecha",
+      "dato": "Empiezas enseguida"
+    }
+  ],
+  "trampas": [
+    "netos: lo que llega al banco",
+    "variable no es fijo",
+    "L-S es de lunes a sábado"
+  ]
+}

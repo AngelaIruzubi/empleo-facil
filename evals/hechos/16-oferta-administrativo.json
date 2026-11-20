@@ -1,0 +1,46 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "administrativo",
+    "administrativa",
+    "oficinista"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Auxiliar administrativo en una oficina de gestoría"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "Media jornada: 20 horas a la semana"
+    },
+    {
+      "tipo": "horario",
+      "dato": "De lunes a viernes, de 9:00 a 13:00"
+    },
+    {
+      "tipo": "funciones",
+      "dato": "Archivar, escanear papeles, coger el teléfono y apuntar facturas"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Tener la ESO"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "Saber usar Excel y tener experiencia en oficina (no es obligatorio)"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Contrato de 1 año"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "650 euros brutos al mes en 14 pagas"
+    }
+  ],
+  "trampas": [
+    "auxiliar es una palabra general: el pictograma no debe ser el de auxiliar",
+    "14 pagas"
+  ]
+}

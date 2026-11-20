@@ -1,0 +1,43 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "monitor de comedor",
+    "monitora de comedor",
+    "monitor",
+    "monitora"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Monitor o monitora de comedor en un colegio"
+    },
+    {
+      "tipo": "fecha",
+      "dato": "Durante el curso 2026-2027"
+    },
+    {
+      "tipo": "horario",
+      "dato": "De lunes a viernes, de 13:00 a 15:00, solo los días de colegio"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "400 euros brutos al mes"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Certificado de manipulador de alimentos"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Certificado de no tener delitos sexuales"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "Título de monitor de tiempo libre (no es obligatorio)"
+    }
+  ],
+  "trampas": [
+    "días lectivos: no trabajas en vacaciones del colegio",
+    "2 horas al día"
+  ]
+}

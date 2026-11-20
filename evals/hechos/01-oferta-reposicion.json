@@ -1,0 +1,47 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "reponedor",
+    "reponedora",
+    "mozo de almacén"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Personal de reposición en un centro logístico"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Tener la ESO"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Poder trabajar en turnos rotativos"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Poder empezar enseguida"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "Tener el CAP (no es obligatorio)"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "Experiencia de 6 meses como mínimo en un puesto parecido (no es obligatoria)"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Contrato de 3 meses que se puede alargar"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "El sueldo es el que dice el convenio (no da una cantidad)"
+    }
+  ],
+  "trampas": [
+    "ESO no es Bachillerato ni primaria",
+    "CAP es una sigla que no se explica en la oferta",
+    "valorable no es obligatorio"
+  ]
+}

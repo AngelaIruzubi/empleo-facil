@@ -1,0 +1,43 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "dependiente",
+    "dependienta",
+    "cajero",
+    "cajera"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Dependiente o dependienta en un supermercado"
+    },
+    {
+      "tipo": "horario",
+      "dato": "Sábados y domingos, de 9:00 a 17:00"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "16 horas a la semana"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Contrato indefinido de media jornada"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "El del convenio (no da una cantidad)"
+    },
+    {
+      "tipo": "funciones",
+      "dato": "Cobrar en la caja y atender en la charcutería"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "Experiencia cortando fiambre (no es obligatoria)"
+    }
+  ],
+  "trampas": [
+    "solo fines de semana",
+    "indefinido aunque sea a tiempo parcial"
+  ]
+}

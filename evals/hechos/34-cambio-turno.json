@@ -1,0 +1,26 @@
+{
+  "oferta": false,
+  "profesiones_validas": [],
+  "hechos": [
+    {
+      "tipo": "horario",
+      "dato": "Desde el lunes 4 de enero de 2027, el turno de tarde es de 14:00 a 22:00"
+    },
+    {
+      "tipo": "horario",
+      "dato": "Antes era de 15:00 a 23:00"
+    },
+    {
+      "tipo": "horario",
+      "dato": "El turno de mañana no cambia"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Para cambiar de turno, pídeselo al encargado con una semana de antelación"
+    }
+  ],
+  "trampas": [
+    "no es una oferta",
+    "la hora nueva y la vieja no se deben mezclar"
+  ]
+}

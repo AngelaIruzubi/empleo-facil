@@ -1,0 +1,39 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "cuidador",
+    "cuidadora",
+    "auxiliar de ayuda a domicilio"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Cuidar a personas mayores en sus casas"
+    },
+    {
+      "tipo": "funciones",
+      "dato": "Asearles, hacer la comida, limpiar un poco la casa y acompañarles al médico"
+    },
+    {
+      "tipo": "horario",
+      "dato": "Por la mañana de 8:00 a 13:00 y por la tarde de 17:00 a 19:00, de lunes a viernes"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Carné de conducir y tener coche propio"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "Te pagan 0,19 euros por cada kilómetro que haces con tu coche"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Certificado de Atención sociosanitaria a personas en el domicilio"
+    }
+  ],
+  "trampas": [
+    "jornada partida",
+    "kilometraje no es el sueldo; la oferta no dice el sueldo",
+    "auxiliar es palabra general"
+  ]
+}

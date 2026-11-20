@@ -1,0 +1,42 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "limpiador",
+    "limpiadora"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Limpieza de oficinas"
+    },
+    {
+      "tipo": "horario",
+      "dato": "Por la tarde, de lunes a viernes, de 17:00 a 21:00"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Vivir en Alcobendas o en San Sebastián de los Reyes"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "Tener certificado de discapacidad del 33 % o más (no es obligatorio; a la empresa le sale más barato contratar)"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Contrato indefinido"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "Media jornada: 20 horas a la semana"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "El salario mínimo, con las pagas extra repartidas en los meses"
+    }
+  ],
+  "trampas": [
+    "SMI es una sigla",
+    "prorrateado: las pagas extra van dentro de cada mes",
+    "L-V es de lunes a viernes"
+  ]
+}

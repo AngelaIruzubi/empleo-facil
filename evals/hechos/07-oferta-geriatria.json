@@ -1,0 +1,43 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "auxiliar de enfermería",
+    "cuidador",
+    "cuidadora",
+    "gerocultor",
+    "gerocultora",
+    "técnico en cuidados auxiliares de enfermería"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Cuidar a personas mayores en una residencia"
+    },
+    {
+      "tipo": "funciones",
+      "dato": "Asear a los residentes, ayudarles a comer, moverlos y apuntar lo que pasa"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Título de TCAE o certificado de Atención sociosanitaria a personas dependientes en instituciones"
+    },
+    {
+      "tipo": "horario",
+      "dato": "Turnos que cambian: mañana, tarde y noche, y un fin de semana sí y otro no"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Sustitución de una trabajadora de baja: hasta que vuelva, y como mucho hasta el miércoles 30 de junio de 2027"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "El del convenio (no da una cantidad)"
+    }
+  ],
+  "trampas": [
+    "TCAE es una sigla",
+    "el contrato no es para siempre",
+    "puede acabar antes del 30 de junio si vuelve la titular",
+    "el 30 de junio de 2027 es miércoles"
+  ]
+}

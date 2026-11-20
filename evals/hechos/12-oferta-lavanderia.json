@@ -1,0 +1,44 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "lavandero",
+    "lavandera",
+    "planchador",
+    "planchadora"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Trabajar en una lavandería grande, en un Centro Especial de Empleo"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Certificado de discapacidad del 33 % o más"
+    },
+    {
+      "tipo": "funciones",
+      "dato": "Separar la ropa, meterla en las lavadoras, plancharla con una máquina y doblarla"
+    },
+    {
+      "tipo": "horario",
+      "dato": "Por la mañana, de 6:00 a 14:00, de lunes a viernes"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "Jornada completa"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "El salario mínimo"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "6 meses; después puede ser indefinido"
+    }
+  ],
+  "trampas": [
+    "CEE es una sigla",
+    "calandra es una palabra difícil",
+    "aquí el certificado sí es obligatorio"
+  ]
+}

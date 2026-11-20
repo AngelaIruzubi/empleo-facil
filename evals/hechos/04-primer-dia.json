@@ -1,0 +1,30 @@
+{
+  "oferta": false,
+  "profesiones_validas": [],
+  "hechos": [
+    {
+      "tipo": "horario",
+      "dato": "El primer día hay que ir a recepción a las 8:00"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Llevar el DNI, el número de la Seguridad Social y el número de cuenta del banco"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Te dan los equipos de protección (EPI) y el uniforme"
+    },
+    {
+      "tipo": "otros",
+      "dato": "En el almacén hay que llevar siempre calzado de seguridad"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "Hay un descanso de 15 minutos que cuenta como tiempo de trabajo"
+    }
+  ],
+  "trampas": [
+    "EPI es una sigla",
+    "no es una oferta de trabajo"
+  ]
+}

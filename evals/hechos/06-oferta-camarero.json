@@ -1,0 +1,47 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "camarero",
+    "camarera"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Camarero o camarera en sala y barra"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Fijo discontinuo: te llaman cada año para la temporada, de mayo a octubre"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "Jornada completa, 40 horas a la semana"
+    },
+    {
+      "tipo": "horario",
+      "dato": "Turno partido, de martes a domingo (el lunes se libra)"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "19.600 euros brutos al año, con las pagas extra repartidas en los meses"
+    },
+    {
+      "tipo": "otros",
+      "dato": "La comida está incluida"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Experiencia de 1 año como mínimo"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "Inglés básico (no es obligatorio)"
+    }
+  ],
+  "trampas": [
+    "fijo discontinuo no es indefinido normal ni temporal normal",
+    "bruto: antes de quitar impuestos",
+    "prorrateadas",
+    "de martes a domingo no es todos los días"
+  ]
+}

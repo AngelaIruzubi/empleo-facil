@@ -1,0 +1,43 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "cajero",
+    "cajera",
+    "dependiente",
+    "dependienta"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Cajero o cajera en una tienda de bricolaje"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "No hace falta experiencia; la empresa te enseña"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Primero 3 meses, después 6 meses y después indefinido"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "30 horas a la semana"
+    },
+    {
+      "tipo": "horario",
+      "dato": "Por la tarde, de lunes a sábado"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "El del convenio (no da una cantidad)"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Periodo de prueba de 15 días"
+    }
+  ],
+  "trampas": [
+    "3+6+indefinido",
+    "la pregunta del principio no es un requisito"
+  ]
+}

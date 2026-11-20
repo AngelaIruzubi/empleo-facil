@@ -1,0 +1,43 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "ordenanza",
+    "conserje"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Lista de personas para trabajar de ordenanza en el Ayuntamiento cuando haga falta (bolsa de empleo)"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Ser de España o de otro país de la Unión Europea"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Tener 16 años o más y no tener la edad de jubilarse"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Tener el Certificado de Escolaridad o algo parecido"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "No haber sido expulsado de un trabajo en la Administración"
+    },
+    {
+      "tipo": "como_apuntarse",
+      "dato": "Entregar la solicitud en 20 días hábiles desde el día después de que salga el anuncio en el BOR"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Se elige con un examen y valorando los méritos (concurso-oposición)"
+    }
+  ],
+  "trampas": [
+    "bolsa de empleo no es un puesto seguro",
+    "BOR es una sigla",
+    "días hábiles",
+    "concurso-oposición"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "vendimiador",
+    "vendimiadora",
+    "peón agrícola",
+    "agricultor"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Peón para recoger la uva (vendimia) en una bodega"
+    },
+    {
+      "tipo": "fecha",
+      "dato": "Desde el miércoles 15 de septiembre de 2027, unas 3 semanas, según la cosecha"
+    },
+    {
+      "tipo": "horario",
+      "dato": "De lunes a sábado, de 8:00 a 15:00"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "10,20 euros brutos por cada hora trabajada"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "No hace falta experiencia"
+    },
+    {
+      "tipo": "otros",
+      "dato": "No dan alojamiento"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Te llevan a las viñas desde la bodega"
+    }
+  ],
+  "trampas": [
+    "unas 3 semanas no es una fecha fija",
+    "no se ofrece alojamiento (negación)"
+  ]
+}

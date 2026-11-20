@@ -1,0 +1,46 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "jardinero",
+    "jardinera",
+    "peón de jardinería"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "4 puestos de peón de jardinería para el Ayuntamiento, para cuidar parques"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Estar apuntado al paro, sin trabajo"
+    },
+    {
+      "tipo": "requisito_obligatorio",
+      "dato": "Carné de conducir B"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "6 meses"
+    },
+    {
+      "tipo": "jornada",
+      "dato": "35 horas a la semana"
+    },
+    {
+      "tipo": "horario",
+      "dato": "De lunes a viernes, de 8:00 a 15:00"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "1.250 euros brutos al mes, con las pagas extra repartidas en los meses"
+    },
+    {
+      "tipo": "como_apuntarse",
+      "dato": "Entregar la solicitud en el Registro del Ayuntamiento en 10 días hábiles"
+    }
+  ],
+  "trampas": [
+    "días hábiles no cuentan sábados, domingos ni festivos",
+    "demandante de empleo no ocupado"
+  ]
+}

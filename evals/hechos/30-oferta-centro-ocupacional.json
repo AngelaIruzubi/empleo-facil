@@ -1,0 +1,39 @@
+{
+  "oferta": true,
+  "profesiones_validas": [
+    "cuidador",
+    "cuidadora",
+    "educador",
+    "educadora"
+  ],
+  "hechos": [
+    {
+      "tipo": "puesto",
+      "dato": "Cuidador o cuidadora en un centro ocupacional para personas con discapacidad intelectual"
+    },
+    {
+      "tipo": "funciones",
+      "dato": "Ayudar en los talleres, en la comida y en el aseo"
+    },
+    {
+      "tipo": "horario",
+      "dato": "De lunes a viernes, de 9:00 a 17:00"
+    },
+    {
+      "tipo": "contrato",
+      "dato": "Contrato indefinido"
+    },
+    {
+      "tipo": "sueldo",
+      "dato": "El del convenio de centros de atención a personas con discapacidad (no da una cantidad)"
+    },
+    {
+      "tipo": "requisito_valorable",
+      "dato": "Título de Técnico en Integración Social (no es obligatorio)"
+    }
+  ],
+  "trampas": [
+    "XV es un número romano",
+    "usuarios"
+  ]
+}

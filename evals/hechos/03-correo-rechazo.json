@@ -1,0 +1,17 @@
+{
+  "oferta": false,
+  "profesiones_validas": [],
+  "hechos": [
+    {
+      "tipo": "mensaje",
+      "dato": "No te han elegido para seguir en el proceso de selección"
+    },
+    {
+      "tipo": "otros",
+      "dato": "Guardan tus datos 12 meses para otras ofertas"
+    }
+  ],
+  "trampas": [
+    "no es una oferta de trabajo: no debe salir pictograma de profesión"
+  ]
+}

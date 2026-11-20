@@ -1,0 +1,19 @@
+{
+  "oferta": false,
+  "profesiones_validas": [],
+  "hechos": [
+    {
+      "tipo": "sueldo",
+      "dato": "Las horas de trabajo entre las 22:00 y las 6:00 se pagan más: un 25 % más que el sueldo base"
+    },
+    {
+      "tipo": "otros",
+      "dato": "No pasa si el trabajo es de noche siempre y el sueldo ya se pensó para eso"
+    }
+  ],
+  "trampas": [
+    "porcentaje",
+    "la excepción del final",
+    "no es una oferta"
+  ]
+}
