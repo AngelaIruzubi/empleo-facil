@@ -12,6 +12,8 @@
   --ink-soft: #3e5468;
   --signal: #ffc20e;
   --signal-pressed: #e6a800;
+  /* Amarillo oscuro para bordes: 4:1 sobre blanco y sobre amarillo claro (WCAG pide 3:1) */
+  --signal-dark: #9a7300;
   --disabled: #e3e7eb;
   --error: #b3261e;
 
@@ -134,7 +136,8 @@ button:active {
   background: var(--signal-pressed);
 }
 
-button:disabled {
+button:disabled,
+button[aria-disabled='true'] {
   background: var(--disabled);
   color: var(--ink-soft);
   border-color: var(--ink-soft);
@@ -353,7 +356,7 @@ button:disabled {
 
 /* Cambiada por la IA en la última corrección: hay que revisarla otra vez */
 .review-line-corrected {
-  border-left-color: var(--signal-pressed);
+  border-left-color: var(--signal-dark);
   background: #fff7d6;
 }
 

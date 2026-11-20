@@ -26,6 +26,10 @@ function App() {
 
   async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
+    // El botón sigue pudiendo recibir el foco mientras la IA trabaja (aria-disabled), así que lo frenamos aquí
+    if (state.status === 'loading') {
+      return
+    }
     const startedAt = Date.now()
     // La oferta que se adapta. Si la persona cambia el cuadro de texto después, el informe sigue con esta.
     const originalText = text
@@ -76,7 +80,9 @@ function App() {
           <p id="text-hint" className="hint">
             Puedes pegar {MAX_TEXT_LENGTH} letras como máximo. Llevas {text.length}.
           </p>
-          <button type="submit" disabled={loading || text.trim() === ''}>
+          {/* Mientras la IA trabaja: aria-disabled y no disabled. Un botón disabled pierde el foco
+              y quien usa el teclado o un lector de pantalla vuelve al principio de la página (WCAG 2.4.3). */}
+          <button type="submit" disabled={!loading && text.trim() === ''} aria-disabled={loading}>
             Adaptar el texto
           </button>
         </form>

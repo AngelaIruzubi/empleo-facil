@@ -1,0 +1,3 @@
+# Los buscadores pueden leer la página principal. /api/ es el servidor: no tiene páginas.
+User-agent: *
+Disallow: /api/

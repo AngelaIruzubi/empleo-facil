@@ -171,9 +171,10 @@ function Report({ adaptedText, originalText, canRevise, onRevised }: ReportProps
               <p className="review-count" role="status">
                 {revising
                   ? 'La inteligencia artificial está corrigiendo las frases. Puede tardar 1 minuto por frase.'
-                  : markedLines.length === 0
-                    ? 'No has marcado ninguna frase.'
-                    : `Has marcado ${countLabel(markedLines.length, 'frase', 'frases')}.`}
+                  : markedLines.length > 0
+                    ? `Has marcado ${countLabel(markedLines.length, 'frase', 'frases')}.`
+                    : // Después de un cambio ya sale el resumen: «No has marcado ninguna frase» sería ruido
+                      !summary && 'No has marcado ninguna frase.'}
               </p>
               {markedLines.length > 0 && !revising && (
                 <>
