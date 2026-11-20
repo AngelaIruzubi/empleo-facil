@@ -115,12 +115,39 @@ class EasyReadServiceTest {
         ClientDisconnectedException closed = new ClientDisconnectedException(new java.io.IOException("Connection reset"));
 
         // El segundo trozo es de la lista de cambios, que no se ve: ahí el controlador descubre que la página se ha cerrado
-        assertThatThrownBy(() -> service.adaptStreaming("Texto difícil", piece -> { }, () -> { }, () -> {
-            chunks.add("trozo");
-            if (chunks.size() == 2) {
-                throw closed;
+        assertThatThrownBy(() -> service.adaptStreaming("Texto difícil", new EasyReadStreamListener() {
+            @Override
+            public void onChunk() {
+                chunks.add("trozo");
+                if (chunks.size() == 2) {
+                    throw closed;
+                }
             }
         })).isSameAs(closed);
+    }
+
+    @Test
+    void adaptStreamingSendsTheProfessionsBeforeTheText() {
+        when(streamedChunks()).thenReturn(Flux.just(
+                chunk("{\"professions\": [\"camare"),
+                chunk("ro\"], \"adaptedText\": \"Busca"),
+                chunk("mos camarero.\", \"changes\": []}")));
+        List<String> events = new ArrayList<>();
+
+        EasyReadResult result = service.adaptStreaming("Texto difícil", new EasyReadStreamListener() {
+            @Override
+            public void onProfessions(List<String> professions) {
+                events.add("profesión " + professions);
+            }
+
+            @Override
+            public void onText(String newText) {
+                events.add(newText);
+            }
+        });
+
+        assertThat(events).containsExactly("profesión [camarero]", "Busca", "mos camarero.");
+        assertThat(result.professions()).containsExactly("camarero");
     }
 
     @Test

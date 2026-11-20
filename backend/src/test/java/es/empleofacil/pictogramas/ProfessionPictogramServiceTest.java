@@ -71,6 +71,15 @@ class ProfessionPictogramServiceTest {
         assertThat(service.professions(OFFER)).containsExactly("limpiador", "limpiadora", "conserje");
     }
 
+    // Caso real del 20/11/2026: al adaptar, la IA copió "limpiador/a de oficinas" de la oferta y ARASAAC no lo tiene
+    @Test
+    void removesTheGenderSlashAndAlsoTriesTheMainWord() {
+        assertThat(ProfessionPictogramService.clean(List.of("Limpiador/a de oficinas")))
+                .containsExactly("limpiador de oficinas", "limpiador");
+        assertThat(ProfessionPictogramService.clean(List.of("camarero/a", "ayudante de cocina")))
+                .containsExactly("camarero", "ayudante de cocina");
+    }
+
     // Caso real: con "auxiliar", ARASAAC devuelve el pictograma de una monitora de educación especial
     @Test
     void discardsGenericWordsButKeepsCompoundNames() {

@@ -5,6 +5,7 @@ import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.ai.chat.messages.AssistantMessage;
 import org.springframework.ai.chat.messages.Message;
@@ -24,6 +25,12 @@ public class EasyReadExamples {
     static final List<String> NAMES = List.of(
             "kitchen-job-offer",
             "interview-invitation");
+
+    // La profesión de cada ejemplo. La invitación a una entrevista no es una oferta: no tiene profesión.
+    // Si los ejemplos no la llevaran, la IA aprendería a dejarla vacía.
+    static final Map<String, List<String>> PROFESSIONS = Map.of(
+            "kitchen-job-offer", List.of("cocinero", "pinche de cocina"),
+            "interview-invitation", List.of());
 
     private final ResourceLoader resourceLoader;
     private final JsonMapper jsonMapper = JsonMapper.builder().build();
@@ -56,7 +63,7 @@ public class EasyReadExamples {
     }
 
     EasyReadResult result(String name) {
-        return new EasyReadResult(adapted(name), changes(name));
+        return new EasyReadResult(PROFESSIONS.get(name), adapted(name), changes(name));
     }
 
     private String read(String location) {

@@ -1,14 +1,22 @@
 import { useEffect, useState, type SubmitEvent } from 'react'
-import { adaptTextStreaming, ApiError, MAX_TEXT_LENGTH, type EasyReadReport } from './api'
+import { adaptTextStreaming, ApiError, MAX_TEXT_LENGTH, type EasyReadReport, type Pictogram } from './api'
 import Report from './Report'
 import Result, { type ResultStage } from './Result'
 
 // La pantalla siempre está en uno de estos estados.
-// En 'loading', textSoFar es el texto que la IA ha escrito hasta ahora (vacío al principio)
-// y textComplete dice si ya ha terminado el texto (falta la lista de cambios y el pictograma).
+// En 'loading', pictogram es el dibujo de la profesión (llega al principio, si lo hay),
+// textSoFar es el texto que la IA ha escrito hasta ahora (vacío al principio)
+// y textComplete dice si ya ha terminado el texto (falta la lista de cambios).
 type State =
   | { status: 'idle' }
-  | { status: 'loading'; startedAt: number; originalText: string; textSoFar: string; textComplete: boolean }
+  | {
+      status: 'loading'
+      startedAt: number
+      originalText: string
+      pictogram: Pictogram | null
+      textSoFar: string
+      textComplete: boolean
+    }
   | { status: 'done'; report: EasyReadReport; originalText: string }
   | { status: 'error'; title: string; detail: string }
 
@@ -21,13 +29,16 @@ function App() {
     const startedAt = Date.now()
     // La oferta que se adapta. Si la persona cambia el cuadro de texto después, el informe sigue con esta.
     const originalText = text
-    setState({ status: 'loading', startedAt, originalText, textSoFar: '', textComplete: false })
+    setState({ status: 'loading', startedAt, originalText, pictogram: null, textSoFar: '', textComplete: false })
+    // Cambia una parte del estado mientras la IA escribe, sin perder lo que ya había llegado
+    const whileLoading = (change: Partial<Extract<State, { status: 'loading' }>>) =>
+      setState((current) => (current.status === 'loading' ? { ...current, ...change } : current))
     try {
-      const report = await adaptTextStreaming(
-        originalText,
-        (textSoFar) => setState({ status: 'loading', startedAt, originalText, textSoFar, textComplete: false }),
-        () => setState((current) => (current.status === 'loading' ? { ...current, textComplete: true } : current)),
-      )
+      const report = await adaptTextStreaming(originalText, {
+        onPictogram: (pictogram) => whileLoading({ pictogram }),
+        onText: (textSoFar) => whileLoading({ textSoFar }),
+        onTextEnd: () => whileLoading({ textComplete: true }),
+      })
       setState({ status: 'done', report, originalText })
     } catch (error) {
       if (error instanceof ApiError) {
@@ -117,7 +128,8 @@ function App() {
 function resultToShow(state: State) {
   if (state.status === 'loading' && state.textSoFar !== '') {
     const stage: ResultStage = state.textComplete ? 'finishing' : 'writing'
-    return { adaptedText: state.textSoFar, originalText: state.originalText, pictogram: null, stage }
+    // El pictograma llega unos segundos antes que el texto: sale junto con el primer trozo
+    return { adaptedText: state.textSoFar, originalText: state.originalText, pictogram: state.pictogram, stage }
   }
   if (state.status === 'done') {
     const stage: ResultStage = 'done'

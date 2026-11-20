@@ -17,6 +17,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import es.empleofacil.llm.AiTimings;
+import es.empleofacil.llm.StreamingJsonArray;
 import es.empleofacil.llm.StreamingJsonField;
 import es.empleofacil.lecturafacil.analysis.TextSplitter;
 
@@ -67,12 +68,24 @@ public class EasyReadService {
     // Cada trozo nuevo del texto adaptado va a onText, para enseñarlo en pantalla sin esperar al final.
     // onTextEnd avisa una vez cuando el texto está completo. Después la IA aún escribe la lista de cambios.
     public EasyReadResult adaptStreaming(String text, Consumer<String> onText, Runnable onTextEnd) {
-        return adaptStreaming(text, onText, onTextEnd, () -> { });
+        return adaptStreaming(text, new EasyReadStreamListener() {
+            @Override
+            public void onText(String newText) {
+                onText.accept(newText);
+            }
+
+            @Override
+            public void onTextEnd() {
+                onTextEnd.run();
+            }
+        });
     }
 
-    // onChunk se llama con cada trozo que manda la IA, también los de la lista de cambios, que no se ven.
-    // El controlador lo usa para comprobar que la página sigue abierta.
-    public EasyReadResult adaptStreaming(String text, Consumer<String> onText, Runnable onTextEnd, Runnable onChunk) {
+    // Con todos los avisos: también la profesión, que llega la primera, y cada trozo de la IA.
+    // El controlador usa la profesión para mandar el pictograma enseguida
+    // y cada trozo para comprobar que la página sigue abierta.
+    public EasyReadResult adaptStreaming(String text, EasyReadStreamListener listener) {
+        StreamingJsonArray professions = new StreamingJsonArray("professions");
         StreamingJsonField adaptedText = new StreamingJsonField("adaptedText");
         StringBuilder json = new StringBuilder();
         AtomicReference<ChatResponse> lastResponse = new AtomicReference<>();
@@ -88,17 +101,18 @@ public class EasyReadService {
                     .stream()
                     .chatResponse()
                     .doOnNext(response -> {
-                        onChunk.run();
+                        listener.onChunk();
                         lastResponse.set(response);
                         String chunk = chunkText(response);
                         json.append(chunk);
+                        professions.accept(chunk).ifPresent(listener::onProfessions);
                         boolean wasFinished = adaptedText.isFinished();
                         String newText = adaptedText.accept(chunk);
                         if (!newText.isEmpty()) {
-                            onText.accept(newText);
+                            listener.onText(newText);
                         }
                         if (!wasFinished && adaptedText.isFinished()) {
-                            onTextEnd.run();
+                            listener.onTextEnd();
                         }
                     })
                     // Espera aquí hasta el último trozo

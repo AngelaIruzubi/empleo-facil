@@ -44,6 +44,16 @@ Organización:
 - Da la información necesaria y quita la que no hace falta.
 - Usa un lenguaje adecuado para personas adultas. No escribas como si fuera para niños.
 
+Profesión:
+- Antes del texto adaptado, escribe la profesión de la oferta: de 1 a 3 nombres.
+- Primero, el nombre más corto que dice qué trabajo se hace. De una sola palabra si se puede.
+- Después, otros nombres posibles, del más claro al menos claro.
+- Escribe los nombres en singular y en minúsculas.
+- Usa la misma forma que la oferta. Por ejemplo, limpiadora si la oferta dice limpiadora. Si la oferta no lo dice, usa la forma masculina.
+- No escribas palabras generales que no dicen qué trabajo se hace: auxiliar, ayudante, operario, empleado, personal, trabajador ni mozo.
+- Por ejemplo: auxiliar de limpieza es limpiador; ayudante de cocina es cocinero o pinche de cocina; personal de reposición es reponedor.
+- Si el texto no es una oferta de trabajo, no escribas ninguna profesión.
+
 Lista de cambios:
 - Además del texto adaptado, anota los cambios importantes que has hecho.
 - Anota las palabras difíciles explicadas o cambiadas, las siglas, las fechas, la información quitada y lo que es obligatorio o recomendable.

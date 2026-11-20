@@ -3,7 +3,7 @@ import { parseAdaptedText, readingOrder, type Block } from './adaptedText'
 import { useSpeech } from './useSpeech'
 
 // writing: la IA está escribiendo el texto, que está a medias.
-// finishing: el texto está completo, pero la IA aún escribe la lista de cambios. Falta el pictograma.
+// finishing: el texto está completo, pero la IA aún escribe la lista de cambios.
 // done: ya ha llegado todo.
 export type ResultStage = 'writing' | 'finishing' | 'done'
 
@@ -66,7 +66,7 @@ function Result({ adaptedText, pictogram, stage }: ResultProps) {
 
       {stage !== 'done' && (
         <div className="result-writing">
-          <p>{writing ? 'La inteligencia artificial sigue escribiendo.' : 'Estamos buscando el dibujo del trabajo.'}</p>
+          <p>{writing ? 'La inteligencia artificial sigue escribiendo.' : 'La inteligencia artificial está terminando.'}</p>
           {/* Si recargas, el trabajo de la IA se pierde y hay que empezar otra vez */}
           <p>No cierres ni recargues esta página.</p>
         </div>

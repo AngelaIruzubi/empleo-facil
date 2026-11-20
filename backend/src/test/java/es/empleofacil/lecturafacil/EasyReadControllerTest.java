@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -13,7 +15,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.function.Consumer;
 
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -45,6 +46,9 @@ class EasyReadControllerTest {
 
     @MockitoBean
     private RevisionService revisionService;
+
+    private static final ProfessionPictogram CONDUCTOR = new ProfessionPictogram(
+            List.of("conductor"), new Pictogram(1, "conductor", "https://static.arasaac.org/pictograms/1/1_300.png"));
 
     @Test
     void adaptReturnsReportWithTextChangesPictogramReadabilityAndViolations() throws Exception {
@@ -129,32 +133,52 @@ class EasyReadControllerTest {
     }
 
     @Test
-    void streamSendsTextPiecesAndThenTheReport() throws Exception {
-        when(easyReadService.adaptStreaming(eq("Se precisa el CAP."), any(), any(), any())).thenAnswer(invocation -> {
-            Consumer<String> onText = invocation.getArgument(1);
-            onText.accept("Necesitas ");
-            onText.accept("el CAP.\nYa.");
-            Runnable onTextEnd = invocation.getArgument(2);
-            onTextEnd.run();
-            return new EasyReadResult("Necesitas el CAP.\nYa.", List.of());
+    void streamSendsThePictogramFirstThenTextPiecesAndThenTheReportWithoutASecondAiCall() throws Exception {
+        when(easyReadService.adaptStreaming(eq("Se precisa el CAP."), any(EasyReadStreamListener.class))).thenAnswer(invocation -> {
+            EasyReadStreamListener listener = invocation.getArgument(1);
+            listener.onProfessions(List.of("conductor"));
+            listener.onText("Necesitas ");
+            listener.onText("el CAP.\nYa.");
+            listener.onTextEnd();
+            return new EasyReadResult(List.of("conductor"), "Necesitas el CAP.\nYa.", List.of());
         });
-        when(professionPictogramService.find("Se precisa el CAP.")).thenReturn(new ProfessionPictogram(
-                List.of("conductor"), new Pictogram(1, "conductor", "https://static.arasaac.org/pictograms/1/1_300.png")));
+        when(professionPictogramService.fromProfessions(List.of("conductor"))).thenReturn(CONDUCTOR);
 
         String body = postStream("Se precisa el CAP.");
 
         // Los saltos de línea van escritos como barra y n dentro del JSON, para no romper el formato del stream
         assertThat(body).containsSubsequence(
+                "event:pictogram", "\"keyword\":\"conductor\"",
                 "event:text", "data:{\"text\":\"Necesitas \"}",
                 "event:text", "data:{\"text\":\"el CAP.\\nYa.\"}",
                 "event:text-end", "data:{\"complete\":true}",
                 "event:report", "\"adaptedText\":\"Necesitas el CAP.\\nYa.\"", "\"keyword\":\"conductor\"");
         assertThat(body).doesNotContain("event:error");
+        // La profesión ya ha llegado con la adaptación: no hace falta la llamada aparte
+        verify(professionPictogramService, never()).find(anyString());
+    }
+
+    @Test
+    void streamAsksTheProfessionApartWhenTheAdaptationHasNoPictogram() throws Exception {
+        when(easyReadService.adaptStreaming(eq("Se precisa el CAP."), any(EasyReadStreamListener.class))).thenAnswer(invocation -> {
+            EasyReadStreamListener listener = invocation.getArgument(1);
+            listener.onProfessions(List.of());
+            listener.onText("Necesitas el CAP.");
+            listener.onTextEnd();
+            return new EasyReadResult("Necesitas el CAP.", List.of());
+        });
+        when(professionPictogramService.fromProfessions(List.of())).thenReturn(new ProfessionPictogram(List.of(), null));
+        when(professionPictogramService.find("Se precisa el CAP.")).thenReturn(CONDUCTOR);
+
+        String body = postStream("Se precisa el CAP.");
+
+        assertThat(body).doesNotContain("event:pictogram");
+        assertThat(body).containsSubsequence("event:report", "\"keyword\":\"conductor\"");
     }
 
     @Test
     void streamSendsAnErrorEventWhenTheAiFailsAndSkipsTheProfession() throws Exception {
-        when(easyReadService.adaptStreaming(anyString(), any(), any(), any())).thenThrow(new EasyReadException("Ollama apagado"));
+        when(easyReadService.adaptStreaming(anyString(), any(EasyReadStreamListener.class))).thenThrow(new EasyReadException("Ollama apagado"));
 
         String body = postStream("Texto difícil");
 
@@ -166,7 +190,7 @@ class EasyReadControllerTest {
     @Test
     void streamStopsQuietlyWhenThePageIsClosedAndSkipsTheProfession() throws Exception {
         // Así llega al controlador que la página se ha cerrado: el envío al navegador falla
-        when(easyReadService.adaptStreaming(anyString(), any(), any(), any()))
+        when(easyReadService.adaptStreaming(anyString(), any(EasyReadStreamListener.class)))
                 .thenThrow(new ClientDisconnectedException(new java.io.IOException("Connection reset")));
 
         String body = postStream("Texto difícil");

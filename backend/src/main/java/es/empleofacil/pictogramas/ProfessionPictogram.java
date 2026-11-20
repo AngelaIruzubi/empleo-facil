@@ -6,5 +6,5 @@ import java.util.List;
 // pictogram es null si el texto no es una oferta o ninguna profesión tiene pictograma.
 public record ProfessionPictogram(List<String> professions, Pictogram pictogram) {
 
-    static final ProfessionPictogram NONE = new ProfessionPictogram(List.of(), null);
+    public static final ProfessionPictogram NONE = new ProfessionPictogram(List.of(), null);
 }

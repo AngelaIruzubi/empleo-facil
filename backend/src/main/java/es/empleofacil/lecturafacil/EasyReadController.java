@@ -3,6 +3,7 @@ package es.empleofacil.lecturafacil;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -65,6 +66,7 @@ public class EasyReadController {
     }
 
     // Lo mismo, pero con Server-Sent Events: la respuesta llega en varios mensajes.
+    //   event: pictogram -> {"id", "keyword", "imageUrl"}  el pictograma de la profesión (uno, al principio, si lo hay)
     //   event: text      -> {"text": "..."}  un trozo nuevo del texto adaptado (muchos)
     //   event: text-end  -> {"complete": true}  el texto ya está completo; falta la lista de cambios (uno)
     //   event: report  -> el EasyReadReport completo, igual que en /easy-read (uno, al final)
@@ -79,14 +81,45 @@ public class EasyReadController {
         streams.execute(() -> {
             String text = request.text();
             Heartbeat heartbeat = new Heartbeat(emitter);
+            // La profesión que escribe la IA al principio de la adaptación, con su pictograma
+            AtomicReference<ProfessionPictogram> early = new AtomicReference<>(ProfessionPictogram.NONE);
             try {
-                EasyReadResult result = easyReadService.adaptStreaming(text,
-                        newText -> send(emitter, "text", Map.of("text", newText)),
-                        () -> send(emitter, "text-end", Map.of("complete", true)),
-                        heartbeat::beatIfDue);
-                // Antes de la segunda llamada a la IA: si la página ya está cerrada, no la hacemos
-                heartbeat.beat();
-                ProfessionPictogram profession = professionPictogramService.find(text);
+                EasyReadResult result = easyReadService.adaptStreaming(text, new EasyReadStreamListener() {
+                    @Override
+                    public void onProfessions(List<String> professions) {
+                        ProfessionPictogram profession = professionPictogramService.fromProfessions(professions);
+                        log.info("Profesión al adaptar: {} -> pictograma {}", profession.professions(),
+                                profession.pictogram() == null ? "ninguno" : profession.pictogram().keyword());
+                        early.set(profession);
+                        if (profession.pictogram() != null) {
+                            send(emitter, "pictogram", profession.pictogram());
+                        }
+                    }
+
+                    @Override
+                    public void onText(String newText) {
+                        send(emitter, "text", Map.of("text", newText));
+                    }
+
+                    @Override
+                    public void onTextEnd() {
+                        send(emitter, "text-end", Map.of("complete", true));
+                    }
+
+                    @Override
+                    public void onChunk() {
+                        heartbeat.beatIfDue();
+                    }
+                });
+                ProfessionPictogram profession = early.get();
+                if (profession.pictogram() == null) {
+                    // Red de seguridad: la IA no ha dado profesión o ARASAAC no tiene su dibujo.
+                    // Preguntamos la profesión en una llamada aparte, como antes.
+                    // Antes de esa llamada: si la página ya está cerrada, no la hacemos.
+                    heartbeat.beat();
+                    profession = professionPictogramService.find(text);
+                    log.info("Profesión con la llamada aparte: {}", profession.professions());
+                }
                 send(emitter, "report", EasyReadReport.from(text, result, profession));
                 emitter.complete();
             } catch (ClientDisconnectedException e) {
