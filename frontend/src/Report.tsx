@@ -13,10 +13,25 @@ type ReportProps = {
   onRevised: (adaptedText: string) => void
 }
 
-// exact: el preparador ha escrito la frase buena y se pone tal cual, sin la IA.
-// ai: el preparador ha explicado qué está mal y la IA corrige la frase.
-// Angela lo pidió así porque la IA cambiaba frases que ella ya había escrito bien («Dar el desayuno»).
-type Mode = 'exact' | 'ai'
+// Qué hacer con una frase marcada. Solo 'ai' pasa por la IA; las demás se hacen al momento.
+// Angela pidió escribir la frase buena tal cual porque la IA cambiaba frases que ella ya había
+// escrito bien («Dar el desayuno»), y quitar y añadir frases porque la IA no quitaba la frase
+// aunque se lo pidiera en la explicación.
+type Mode = 'exact' | 'ai' | 'remove' | 'add'
+
+const MODES: { mode: Mode; label: string }[] = [
+  { mode: 'exact', label: 'Cambiarla por la frase que escribo' },
+  { mode: 'ai', label: 'Que la IA la corrija con mi explicación' },
+  { mode: 'remove', label: 'Quitar esta frase' },
+  { mode: 'add', label: 'Dejarla y añadir debajo la frase que escribo' },
+]
+
+// El título del recuadro de texto según lo que se va a escribir. Quitar no necesita texto.
+const TEXT_LABELS: Record<Exclude<Mode, 'remove'>, string> = {
+  exact: 'Escribe la frase buena',
+  ai: 'Explica qué está mal',
+  add: 'Escribe la frase que quieres añadir',
+}
 
 type Mark = {
   comment: string
@@ -25,25 +40,27 @@ type Mark = {
 
 type Revision = { status: 'idle' } | { status: 'revising' } | { status: 'error'; title: string; detail: string }
 
+// Lo que ha pasado en el último cambio, para contárselo al preparador
+type Summary = { changed: number; removed: number; added: number; unchanged: number }
+
 // La revisión del preparador laboral: compara la oferta original con el texto adaptado,
-// marca las frases que están mal y escribe la frase buena o pide a la IA que la corrija.
+// marca las frases que están mal y las cambia, las quita, añade frases o pide a la IA que las corrija.
 // Va cerrado: la persona lectora no necesita esto. El preparador lo abre cuando quiere revisar.
 // La legibilidad y las reglas no salen aquí: Angela decidió que no hacen falta para revisar.
 // El servidor las sigue calculando para las evaluaciones de evals/.
 function Report({ adaptedText, originalText, canRevise, onRevised }: ReportProps) {
   // Las frases marcadas: el número de línea, lo que ha escrito el preparador y qué hacer con ello
   const [marks, setMarks] = useState<Record<number, Mark>>({})
-  // Las líneas que ha cambiado el último cambio, para que el preparador las revise otra vez
+  // Las líneas nuevas o cambiadas en el último cambio, para que el preparador las revise otra vez
   const [corrected, setCorrected] = useState<number[]>([])
   const [revision, setRevision] = useState<Revision>({ status: 'idle' })
-  // Cuántas frases ha devuelto la IA sin cambiar en la última corrección
-  const [unchangedCount, setUnchangedCount] = useState(0)
+  const [summary, setSummary] = useState<Summary | null>(null)
 
   const lines = readingOrder(parseAdaptedText(adaptedText))
   const markedLines = Object.keys(marks)
     .map(Number)
     .sort((a, b) => a - b)
-  const missingComment = markedLines.some((line) => marks[line].comment.trim() === '')
+  const missingComment = markedLines.some((line) => marks[line].mode !== 'remove' && marks[line].comment.trim() === '')
   const usesAi = markedLines.some((line) => marks[line].mode === 'ai')
   const revising = revision.status === 'revising'
 
@@ -58,8 +75,8 @@ function Report({ adaptedText, originalText, canRevise, onRevised }: ReportProps
   }
 
   async function revise() {
-    const exactLines = markedLines.filter((line) => marks[line].mode === 'exact')
-    const aiLines = markedLines.filter((line) => marks[line].mode === 'ai')
+    const byMode = (mode: Mode) => markedLines.filter((line) => marks[line].mode === mode)
+    const aiLines = byMode('ai')
     setRevision(aiLines.length > 0 ? { status: 'revising' } : { status: 'idle' })
     try {
       // Solo se llama a la IA si hay alguna frase con explicación
@@ -74,12 +91,16 @@ function Report({ adaptedText, originalText, canRevise, onRevised }: ReportProps
 
       const replacements = new Map<number, string>()
       const unchanged: number[] = []
-      exactLines.forEach((line) => {
-        const sentence = firstLetterUpperCase(marks[line].comment.trim())
-        if (!sameSentence(sentence, lines[line])) {
-          replacements.set(line, sentence)
+      const written = (line: number) => firstLetterUpperCase(marks[line].comment.trim())
+      byMode('exact').forEach((line) => {
+        if (!sameSentence(written(line), lines[line])) {
+          replacements.set(line, written(line))
         }
       })
+      // Una línea vacía: replaceLines la quita del texto
+      byMode('remove').forEach((line) => replacements.set(line, ''))
+      // La frase marcada se queda y la nueva va justo debajo
+      byMode('add').forEach((line) => replacements.set(line, `${lines[line]}\n${written(line)}`))
       // Si la IA ha devuelto la misma frase, no la cambiamos: se queda marcada
       // para que el preparador lo intente otra vez, lo explique de otra forma o escriba la frase
       aiLines.forEach((line, index) => {
@@ -91,9 +112,16 @@ function Report({ adaptedText, originalText, canRevise, onRevised }: ReportProps
       })
 
       const revised = replaceLines(adaptedText, replacements)
+      // Al añadir, la frase que se queda no es nueva: solo se resalta la añadida
+      const kept = new Set(byMode('add').map((line) => revised.newLineOf[line]))
       setMarks(Object.fromEntries(unchanged.map((line) => [revised.newLineOf[line], marks[line]])))
-      setCorrected(revised.changedLines)
-      setUnchangedCount(unchanged.length)
+      setCorrected(revised.changedLines.filter((line) => !kept.has(line)))
+      setSummary({
+        changed: byMode('exact').length + aiLines.length - unchanged.length,
+        removed: byMode('remove').length,
+        added: byMode('add').length,
+        unchanged: unchanged.length,
+      })
       setRevision({ status: 'idle' })
       onRevised(revised.text)
     } catch (error) {
@@ -111,8 +139,8 @@ function Report({ adaptedText, originalText, canRevise, onRevised }: ReportProps
       <div className="report-body">
         <div>
           <p>
-            Compara la oferta original con el texto adaptado. Si una frase está mal, pulsa «Está mal». Después escribe
-            la frase buena o explica qué falla.
+            Compara la oferta original con el texto adaptado. Si una frase está mal, pulsa «Está mal» y elige qué
+            hacer: cambiarla, pedir a la IA que la corrija, quitarla o añadir una frase debajo.
           </p>
           <p>Mira sobre todo el sueldo, el horario, el tipo de contrato y los requisitos.</p>
         </div>
@@ -150,22 +178,27 @@ function Report({ adaptedText, originalText, canRevise, onRevised }: ReportProps
               {markedLines.length > 0 && !revising && (
                 <>
                   <button type="button" onClick={revise} disabled={!canRevise || missingComment}>
-                    Cambiar {markedLines.length === 1 ? 'la frase marcada' : 'las frases marcadas'}
+                    Hacer los cambios
                   </button>
-                  {!canRevise && <p className="hint">Puedes cambiarlas cuando la inteligencia artificial termine.</p>}
+                  {!canRevise && <p className="hint">Puedes hacer los cambios cuando la inteligencia artificial termine.</p>}
                   {canRevise && missingComment && (
-                    <p className="hint">Escribe la frase buena o qué está mal en cada frase marcada.</p>
+                    <p className="hint">Escribe el texto en cada frase marcada. Solo «Quitar esta frase» no lo necesita.</p>
                   )}
                   {canRevise && !missingComment && usesAi && (
                     <p className="hint">Las frases con explicación las corrige la IA. Tarda 1 minuto por frase.</p>
                   )}
                 </>
               )}
-              {unchangedCount > 0 && !revising && (
+              {summary && !revising && markedLines.length === 0 && (
+                <p className="review-summary" role="status">
+                  {summaryMessage(summary)}
+                </p>
+              )}
+              {summary && summary.unchanged > 0 && !revising && (
                 <p className="review-unchanged" role="status">
-                  {unchangedCount === 1
+                  {summary.unchanged === 1
                     ? 'La IA no ha cambiado 1 frase. Sigue marcada.'
-                    : `La IA no ha cambiado ${unchangedCount} frases. Siguen marcadas.`}{' '}
+                    : `La IA no ha cambiado ${summary.unchanged} frases. Siguen marcadas.`}{' '}
                   Prueba otra vez o escribe tú la frase buena.
                 </p>
               )}
@@ -190,7 +223,7 @@ type ReviewLineProps = {
   text: string
   // undefined: la frase no está marcada
   mark: Mark | undefined
-  // La ha cambiado el último cambio
+  // Es nueva o ha cambiado en el último cambio
   corrected: boolean
   // Mientras la IA corrige no se pueden cambiar las marcas
   disabled: boolean
@@ -208,7 +241,7 @@ function ReviewLine({ text, mark, corrected, disabled, onToggle, onChange }: Rev
     <li className={className}>
       <p id={`${id}-text`}>
         {/* La palabra dice que ha cambiado; el color solo ayuda */}
-        {corrected && <span className="review-corrected-label">Corregida: </span>}
+        {corrected && <span className="review-corrected-label">Nueva: </span>}
         {text}
       </p>
       <button
@@ -222,46 +255,55 @@ function ReviewLine({ text, mark, corrected, disabled, onToggle, onChange }: Rev
       </button>
       {mark && (
         <>
-          {/* Primero se elige qué se va a escribir y después se escribe */}
+          {/* Primero se elige qué hacer y después se escribe */}
           <fieldset className="review-mode" disabled={disabled}>
-            <legend className="visually-hidden">¿Qué has escrito?</legend>
-            <label>
-              <input
-                type="radio"
-                name={`${id}-mode`}
-                checked={mark.mode === 'exact'}
-                onChange={() => onChange({ mode: 'exact' })}
-              />
-              La frase buena: ponla tal cual
-            </label>
-            <label>
-              <input
-                type="radio"
-                name={`${id}-mode`}
-                checked={mark.mode === 'ai'}
-                onChange={() => onChange({ mode: 'ai' })}
-              />
-              Una explicación: que la IA corrija la frase
-            </label>
+            <legend className="visually-hidden">¿Qué quieres hacer con esta frase?</legend>
+            {MODES.map(({ mode, label }) => (
+              <label key={mode}>
+                <input
+                  type="radio"
+                  name={`${id}-mode`}
+                  checked={mark.mode === mode}
+                  onChange={() => onChange({ mode })}
+                  // Al marcar la frase, el foco va a la primera opción para elegir qué hacer
+                  autoFocus={mode === mark.mode}
+                />
+                {label}
+              </label>
+            ))}
           </fieldset>
-          <label htmlFor={`${id}-comment`}>
-            {mark.mode === 'exact' ? 'Escribe la frase buena' : 'Explica qué está mal'}
-          </label>
-          <textarea
-            id={`${id}-comment`}
-            value={mark.comment}
-            onChange={(event) => onChange({ comment: event.target.value })}
-            rows={2}
-            disabled={disabled}
-            autoFocus
-          />
+          {mark.mode !== 'remove' && (
+            <>
+              <label htmlFor={`${id}-comment`}>{TEXT_LABELS[mark.mode]}</label>
+              <textarea
+                id={`${id}-comment`}
+                value={mark.comment}
+                onChange={(event) => onChange({ comment: event.target.value })}
+                rows={2}
+                disabled={disabled}
+              />
+            </>
+          )}
         </>
       )}
     </li>
   )
 }
 
-// La frase buena empieza con mayúscula, aunque el preparador la escriba deprisa en minúscula
+function summaryMessage({ changed, removed, added }: Summary): string {
+  const parts = [
+    changed > 0 && `has cambiado ${countLabel(changed, 'frase', 'frases')}`,
+    removed > 0 && `has quitado ${countLabel(removed, 'frase', 'frases')}`,
+    added > 0 && `has añadido ${countLabel(added, 'frase', 'frases')}`,
+  ].filter((part): part is string => Boolean(part))
+  if (parts.length === 0) {
+    return 'No ha cambiado ninguna frase.'
+  }
+  const sentence = parts.length === 1 ? parts[0] : `${parts.slice(0, -1).join(', ')} y ${parts.at(-1)}`
+  return `Hecho: ${sentence}.`
+}
+
+// La frase empieza con mayúscula, aunque el preparador la escriba deprisa en minúscula
 function firstLetterUpperCase(sentence: string): string {
   return sentence.charAt(0).toUpperCase() + sentence.slice(1)
 }

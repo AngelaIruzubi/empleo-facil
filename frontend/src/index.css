@@ -402,6 +402,10 @@ button:disabled {
   accent-color: var(--ink);
 }
 
+.review-summary {
+  font-weight: 700;
+}
+
 .review-unchanged {
   padding: 0.5rem 0.75rem;
   border-left: 4px solid var(--error);
